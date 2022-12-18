@@ -1,0 +1,23 @@
+{
+  "name": "alumni-style",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msit-alumni/alumni-association-test-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msit-alumni/alumni-association-test-website/issues"
+  },
+  "homepage": "https://github.com/msit-alumni/alumni-association-test-website#readme",
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
