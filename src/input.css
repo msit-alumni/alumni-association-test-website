@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mada:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,3 +10,123 @@
 html, body, label {
     font-family: 'Inter';
 }
+
+.font-mada {
+   font-family: 'Mada', sans-serif;
+}
+
+.font-roboto{
+   font-family: 'Roboto', sans-serif;
+}
+
+.slide-bg-color{
+    background: #dba39a;
+    
+}
+
+.slidercontent{
+  width: 63%;
+}
+
+@media only screen and (max-width:1352px){
+  .slidercontent{
+    width: 76%;
+  }
+}
+
+@media only screen and (max-width:1126px) and (min-width:1024px){
+  .slidercontent{
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width:1024px){
+  .slidercontent{
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width:890px){
+  .slidercontent{
+    width: 76%;
+  }
+}
+
+@media only screen and (max-width:755px) and (min-width:666px){
+  .slidercontent{
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width:666px){
+  .slidercontent{
+     width: 46%;
+  }
+}
+
+@media only screen and (max-width:648px){
+  .slidercontent{
+     width: 55%;
+  }
+}
+
+@media only screen and (max-width:606px) and (min-width:399px){
+  .slidercontent{
+     width: 80%;
+  }
+}
+
+@media only screen and (max-width:400px) and (min-width:360px){
+  .slidercontent{
+     width: 90%;
+  }
+}
+
+@media only screen and (max-width:361px) and (min-width:320px){
+  .slidercontent{
+     width: 96%;
+  }
+}
+
+.slick-slide{
+  margin: 0 10px;
+}
+
+button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .slide-arrow{
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+  }
+
+  .prev-arrow{
+    left: -40px;
+    width: 0;
+    height: 0;
+    border-left: 0 solid transparent;
+    border-right: 15px solid #dba39a;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  .next-arrow{
+    right: -40px;
+    width: 0;
+    height: 0;
+    border-right: 0 solid transparent;
+    border-left: 15px solid #DBA39A    ;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
