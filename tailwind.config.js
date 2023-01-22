@@ -1,10 +1,18 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+         "theme":"#041C32"
+      },
+      fontFamily:{
+        "defaultFont":"Merriweather"
+      }
+      
+    },
   },
   plugins: [],
 }

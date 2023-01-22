@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import '../../../src/App.css'
 import Navbar from "../../components/common/Navbar"
-import Footer from "../../components/common/Footer"
-
+import Head from '../../components/Home/Head';
+import EventsNews from '../../components/Home/EventsNews';
+import Footer from '../../components/common/Footer';
+import Album from '../../components/Home/Album';
+import DistAlumni from '../../components/Home/DistAlumni';
 
 const Home = () => {
   return (
-    <div>
+    <div >
 
       {/* Navbar */}
       <Navbar />
-
-      {/* Footer */}
-      <Footer />
-
+      <Head />
+      <DistAlumni />
+      <EventsNews/>
+      <Album/>
+      <Footer/>
     </div>
   )
 }

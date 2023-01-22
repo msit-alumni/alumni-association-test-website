@@ -3,15 +3,15 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from "../src/pages/Home"
-import Alumni from "../src/pages/AlumniProfiles"
+import Album from "../src/pages/Album"
 
 const App = () => {
   return (
-    <div className='container'>
+    <div>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path ='/alumniprofiles' element={<Alumni/>}/>
-        </Routes>
+        <Route path='/album/:name' exact element={<Album />} />
+      </Routes>
     </div>
   );
 };
