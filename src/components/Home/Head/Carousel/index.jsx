@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import image1 from "../../../../assets/images/CarouselMain/img1.png";
-import image2 from "../../../../assets/images/CarouselMain/img2.png";
-import image3 from "../../../../assets/images/CarouselMain/img3.png";
-import image4 from "../../../../assets/images/CarouselMain/img4.png";
-import image5 from "../../../../assets/images/CarouselMain/img5.png";
-import image6 from "../../../../assets/images/CarouselMain/img6.png";
 import { BiCircle } from "react-icons/bi";
+
+
+function importAll(r) {
+  let images = {};
+   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images
+ }
+ const data = importAll(require.context('../../../../assets/images/CarouselMain', false, /\.(png|JPE?G|svg)$/));
+// console.log(data);
+const images=Object.values(data)
+console.log(images)
 
 const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [image1, image2, image3, image4, image5, image6];
     const [intervalId, setIntervalId] = useState(null);
     const [timeInterval, setTimeInterval] = useState(5000);
   
@@ -35,7 +39,7 @@ const Events = () => {
       <div className="relative h-540px w-900px lg:left-24">
         <div className=" inset-0 flex items-center justify-center">
           <img
-            className="object-cover object-center"
+            className="object-cover object-center "
             src={images[currentIndex]}
             alt=""
           />

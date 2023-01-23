@@ -1,56 +1,9 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import {FaRegCaretSquareRight, FaRegCaretSquareLeft} from "react-icons/fa";
-import alumniImage from "../../../assets/images/DistAlumni/alumni1.png"
+import data from "../../../config/distAlumni"
 
-const data = [
- {
- photo: alumniImage,
- name: "John Doe",
- batch: "2021",
- branch: "ECE",
- currentPosition: "SDE",
- company: "Amazon Inc",
- text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
- },
- {
- photo: alumniImage,
- name: "Jane Smith",
- batch: "2021",
- branch: "ECE",
- currentPosition: "SDE",
- company: "Amazon Inc",
- text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
- },
- {
- photo: alumniImage,
- name: "Bob Johnson",
- batch: "2021",
- branch: "ECE",
- currentPosition: "SDE",
- company: "Amazon Inc",
- text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
- },
- {
-    photo: alumniImage,
-    name: "John Do",
-    batch: "2021",
-    branch: "ECE",
-    currentPosition: "SDE",
-    company: "Amazon Inc",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-    photo: alumniImage,
-    name: "Jane Smit",
-    batch: "2021",
-    branch: "ECE",
-    currentPosition: "SDE",
-    company: "Amazon Inc",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
- // more data here
-];
+
 const CardCarousel = () => {
  let length = data.length;
  let checkLength;
