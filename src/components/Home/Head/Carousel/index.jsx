@@ -36,10 +36,10 @@ const Events = () => {
 
   return (
     <div>
-      <div className="relative h-540px w-900px lg:left-24">
+      <div className="relative sm:w-[450px] md:w-[700px] lg:w-[750px] xl:w-[900px] lg:left-24">
         <div className=" inset-0 flex items-center justify-center">
           <img
-            className="object-cover object-center "
+            className="object-cover object-center h-auto md:h-[540px] sm:w-[450px] md:w-[700px] lg:w-[750px] xl:w-[900px]"
             src={images[currentIndex]}
             alt=""
           />
