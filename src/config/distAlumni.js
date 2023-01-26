@@ -10,7 +10,7 @@ const data = [
    {
      "id": 1,
      "name": "SIDDHARTH SHARMA",
-     "currentPosition": "Business &amp; Data Analytics Consultant",
+     "currentPosition": "Business & Data Analytics Consultant",
      "company": "The Royal Bank of Scotland",
      "image": image.filter((img)=>img.includes("SidharthSharma")),
      "batch": "2006-10, ECE"
@@ -186,8 +186,8 @@ const data = [
    {
      "id": 23,
      "name": "Shikhar Jha",
-     "currentPosition": "Ernst &amp; Young LLP Canada",
-     "company": "Manager, Growth &amp; Digital Strategy Advisory",
+     "currentPosition": "Ernst & Young LLP Canada",
+     "company": "Manager, Growth & Digital Strategy Advisory",
      "image": image.filter((img)=>img.includes("ShikharJha")),
      "batch": "2005-2009 (IT)"
    },
@@ -234,7 +234,7 @@ const data = [
    {
      "id": 29,
      "name": "Hament Saxena",
-     "currentPosition": "Senior R&amp;D Engineer",
+     "currentPosition": "Senior R&D Engineer",
      "company": "Synopsis India Pvt Ltd",
      "image": image.filter((img)=>img.includes("HamentSaxena")),
      "batch": " 2006-10 ECE"

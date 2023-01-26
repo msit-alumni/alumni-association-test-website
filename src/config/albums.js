@@ -15,14 +15,14 @@ export const Albums = [
     },
     {
         id: 3,
-        name: 'album2024',
-        title: 'Alumni Meet 2024',
+        name: 'alumni2016',
+        title: 'Alumni Meet 2016',
         desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
-        image: "https://images.hindustantimes.com/img/2022/12/10/550x309/FBL-WC-2022-MATCH57-NED-ARG-250_1670640281926_1670640281926_1670640316976_1670640316976.jpg"
+        image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=160vZn1DgVlye_t1hE6QujGTj3dMr10Sb"
     },
     {
         id: 4,
-        name: 'album2025',
+        name: 'alumni2025',
         title: 'Alumni Meet 2025',
         desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
         image: "https://images.hindustantimes.com/img/2022/12/10/550x309/FBL-WC-2022-MATCH57-NED-ARG-250_1670640281926_1670640281926_1670640316976_1670640316976.jpg"
