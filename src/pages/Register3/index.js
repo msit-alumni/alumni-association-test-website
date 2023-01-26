@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
     return (
         <div>
             <Navbar />
-            <div className="top-[80px] mb-[100px] md:top-[120px] relative min-h-screen py-10">
+            <div className="top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
         <div className="container mx-auto ">
             <div
                 className="flex flex-col justify-between md:flex-row w-[90%] lg:w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
