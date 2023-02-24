@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const bcrypt=require("bcryptjs")
-const jwt=require("jsonwebtoken")
 const validator = require("validator")
+
 
 const schema = new mongoose.Schema({
     name:{
@@ -22,8 +22,12 @@ const schema = new mongoose.Schema({
     mobileNo:{
         type:String,
         required:[true , "Please enter your Mobile Number"], 
-        minLength:[10,"enter a valid Mobile Number"]
     },
+    tokens:[{
+        token:{
+            type:String,
+        }
+    }],
     DOB:{
         type:Date,
         require:[true,"Please enter your DOB"]
@@ -31,6 +35,10 @@ const schema = new mongoose.Schema({
     course:{
         type:String,
         required:[true , "Please enter your course"], 
+    },
+    city:{
+        type:String,
+        required:[true,"Please enter your Current City"]
     },
     batch:{
         type:String,
@@ -40,8 +48,46 @@ const schema = new mongoose.Schema({
         type:String,
         required:[true , "Please enter your branch"]
     },
+    shift:{
+        type:String,
+        required:[true , "Please enter your Shift"]
+    },
+    company:{
+        type:String,
+        required:[true , "Please enter your company"]
+    },
+    experience:{
+        type:Number,
+        required:[true , "Please enter your work experience"]
+    },
+    desig:{
+        type:String,
+        required:[true , "Please enter your designation"]
+    },
+    sector:{
+        type:String,
+        required:[true , "Please enter your sector of work"]
+    },
+    verified:{
+        type:Boolean
+    }
     
 })
+
+
+adminSchema.methods.generateAuthTokenAdmin=async function(){
+    try{
+        console.log(this._id);
+        const token= jwt.sign({_id:this._id.toString()},process.env.ADMIN_SECRET_KEY)
+        this.tokens=this.tokens.concat({token:token})
+        await this.save()
+        return token
+    }
+    catch(error){
+        res.send("error"+error)
+        console.log("error"+error);
+    }
+}
 
 
 schema.pre("save",async function (next){
@@ -51,5 +97,5 @@ schema.pre("save",async function (next){
 })
 
 
-const User=new mongoose.model("User",schema);
-module.exports=User;
+const Alumni=new mongoose.model("Alumni",schema);
+module.exports=Alumni;

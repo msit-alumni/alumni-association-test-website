@@ -11,7 +11,6 @@ router.get("/getAllevent",async(req,res)=>{
     })
 });
 
-
 router.post("/event",async(req,res)=>{
     try{
         const {title , location , date, time , desc , image }  = req.body;
