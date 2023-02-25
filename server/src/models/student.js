@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+const mongoose=require("mongoose")
 const bcrypt=require("bcryptjs")
 const validator = require("validator")
 
 
-const schema = new mongoose.Schema({
+const studentSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:[true , "Please enter your name"],
+        required:true
     },
     email:{
         type:String,
@@ -24,18 +24,18 @@ const schema = new mongoose.Schema({
         required:[true , "Please enter your Mobile Number"], 
     },
     DOB:{
-        type:Date,
+        type:String,
         require:[true,"Please enter your DOB"]
     },
     course:{
         type:String,
         required:[true , "Please enter your course"], 
     },
-    tokens:[{
-        token:{
-            type:String,
-        }
-    }],
+    // tokens:[{
+    //     token:{
+    //         type:String,
+    //     }
+    // }],
     batch:{
         type:String,
         required:[true,"Please enter your batch"]
@@ -52,31 +52,29 @@ const schema = new mongoose.Schema({
 })
 
 
-studentSchema.methods.generateAuthTokenStudent=async function(){
-    try{
-        const user=this
-        console.log(user._id);
-        const token= jwt.sign({_id:user._id.toString()},process.env.STUDENT_SECRET_KEY)
-        user.tokens=user.tokens.concat({token})
-        await user.save()
-        // console.log("hello");
-        return token
-    }
-    catch(error){
-        // res.send("error"+error)
-        console.log("error"+error);
-    }
-}
+// studentSchema.methods.generateAuthTokenStudent=async function(){
+//     try{
+//         const user=this
+//         console.log(user._id);
+//         const token= jwt.sign({_id:user._id.toString()},process.env.STUDENT_SECRET_KEY)
+//         user.tokens=user.tokens.concat({token})
+//         await user.save()
+//         // console.log("hello");
+//         return token
+//     }
+//     catch(error){
+//         // res.send("error"+error)
+//         console.log("error"+error);
+//     }
+// }
 
 
 
+// studentSchema.pre("save",async function (next){
+//     if(this.isModified("password")){
+//         this.password=await bcrypt.hash(this.password,5)
+//     }
+// })
 
-schema.pre("save",async function (next){
-    if(this.isModified("password")){
-        this.password=await bcrypt.hash(this.password,5)
-    }
-})
 
-
-const Alumni=new mongoose.model("Alumni",schema);
-module.exports=Alumni;
+ mongoose.model("Student",studentSchema);

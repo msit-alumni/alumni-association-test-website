@@ -1,10 +1,12 @@
+const mongoose = require("mongoose");
 const  express = require("express");
 const router = express.Router();
-const news = mongoose.model("./models/news")
+const News=mongoose.model("News")
+
 
 
 router.get("/getAllnews",async(req,res)=>{
-    const news = news.find();
+    const news = News.find();
     res.status(200).json({
         success:true,
         news,
@@ -16,9 +18,10 @@ router.post("/news",async(req,res)=>{
     try{
         const {title , location , date, time , desc , image }  = req.body;
 
-        const news = new event({
+        const news = new News({
             title,
             date,
+            time,
             desc,
             image
         })
@@ -30,4 +33,4 @@ router.post("/news",async(req,res)=>{
 });
 
 
-export default router;
+module.exports=router;

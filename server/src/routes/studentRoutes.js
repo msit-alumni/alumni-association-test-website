@@ -1,5 +1,6 @@
 const express = require("express");
-const Student = mongoose.model("./models/student");
+const mongoose=require("mongoose")
+const Student = mongoose.model("Student");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.post("/signupStudent", async (req, res) => {
       branch,
       shift,
     } = req.body;
-
+console.log(name)
     Student.findOne({ email: email }).then((savedStudent) => {
       if (savedStudent) {
         return res.status(422).json({ error: "Student already exist" });
@@ -34,14 +35,15 @@ router.post("/signupStudent", async (req, res) => {
       branch,
       shift,
     });
-    const token=await Student.generateAuthTokenStudent()
+    // const token=await Student.generateAuthTokenStudent()
 
-    res.cookie("jwt",token,{
-       expires:new Date(Date.now()+3000000),
-       httpOnly:true
-    })
-    student.save();
+    // res.cookie("jwt",token,{
+    //    expires:new Date(Date.now()+3000000),
+    //    httpOnly:true
+    // })
+    await student.save();
   } catch (e) {
+    console.log(e);
     res.status(400).send("Invalid Details");
   }
 });
@@ -60,7 +62,7 @@ router.post("/signinStudent",async(req,res)=>{
      })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
-            res.status(201).redirect("/studentprofile")
+            res.status(201).redirect("/index")
            }
            else{
             res.send("Invalid login details")
@@ -69,4 +71,4 @@ router.post("/signinStudent",async(req,res)=>{
         res.status(400).send("Invalid Details");
       }
 })
-export default router;
+module.exports=router;

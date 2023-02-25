@@ -1,6 +1,7 @@
 const  express = require("express");
+const mongoose=require("mongoose")
 const router = express.Router();
-const event = mongoose.model("./models/events")
+const event=mongoose.model("Events")
 
 
 router.get("/getAllevent",async(req,res)=>{
@@ -31,4 +32,4 @@ router.post("/event",async(req,res)=>{
 });
 
 
-export default router;
+module.exports=router;

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose=require("mongoose")
 
 const events = new mongoose.Schema({
     title:{
@@ -22,11 +22,10 @@ const events = new mongoose.Schema({
         required:true
     },
     image:{
-        type:Image,
+        type:String,
         required:true
     }
 })
 
 
-
-module.exports=events;
+mongoose.model("Events",events);
