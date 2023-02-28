@@ -12,13 +12,15 @@ app.use(express.urlencoded({extended:false}))
 
 require("./models/news");
 require("./models/events");
-require("./models/alumni");
-require("./models/student");
+require("./models/Users/alumni");
+require("./models/Users/student");
+require("./models/Users/admin");
 
-app.use(require("./routes/alumniRoutes"));
-app.use(require("./routes/newsRoutes"));
-app.use(require("./routes/eventRoutes"));
-app.use(require("./routes/studentRoutes"));
+app.use(require("./routes/loginRoutes/alumniRoutes"));
+app.use(require("./routes/loginRoutes/adminRoutes"));
+app.use(require("./routes/loginRoutes/newsRoutes"));
+app.use(require("./routes/loginRoutes/eventRoutes"));
+app.use(require("./routes/loginRoutes/studentRoutes"));
 
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`);
