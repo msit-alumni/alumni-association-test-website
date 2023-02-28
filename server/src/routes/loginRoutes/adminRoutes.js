@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose=require("mongoose")
-const Admin = mongoose.model("Admin");
+const Admin=require("../../models/Users/admin")
 const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
@@ -21,12 +21,13 @@ router.post("/signupAdmin", async (req, res) => {
       email,
       password
     });
-    // const token=await Student.generateAuthTokenStudent()
+    
+    const token=await admin.generateAuthTokenAdmin()
 
-    // res.cookie("jwt",token,{
-    //    expires:new Date(Date.now()+3000000),
-    //    httpOnly:true
-    // })
+    res.cookie("jwt",token,{
+       expires:new Date(Date.now()+3000000),
+       httpOnly:true
+    })
     await admin.save();
   } catch (e) {
     console.log(e);
@@ -41,11 +42,11 @@ router.get("/signinAdmin",async(req,res)=>{
           password
         } = req.body;
         const id=await Admin.findOne({email:email});
-    //     const token=await id.generateAuthTokenStudent()
-    //    res.cookie("jwt",token,{
-    //     expires:new Date(Date.now()+3000000),
-    //     httpOnly:true
-    //  })
+        const token=await id.generateAuthTokenAdmin()
+       res.cookie("jwt",token,{
+        expires:new Date(Date.now()+3000000),
+        httpOnly:true
+     })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
             res.status(201).redirect("/index")

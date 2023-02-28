@@ -1,6 +1,7 @@
 const mongoose=require("mongoose")
 const bcrypt=require("bcryptjs")
 const validator = require("validator")
+const jwt = require("jsonwebtoken");
 
 
 const adminSchema = new mongoose.Schema({
@@ -14,24 +15,28 @@ const adminSchema = new mongoose.Schema({
         type:String,
         required:[true , "Please enter your password"], 
         minLength:[8,"password must be atleast 8 characters"],
-    }
+    },
+    tokens:[{
+        token:{
+            type:String,
+        }
+    }],
     
 })
 
 
-// alumniSchema.methods.generateAuthTokenAlumni=async function(){
-//     try{
-//         console.log(this._id);
-//         const token= jwt.sign({_id:this._id.toString()},process.env.ALUMNI_SECRET_KEY)
-//         this.tokens=this.tokens.concat({token:token})
-//         await this.save()
-//         return token
-//     }
-//     catch(error){
-//         res.send("error"+error)
-//         console.log("error"+error);
-//     }
-// }
+adminSchema.methods.generateAuthTokenAdmin=async function(){
+    try{
+        const token= jwt.sign({_id:this._id.toString()},process.env.ADMIN_SECRET_KEY)
+        this.tokens=this.tokens.concat({token:token})
+        await this.save()
+        return token
+        
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
 
 adminSchema.pre("save",async function (next){

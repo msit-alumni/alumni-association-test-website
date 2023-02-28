@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose=require("mongoose")
-const Alumni = mongoose.model("Alumni");
+const Alumni=require("../../models/Users/alumni")
 const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
@@ -46,12 +46,12 @@ router.post("/signupAlumni", async (req, res) => {
         sector,
         desig
       });
-      // const token=await Student.generateAuthTokenStudent()
+      const token=await alumni.generateAuthTokenAlumni()
   
-      // res.cookie("jwt",token,{
-      //    expires:new Date(Date.now()+3000000),
-      //    httpOnly:true
-      // })
+      res.cookie("jwt",token,{
+         expires:new Date(Date.now()+3000000),
+         httpOnly:true
+      })
       await alumni.save();
     } catch (e) {
       console.log(e);
@@ -67,11 +67,11 @@ router.post("/signupAlumni", async (req, res) => {
           password
         } = req.body;
         const id=await Alumni.findOne({email:email});
-    //     const token=await id.generateAuthTokenStudent()
-    //    res.cookie("jwt",token,{
-    //     expires:new Date(Date.now()+3000000),
-    //     httpOnly:true
-    //  })
+        const token=await id.generateAuthTokenAlumni()
+       res.cookie("jwt",token,{
+        expires:new Date(Date.now()+3000000),
+        httpOnly:true
+     })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
           console.log("login Success");

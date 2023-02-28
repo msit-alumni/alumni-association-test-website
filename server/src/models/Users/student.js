@@ -1,6 +1,7 @@
 const mongoose=require("mongoose")
 const bcrypt=require("bcryptjs")
 const validator = require("validator")
+const jwt = require("jsonwebtoken");
 
 
 const studentSchema = new mongoose.Schema({
@@ -31,11 +32,11 @@ const studentSchema = new mongoose.Schema({
         type:String,
         required:[true , "Please enter your course"], 
     },
-    // tokens:[{
-    //     token:{
-    //         type:String,
-    //     }
-    // }],
+    tokens:[{
+        token:{
+            type:String,
+        }
+    }],
     batch:{
         type:String,
         required:[true,"Please enter your batch"]
@@ -51,22 +52,18 @@ const studentSchema = new mongoose.Schema({
     
 })
 
-
-// studentSchema.methods.generateAuthTokenStudent=async function(){
-//     try{
-//         const user=this
-//         console.log(user._id);
-//         const token= jwt.sign({_id:user._id.toString()},process.env.STUDENT_SECRET_KEY)
-//         user.tokens=user.tokens.concat({token})
-//         await user.save()
-//         // console.log("hello");
-//         return token
-//     }
-//     catch(error){
-//         // res.send("error"+error)
-//         console.log("error"+error);
-//     }
-// }
+studentSchema.methods.generateAuthTokenStudent=async function(){
+    try{
+        const token= jwt.sign({_id:this._id.toString()},process.env.STUDENT_SECRET_KEY)
+        this.tokens=this.tokens.concat({token:token})
+        await this.save()
+        return token
+        
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 
 
 
@@ -77,4 +74,5 @@ studentSchema.pre("save",async function (next){
 })
 
 
- mongoose.model("Student",studentSchema);
+const Student= mongoose.model("Student",studentSchema);
+module.exports=Student;

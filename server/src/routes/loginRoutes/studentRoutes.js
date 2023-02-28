@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose=require("mongoose")
-const Student = mongoose.model("Student");
+const Student=require("../../models/Users/student")
 const jwt = require("jsonwebtoken");
 const bcrypt=require("bcryptjs")
 const router = express.Router();
@@ -36,12 +36,12 @@ console.log(name)
       branch,
       shift,
     });
-    // const token=await Student.generateAuthTokenStudent()
+    const token=await student.generateAuthTokenStudent()
 
-    // res.cookie("jwt",token,{
-    //    expires:new Date(Date.now()+3000000),
-    //    httpOnly:true
-    // })
+    res.cookie("jwt",token,{
+       expires:new Date(Date.now()+3000000),
+       httpOnly:true
+    })
     await student.save();
   } catch (e) {
     console.log(e);
@@ -56,11 +56,11 @@ router.get("/signinStudent",async(req,res)=>{
           password
         } = req.body;
         const id=await Student.findOne({email:email});
-    //     const token=await id.generateAuthTokenStudent()
-    //    res.cookie("jwt",token,{
-    //     expires:new Date(Date.now()+3000000),
-    //     httpOnly:true
-    //  })
+        const token=await id.generateAuthTokenStudent()
+       res.cookie("jwt",token,{
+        expires:new Date(Date.now()+3000000),
+        httpOnly:true
+     })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
           console.log("student login success")
