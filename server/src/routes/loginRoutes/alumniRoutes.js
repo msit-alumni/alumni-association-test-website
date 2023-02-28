@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose=require("mongoose")
 const Alumni = mongoose.model("Alumni");
+const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.post("/signupAlumni", async (req, res) => {
         desig
       } = req.body;
   console.log(name)
-      Student.findOne({ email: email }).then((savedAlumni) => {
+      Alumni.findOne({ email: email }).then((savedAlumni) => {
         if (savedAlumni) {
           return res.status(422).json({ error: "Alumni already exist" });
         }
@@ -58,4 +59,30 @@ router.post("/signupAlumni", async (req, res) => {
     }
   });
   
+
+  router.get("/signinAlumni",async(req,res)=>{
+    try {
+        const {
+          email,
+          password
+        } = req.body;
+        const id=await Alumni.findOne({email:email});
+    //     const token=await id.generateAuthTokenStudent()
+    //    res.cookie("jwt",token,{
+    //     expires:new Date(Date.now()+3000000),
+    //     httpOnly:true
+    //  })
+        const isMatch=await bcrypt.compare(password,id.password)
+        if(isMatch){
+          console.log("login Success");
+            res.status(201).redirect("/index")
+           }
+           else{
+            res.send("Invalid login details")
+           }
+      } catch (e) {
+        res.status(400).send("Invalid Details");
+      }
+})
+
 module.exports=router;

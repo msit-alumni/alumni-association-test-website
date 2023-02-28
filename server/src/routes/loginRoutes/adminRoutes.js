@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose=require("mongoose")
-const Student = mongoose.model("Student");
+const Admin = mongoose.model("Admin");
+const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
@@ -10,13 +11,13 @@ router.post("/signupAdmin", async (req, res) => {
       email,
       password
     } = req.body;
-    Student.findOne({ email: email }).then((savedStudent) => {
+    Admin.findOne({ email: email }).then((savedStudent) => {
       if (savedStudent) {
-        return res.status(422).json({ error: "Student already exist" });
+        return res.status(422).json({ error: "Admin already exist" });
       }
     });
 
-    const student = new Student({
+    const admin = new Admin({
       email,
       password
     });
@@ -26,33 +27,35 @@ router.post("/signupAdmin", async (req, res) => {
     //    expires:new Date(Date.now()+3000000),
     //    httpOnly:true
     // })
-    await student.save();
+    await admin.save();
   } catch (e) {
     console.log(e);
     res.status(400).send("Invalid Details");
   }
 });
 
-router.post("/signinAdmin",async(req,res)=>{
+router.get("/signinAdmin",async(req,res)=>{
     try {
         const {
           email,
           password
         } = req.body;
-        const id=await Student.findOne({email:email});
-        const token=await id.generateAuthTokenStudent()
-       res.cookie("jwt",token,{
-        expires:new Date(Date.now()+3000000),
-        httpOnly:true
-     })
+        const id=await Admin.findOne({email:email});
+    //     const token=await id.generateAuthTokenStudent()
+    //    res.cookie("jwt",token,{
+    //     expires:new Date(Date.now()+3000000),
+    //     httpOnly:true
+    //  })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
             res.status(201).redirect("/index")
+            console.log("login success")
            }
            else{
             res.send("Invalid login details")
            }
       } catch (e) {
+        console.log(e);
         res.status(400).send("Invalid Details");
       }
 })

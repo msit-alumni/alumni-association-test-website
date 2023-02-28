@@ -18,8 +18,8 @@ require("./models/Users/admin");
 
 app.use(require("./routes/loginRoutes/alumniRoutes"));
 app.use(require("./routes/loginRoutes/adminRoutes"));
-app.use(require("./routes/loginRoutes/newsRoutes"));
-app.use(require("./routes/loginRoutes/eventRoutes"));
+app.use(require("./routes/newsRoutes"));
+app.use(require("./routes/eventRoutes"));
 app.use(require("./routes/loginRoutes/studentRoutes"));
 
 app.listen(port, ()=>{

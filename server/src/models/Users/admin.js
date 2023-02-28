@@ -34,11 +34,11 @@ const adminSchema = new mongoose.Schema({
 // }
 
 
-// alumniSchema.pre("save",async function (next){
-//     if(this.isModified("password")){
-//         this.password=await bcrypt.hash(this.password,5)
-//     }
-// })
+adminSchema.pre("save",async function (next){
+    if(this.isModified("password")){
+        this.password=await bcrypt.hash(this.password,5)
+    }
+})
 
 
 const Admin= mongoose.model("Admin",adminSchema);

@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose=require("mongoose")
 const Student = mongoose.model("Student");
 const jwt = require("jsonwebtoken");
+const bcrypt=require("bcryptjs")
 const router = express.Router();
 
 router.post("/signupStudent", async (req, res) => {
@@ -48,20 +49,21 @@ console.log(name)
   }
 });
 
-router.post("/signinStudent",async(req,res)=>{
+router.get("/signinStudent",async(req,res)=>{
     try {
         const {
           email,
           password
         } = req.body;
         const id=await Student.findOne({email:email});
-        const token=await id.generateAuthTokenStudent()
-       res.cookie("jwt",token,{
-        expires:new Date(Date.now()+3000000),
-        httpOnly:true
-     })
+    //     const token=await id.generateAuthTokenStudent()
+    //    res.cookie("jwt",token,{
+    //     expires:new Date(Date.now()+3000000),
+    //     httpOnly:true
+    //  })
         const isMatch=await bcrypt.compare(password,id.password)
         if(isMatch){
+          console.log("student login success")
             res.status(201).redirect("/index")
            }
            else{

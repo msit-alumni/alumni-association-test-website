@@ -29,7 +29,7 @@ const alumniSchema = new mongoose.Schema({
         }
     }],
     DOB:{
-        type:Date,
+        type:String,
         require:[true,"Please enter your DOB"]
     },
     course:{
@@ -75,19 +75,19 @@ const alumniSchema = new mongoose.Schema({
 })
 
 
-alumniSchema.methods.generateAuthTokenAlumni=async function(){
-    try{
-        console.log(this._id);
-        const token= jwt.sign({_id:this._id.toString()},process.env.ALUMNI_SECRET_KEY)
-        this.tokens=this.tokens.concat({token:token})
-        await this.save()
-        return token
-    }
-    catch(error){
-        res.send("error"+error)
-        console.log("error"+error);
-    }
-}
+// alumniSchema.methods.generateAuthTokenAlumni=async function(){
+//     try{
+//         console.log(this._id);
+//         const token= jwt.sign({_id:this._id.toString()},process.env.ALUMNI_SECRET_KEY)
+//         this.tokens=this.tokens.concat({token:token})
+//         await this.save()
+//         return token
+//     }
+//     catch(error){
+//         res.send("error"+error)
+//         console.log("error"+error);
+//     }
+// }
 
 
 alumniSchema.pre("save",async function (next){
