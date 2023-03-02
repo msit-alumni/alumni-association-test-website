@@ -7,6 +7,7 @@ import Album from "../src/pages/Album"
 import Register from "../src/pages/Register"
 import Register2 from "../src/pages/Register2"
 import Register3 from "../src/pages/Register3"
+import EventPage from "../src/pages/EventPage"
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/register'  element={<Register />} />
         <Route path='/register2'  element={<Register2 />} />
         <Route path='/register3'  element={<Register3 />} />
+        <Route path='/events/:id' exact element={<EventPage />} />
       </Routes>
     </div>
   );

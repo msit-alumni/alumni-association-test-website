@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const index = (prop) => {
   return (
     <div>
-      <Link to={`/album/${prop.name}`} className="flex   from-teal-100 via-teal-300">
+      <Link to={`/album/${prop.name}`} className="flex from-teal-100 via-teal-300">
         <div className="overflow-hidden duration-300 hover:opacity-100 cursor-pointer rounded-md relative group">
           <div className=" overflow-hidden relative">
             <img

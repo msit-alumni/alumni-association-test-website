@@ -2,17 +2,18 @@ import React from 'react'
 import {eventsList} from '../../../../config/eventsData'
 import EventsPlate from './eventsPlate'
 const index = () => {
-  const lastFour = eventsList.slice(-4);
+  const lastThree = eventsList.slice(-3);
   
   return (
     <div>
-        {lastFour.map((event)=>(
+        {lastThree.map((event)=>(
         <EventsPlate
-          title={event.title} 
+          title={event.title}
+          image={event.image}
           location = {event.location} 
           key={event.id}
-          monthYear={event.monthYear} 
           date={event.date}
+          shortdesc={event.shortdesc}
         />
       ))}
     </div>
