@@ -23,40 +23,56 @@ import {Link} from 'react-router-dom'
 
                    
                    <form action="#" className="text-[12.5px]">
-                    <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Date of Birth</h6>
-                        <input type="text" placeholder="Date of Birth"
-                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" />
-                    </div>
-
-                    <div className="mt-2">
+                     <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Course</h6>
                         <input type="text" placeholder="Course"
-                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" />
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
                     </div>
-
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">City</h6>
+                        <input type="text" placeholder="City"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Batch</h6>
+                        <input type="text" placeholder="Batch"
+                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
                     <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Branch</h6>
                         <input type="text" placeholder="Branch"
-                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" />
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
                     </div>
-                    <div className="py-2">
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Shift</h6>
+                        <input type="text" placeholder="Shift"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Company</h6>
+                        <input type="text" placeholder="Company"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Experience</h6>
+                        <input type="text" placeholder="Experience"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Designation</h6>
+                        <input type="text" placeholder="Designation"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
+                    <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Sector</h6>
+                        <input type="text" placeholder="Sector"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full">
+                    </div>
 
-                    </div>
-                    <div className="grid grid-cols-2 gap-5 ">
-                        <h6 className="font-[MerriWeather]">Joining Year</h6>
-                        <h6 className="font-[MerriWeather]">Graduation-Year</h6>
-                    </div>
-                    <div className="grid grid-cols-2 gap-5 ">
-                        
-                        <input type="text" placeholder="Joining Year" className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2" />
-                        
-                        <input type="text" placeholder="Graduation-Year" className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2" />
-                      </div>
 
 
                 </form>
-                <div className="py-4">
+                <div className="py-2">
 
                 </div>
                 <div className="text-center lg:text-left">
