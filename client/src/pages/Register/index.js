@@ -94,6 +94,12 @@ return (
                                     <input type="number" placeholder="Mobile No"
                                         className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full" />
                                 </div>
+                                           <div className="mt-5">
+                                    <h6 className="font-[MerriWeather]">Date of Birth</h6>
+                                    <input type="number" placeholder="Date of Birth"
+                                        className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full">
+                                </div>
+
                                 <div className="mt-5">
                                     <h6 className="font-[MerriWeather]">Password</h6>
                                     <input type="password" placeholder="Password"
