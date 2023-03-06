@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FaBars, FaCaretDown } from "react-icons/fa";
 import Logo from "../../../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   let Links = [
-    { name: "About", link: "/" },
-    { name: "Events", link: "/" },
-    { name: "News & Stories", link: "/" },
-    { name: "Albums", link: "/" },
-    { name: "Contact Us", link: "/" },
+    { name: "About", link: "#footer" },
+    { name: "Events", link: "#events" },
+    { name: "News & Stories", link: "#events" },
+    { name: "Albums", link: "#album" },
+    { name: "Contact Us", link: "#footer" },
   ];
 
   let [open, setOpen] = useState(false);
@@ -18,11 +19,13 @@ const Navbar = () => {
     <section id="navbar" className="z-50 shadow-md w-full fixed top-0 left-0">
       <div className="md:flex items-center justify-between bg-theme py-4 xl:px-16 px-6 md:px-14">
         <div className="cursor-pointer">
+          <Link to ="/">
           <img
             className="w-[210px] md:w-[230px] xl:w-[300px] h-auto"
             src={Logo}
             alt="Logo"
           />
+          </Link>
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -75,13 +78,14 @@ const Navbar = () => {
             </div>
           )}
           </div>
-
+            <Link to="/signupAlumni">
           <button
             className="bg-theme md:text-[9px]  xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
     duration-500"
           >
             Join
           </button>
+          </Link>
         </ul>
       </div>
     </section>

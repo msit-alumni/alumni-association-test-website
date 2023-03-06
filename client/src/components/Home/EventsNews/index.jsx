@@ -4,7 +4,7 @@ import NewsList from './newsList'
 
 const index = () => {
   return (
-    <div className=' bg-[#DBE2EF] font-[Merriweather]'>
+    <div id='events' className=' bg-[#DBE2EF] font-[Merriweather]'>
     <div className='h-6 md:h-8 bg-[#DBE2EF]'></div>
     <div className='md:flex bg-[#DBE2EF]'>
         <div className='md:w-[50%]'>

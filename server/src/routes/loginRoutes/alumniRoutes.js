@@ -6,13 +6,14 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.post("/signupAlumni", async (req, res) => {
+
     try {
       const {
         name,
         email,
         password,
-        mobileNo,
-        DOB,
+        mobile,
+        dob,
         course,
         city,
         batch,
@@ -21,9 +22,9 @@ router.post("/signupAlumni", async (req, res) => {
         company,
         experience,
         sector,
-        desig
+        designation
       } = req.body;
-  console.log(name)
+  console.log(email,password,course,batch,branch)
       Alumni.findOne({ email: email }).then((savedAlumni) => {
         if (savedAlumni) {
           return res.status(422).json({ error: "Alumni already exist" });
@@ -34,8 +35,8 @@ router.post("/signupAlumni", async (req, res) => {
         name,
         email,
         password,
-        mobileNo,
-        DOB,
+        mobile,
+        dob,
         course,
         city,
         batch,
@@ -44,10 +45,10 @@ router.post("/signupAlumni", async (req, res) => {
         company,
         experience,
         sector,
-        desig
+        designation
       });
       const token=await alumni.generateAuthTokenAlumni()
-  
+     console.log(token)
       res.cookie("jwt",token,{
          expires:new Date(Date.now()+3000000),
          httpOnly:true
@@ -60,7 +61,7 @@ router.post("/signupAlumni", async (req, res) => {
   });
   
 
-  router.get("/signinAlumni",async(req,res)=>{
+  router.post("/signinAlumni",async(req,res)=>{
     try {
         const {
           email,

@@ -20,7 +20,7 @@ const alumniSchema = new mongoose.Schema({
         required:[true , "Please enter your password"], 
         minLength:[8,"password must be atleast 8 characters"],
     },
-    mobileNo:{
+    mobile:{
         type:String,
         required:[true , "Please enter your Mobile Number"], 
     },
@@ -29,7 +29,7 @@ const alumniSchema = new mongoose.Schema({
             type:String,
         }
     }],
-    DOB:{
+    dob:{
         type:String,
         require:[true,"Please enter your DOB"]
     },
@@ -61,7 +61,7 @@ const alumniSchema = new mongoose.Schema({
         type:Number,
         required:[true , "Please enter your work experience"]
     },
-    desig:{
+    designation:{
         type:String,
         required:[true , "Please enter your designation"]
     },

@@ -1,13 +1,41 @@
 
-import React from 'react'
+import React , {useState} from 'react'
 import Navbar from '../../components/common/Navbar'
 import Footer from '../../components/common/Footer'
 import img from "./img.jpg"
 import logo from "./logo2.png"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {useNavigate} from "react-router-dom"
 
 
 const Register2 = ()=>{
+    const [user,setUser]=useState({
+        email:"",password:""
+      })
+      let name,value;
+      const handleInputs=(e)=>{
+        name=e.target.name;
+        value=e.target.value;
+        console.log(name,value)
+        setUser({...user,[name]:value})
+      }
+  
+    const postData = async (e) => {
+      e.preventDefault();
+      const {email,password}=user;
+      const res = await fetch("/signinAlumni", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    };
 
     return (
         <div >
@@ -75,18 +103,26 @@ const Register2 = ()=>{
                         </div>
 
                 
-                        <form action="#" className="text-[12.5px] text-medium">
+                        <form method='POST' className="text-[12.5px] text-medium">
                         <div className="mb-6 text-[12.5px]">
-                            <h6 className="font-[MerriWeather]">Username</h6>
+                            <h6 className="font-[MerriWeather]">Email</h6>
                             <input type="text"
+                            value={user.email}
+                            onChange={handleInputs}
+                            name="email"
+                            autoComplete="off"
                                 className="form-control block font-[MerriWeather] w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                id="exampleFormControlInput2" placeholder="Username" />
+                                id="exampleFormControlInput2" placeholder="Email" />
                         </div>
 
                      
                         <div className="mb-6 text-[12.5px]">
                             <h6 className="font-[MerriWeather]">Password</h6>
                             <input type="password"
+                            value={user.password}
+                            onChange={handleInputs}
+                            name="password"
+                            autoComplete="off"
                                 className="form-control font-[MerriWeather] block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="exampleFormControlInput2" placeholder="Password" />
                         </div>
@@ -99,18 +135,20 @@ const Register2 = ()=>{
 
                         <div className="text-center lg:text-left">
                             <div className="flex">
-                                <button className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg "><Link to="/register3">Login</Link></button>
+                                <button onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">Login</button>
                             </div>
-                            <p className="text-sm text-center mt-1 font-dark text-black text-black">
+                            <Link to="/signupAlumni">
+                            <p className="text-sm text-center mt-1 font-dark  text-black">
                                 Don't have an account? <a href="#" className="font-medium text-blue-500">Register</a>
                             </p>
+                            </Link>
                         </div>
 
                     </div>
                 </div>
 
 
-                <div className=" lg:w-1/2  h-screen h-full hidden lg:block ">
+                <div className=" lg:w-1/2  h-full hidden lg:block ">
                     <img src={img} alt="" />
                 </div>
             </div>

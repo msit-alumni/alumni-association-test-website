@@ -17,7 +17,7 @@ const createAlbumCard = (Album) =>
 const index = () => {
   return (
     <div>
-        <section id="alumni-album" className="py-8 lg:w-[80%] md:w-[90%] w-[95%] mx-auto text-[Merriweather]">
+        <section id="album" className="py-8 lg:w-[80%] md:w-[90%] w-[95%] mx-auto text-[Merriweather]">
         <div className="w-[auto] ">
             <div className="album ">
 

@@ -2,10 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const bodyparser=require("body-parser");
 const app = express();
+const cors = require("cors");
+const cookieParser = require('cookie-parser');
 
+app.use(cookieParser());
+app.use(cors());
 require("./db/conn");
 app.use(bodyparser.urlencoded({extended:true}));
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 
 app.use(express.json())

@@ -12,7 +12,7 @@ const Footer = () => {
       ];
 
   return (
-    <div className='font-defaultFont'>
+    <div id='footer' className='font-defaultFont'>
         <div className='h-8 md:h-16 w-[100%] bg-[#F9F7F7]'></div>
         <nav className=" w-[100%] flex flex-wrap bg-[#041C32]  p-2 justify-center mb-2">
             {
