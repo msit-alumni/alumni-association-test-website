@@ -11,8 +11,8 @@ router.post("/signupStudent", async (req, res) => {
       name,
       email,
       password,
-      mobileNo,
-      DOB,
+      mobile,
+      dob,
       course,
       batch,
       branch,
@@ -29,8 +29,8 @@ console.log(name)
       name,
       email,
       password,
-      mobileNo,
-      DOB,
+      mobile,
+      dob,
       course,
       batch,
       branch,
@@ -49,7 +49,7 @@ console.log(name)
   }
 });
 
-router.get("/signinStudent",async(req,res)=>{
+router.post("/signinStudent",async(req,res)=>{
     try {
         const {
           email,

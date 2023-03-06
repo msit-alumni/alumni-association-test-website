@@ -5,6 +5,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -14,6 +15,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -23,6 +25,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -32,6 +35,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -41,6 +45,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -50,6 +55,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -59,6 +65,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''
@@ -68,6 +75,7 @@ export const eventsList = [
         title: 'Alumni Meet 2023',
         image: image,
         location: 'Auditorium, MSIT, Delhi',
+        category: 'Alumni Meet',
         date: 'Jan, 2023,23',
         shortdesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
         desc: ''

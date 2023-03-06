@@ -1,6 +1,7 @@
 import React from 'react'
 import EventList from './eventList'
 import NewsList from './newsList'
+import { Link } from 'react-router-dom'
 
 const index = () => {
   return (
@@ -15,9 +16,9 @@ const index = () => {
                 </div>
                 <EventList/>
                 <div className='md:h-[22px] lg:h-0'></div>
-                 <button className='ml-4 mt-4 bg-[#3F72AF] md:text-[9px] xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:bg-theme font-defaultFont py-2 px-4 rounded duration-500'>
+                 <Link to="/AllEvents"><button className='ml-4 mt-4 bg-[#3F72AF] md:text-[9px] xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:bg-theme font-defaultFont py-2 px-4 rounded duration-500'>
       View All
-    </button>
+    </button></Link>
             </div>
         </div>
         <div className='h-10 md:h-[0px]'></div>
