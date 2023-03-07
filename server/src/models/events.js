@@ -9,12 +9,20 @@ const events = new mongoose.Schema({
         type:String,
         required:true
     },
-    date:{
-        type:Date,
+    status:{
+        type:String,
         required:true
     },
-    time:{
-        type:Date,
+    category:{
+        type:String,
+        required:true
+    },
+    date:{
+        type:String,
+        required:true
+    },
+    shortdesc:{
+        type:String,
         required:true
     },
     desc:{

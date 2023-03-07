@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState , useEffect} from 'react'
 import Navbar from "../../components/common/Navbar"
 import Footer from '../../components/common/Footer'
 import {FaWhatsapp, FaCalendar, FaLinkedinIn, FaTwitter, FaFacebook,FaEye,IoIosPin} from "react-icons/fa"
@@ -6,15 +6,40 @@ import {AiFillEye} from "react-icons/ai"
 import { HiLocationMarker } from "react-icons/hi"
 import { BiNotepad } from "react-icons/bi"
 import { useParams } from 'react-router-dom'
-import { eventsList } from '../../config/eventsData'
+
 
 
 const Index = () => {
-    const {eventId} = useParams();
-    console.log(eventId);
-    let news = eventsList.filter(event => event.id == eventId);
-    let currentEvent = news[0];
-    console.log(currentEvent);
+const [eventsList, setEventsList] = useState([]);
+const { eventId } = useParams();
+const [news, setNews] = useState([]);
+const [currentEvent, setCurrentEvent] = useState(null);
+
+useEffect(() => {
+  fetch('/AllEvent')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+      setEventsList(data.events);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}, []);
+
+useEffect(() => {
+    if(eventsList.length>0){
+        // console.log(eventsList);
+        setNews(eventsList.filter(event => event._id === eventId))
+        // setCurrentEvent(news[0]);
+        console.log(news[0])
+    }
+}, [eventsList, eventId]);
+
 
 
   return (
@@ -26,13 +51,13 @@ const Index = () => {
         <div className='mx-auto w-[80%] md:w-[900px]'>
             <div className='drop-shadow-xl bg-[#fdfdfd] pb-6'>
                 <div>
-                    <img className='w-full' src={currentEvent.image} alt="aa" />
+                    {/* <img className='w-full' src={currentEvent.image} alt="aa" /> */}
                     <div className='w-[80%] mx-auto'>
                         <h1 className='text-xl md:text-2xl font-semibold mt-6 mb-3'>DATE & TIME:</h1>
-                        <h2 className='text-md md:text-lg'>Start : {currentEvent.date}</h2>
-                        <h2 className='text-md md:text-lg'>End : {currentEvent.date}</h2>
+                        {/* <h2 className='text-md md:text-lg'>Start : {currentEvent.date}</h2> */}
+                        {/* <h2 className='text-md md:text-lg'>End : {currentEvent.date}</h2> */}
                         <div className='w-[50%] md:w-[40%] my-4 bg-[#DBE2EF] rounded-md'>
-                            <h1 className='text-center md:text-left p-1 text-md md:text-lg font-semibold'>{currentEvent.status} Event</h1>
+                            {/* <h1 className='text-center md:text-left p-1 text-md md:text-lg font-semibold'>{currentEvent.status} Event</h1> */}
                         </div>
                         <div className='flex mb-8'>
                             <h1>Share:</h1>
@@ -50,11 +75,10 @@ const Index = () => {
             </div>
         </div>
         <div className='w-60% p-8 mt-8'>
-            <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{currentEvent.title} 
-at Auditorium, MSIT</p>
+            {/* <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{news[0].title} at Auditorium, MSIT</p> */}
             <div className='flex text-black md:text-white text-xl md:text-2xl w-full mt-6'>
                     <FaCalendar className='w-[27px] h-[27px] md:ml-8' />
-                    <p className='ml-4'>{currentEvent.date}</p>
+                    {/* <p className='ml-4'>{currentEvent.date}</p> */}
                     <AiFillEye className=' w-[28px] h-[28px] md:ml-8 mt-[3px]' />
                     <p className='ml-4'>4041</p>
             </div>
@@ -64,7 +88,7 @@ at Auditorium, MSIT</p>
                 <HiLocationMarker className='w-[28px] h-[28px] ml-2' />
                 <h1 className='text-lg md:text-xl ml-3'>ADDRESS</h1>
             </div>
-            <h1 className='mt-2 ml-3 md:ml-14'>{currentEvent.location}</h1>
+            {/* <h1 className='mt-2 ml-3 md:ml-14'>{currentEvent.location}</h1> */}
             <div className='flex mt-8'>
                 <BiNotepad className='w-[28px] h-[28px] ml-2' />
                 <h1 className='text-lg md:text-xl ml-3'>DESCRIPTION</h1>

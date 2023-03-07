@@ -2,13 +2,31 @@ import React from 'react'
 import Navbar from "../../components/common/Navbar";
 import Footer from '../../components/common/Footer';
 import Card from '../../components/AllEvents/EventCard';
-import { useState } from 'react';
-import { eventsList } from '../../config/eventsData';
+import { useState , useEffect} from 'react';
+// import { eventsList } from '../../config/eventsData';
 import SearchBar from '../../components/AllEvents/SearchBar';
 import { Link } from 'react-router-dom';
 
 export default function Index() {
+  const [eventsList, setEventsList] = useState([]);
 
+  useEffect(() => {
+    fetch('/AllEvent')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        setEventsList(data.events);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
+
+  console.log(eventsList);
     let categories =[
         {name:"All Events",id:0},
         {name:"Past Events",id:1},
@@ -28,6 +46,7 @@ export default function Index() {
     }
     var filteredEventsList;
     var newEventsList;
+    
   // blogs by category
     const handleSearchResults = () =>{
       change(-1);
@@ -70,6 +89,9 @@ export default function Index() {
     {newEventsList = eventsList.filter(data => data.status == "Upcoming");}
     else {newEventsList = eventsList.filter(data => data.category == categories[currentCategory].name);}
     
+    
+
+
   return (
     <div className='font-defaultFont'>
       <Navbar />
@@ -102,8 +124,8 @@ export default function Index() {
             {
               newEventsList.map((data) => (
                 <Card
-                  key = {data.id}
-                  id = {data.id}
+                  key = {data._id}
+                  id = {data._id}
                   title = {data.title}
                   image = {data.image}
                   location = {data.location}

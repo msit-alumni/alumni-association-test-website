@@ -10,7 +10,9 @@ import EventPage from "../src/pages/EventPage"
 import AllEvents from "../src/pages/AllEvents"
 import RegisterStudent from "../src/pages/registerStudent"
 import LoginStudent from "../src/pages/loginStudent"
-
+// import Admin from "../src/pages/Admin"
+import PostEvent from "../src/pages/PostEvent"
+// import PostNews from "../src/pages/PostNews" 
 
 const App = () => {
   return (
@@ -24,6 +26,9 @@ const App = () => {
         <Route path='/AllEvents' exact element={<AllEvents />} />
         <Route path='/signupStudent' exact element={<RegisterStudent />} />
         <Route path='/signinStudent' exact element={<LoginStudent />} />
+        {/* <Route path='/admin' exact element={<Admin />} /> */}
+        {/* <Route path='/admin/postNews' exact element={<PostNews />} /> */}
+        <Route path='/admin/postEvent' exact element={<PostEvent />} />
       </Routes>
     </div>
   );

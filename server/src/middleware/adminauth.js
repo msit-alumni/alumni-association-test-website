@@ -9,10 +9,12 @@ const auth=async(req,res,next)=>{
          const user=await Admin.findOne({_id:verifyAdmin._id})
          req.token=token
          req.user=user
+         console.log(token)
          next()
+         
     } catch (error) {
          console.log(error);
-       res.status(401).send(error)
+       res.status(401).send("error")
     }
 }
 
