@@ -1,15 +1,22 @@
 import React from 'react'
-import Navbar from "../../components/common/Navbar";
-import Footer from '../../components/common/Footer';
-import image from "../../assets/images/Events/event1.png";
-import {FaWhatsapp, FaCalendar, FaLinkedinIn, FaTwitter, FaFacebook,FaEye,IoIosPin} from "react-icons/fa";
-import {AiFillEye} from "react-icons/ai";
-import { HiLocationMarker } from "react-icons/hi";
-import { BiNotepad } from "react-icons/bi";
+import Navbar from "../../components/common/Navbar"
+import Footer from '../../components/common/Footer'
+import {FaWhatsapp, FaCalendar, FaLinkedinIn, FaTwitter, FaFacebook,FaEye,IoIosPin} from "react-icons/fa"
+import {AiFillEye} from "react-icons/ai"
+import { HiLocationMarker } from "react-icons/hi"
+import { BiNotepad } from "react-icons/bi"
+import { useParams } from 'react-router-dom'
+import { eventsList } from '../../config/eventsData'
 
 
+const Index = () => {
+    const {eventId} = useParams();
+    console.log(eventId);
+    let news = eventsList.filter(event => event.id == eventId);
+    let currentEvent = news[0];
+    console.log(currentEvent);
 
-export default function index() {
+
   return (
     <div className='font-defaultFont'>
       <Navbar/>
@@ -19,13 +26,13 @@ export default function index() {
         <div className='mx-auto w-[80%] md:w-[900px]'>
             <div className='drop-shadow-xl bg-[#fdfdfd] pb-6'>
                 <div>
-                    <img className='w-full' src={image} alt="aa" />
+                    <img className='w-full' src={currentEvent.image} alt="aa" />
                     <div className='w-[80%] mx-auto'>
                         <h1 className='text-xl md:text-2xl font-semibold mt-6 mb-3'>DATE & TIME:</h1>
-                        <h2 className='text-md md:text-lg'>Start : Sun, Jan 22, 2023 10:00 AM</h2>
-                        <h2 className='text-md md:text-lg'>End : Sun, Jan 22, 2023 8:00 PM</h2>
+                        <h2 className='text-md md:text-lg'>Start : {currentEvent.date}</h2>
+                        <h2 className='text-md md:text-lg'>End : {currentEvent.date}</h2>
                         <div className='w-[50%] md:w-[40%] my-4 bg-[#DBE2EF] rounded-md'>
-                            <h1 className='text-center md:text-left p-1 text-md md:text-lg font-semibold'>Past Event</h1>
+                            <h1 className='text-center md:text-left p-1 text-md md:text-lg font-semibold'>{currentEvent.status} Event</h1>
                         </div>
                         <div className='flex mb-8'>
                             <h1>Share:</h1>
@@ -43,11 +50,11 @@ export default function index() {
             </div>
         </div>
         <div className='w-60% p-8 mt-8'>
-            <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>Becoming YOUTH CONFERENCE on 22nd Jan`23 
+            <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{currentEvent.title} 
 at Auditorium, MSIT</p>
             <div className='flex text-black md:text-white text-xl md:text-2xl w-full mt-6'>
                     <FaCalendar className='w-[27px] h-[27px] md:ml-8' />
-                    <p className='ml-4'>Sunday, Jan 22, 2023</p>
+                    <p className='ml-4'>{currentEvent.date}</p>
                     <AiFillEye className=' w-[28px] h-[28px] md:ml-8 mt-[3px]' />
                     <p className='ml-4'>4041</p>
             </div>
@@ -57,7 +64,7 @@ at Auditorium, MSIT</p>
                 <HiLocationMarker className='w-[28px] h-[28px] ml-2' />
                 <h1 className='text-lg md:text-xl ml-3'>ADDRESS</h1>
             </div>
-            <h1 className='mt-2 ml-3 md:ml-14'>Auditorium, MSIT</h1>
+            <h1 className='mt-2 ml-3 md:ml-14'>{currentEvent.location}</h1>
             <div className='flex mt-8'>
                 <BiNotepad className='w-[28px] h-[28px] ml-2' />
                 <h1 className='text-lg md:text-xl ml-3'>DESCRIPTION</h1>
@@ -115,3 +122,5 @@ at Auditorium, MSIT</p>
     </div>
   )
 }
+
+export default Index

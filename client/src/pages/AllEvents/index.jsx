@@ -2,9 +2,10 @@ import React from 'react'
 import Navbar from "../../components/common/Navbar";
 import Footer from '../../components/common/Footer';
 import Card from '../../components/AllEvents/EventCard';
-import { BiSearch } from 'react-icons/bi';
 import { useState } from 'react';
 import { eventsList } from '../../config/eventsData';
+import SearchBar from '../../components/AllEvents/SearchBar';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
 
@@ -17,25 +18,57 @@ export default function Index() {
         {name:"Category 3",id:5},
       ];
 
-      const [currentCategory, change] = useState(0);
+    const [currentCategory, change] = useState(0);
+    const [searchKey, setSearchKey] = useState('');
+
+    const handleSearchSubmit = (event) => {
+      console.log(searchKey);
+      event.preventDefault();
+      handleSearchResults();
+    }
+    var filteredEventsList;
+    var newEventsList;
+  // blogs by category
+    const handleSearchResults = () =>{
+      change(-1);
+    }
 
     const handleCategoryClick = (e) => {
       change(e.target.id);
     }
 
+    let correctedCategory;
+    if(currentCategory == -1)
+    {
+      correctedCategory = 0;
+    }
+    else
+    {
+      correctedCategory = currentCategory;
+    }
+
+
     function cat(category,i) {
-      if (currentCategory == category.id) {
+      if (correctedCategory == category.id) {
         return <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
       }
       return <button key={i} id={category.id} onClick={(handleCategoryClick)} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#DBE2EF] hover:border-[#041C32]'>{category.name}</button>
     }
 
-    var newEventsList;
-
-    if(currentCategory == 0)
+    
+    if(currentCategory == -1)
+    {
+      newEventsList = eventsList.filter((data) => 
+      data.title.toLowerCase().includes(searchKey.toLowerCase().trim()));
+      console.log(searchKey + " old");    
+    }
+    else if(currentCategory == 0)
     {newEventsList = eventsList;}
-    if(currentCategory == 1)
-    {newEventsList = eventsList;}
+    else if(currentCategory == 1)
+    {newEventsList = eventsList.filter(data => data.status == "Past");}
+    else if(currentCategory == 2)
+    {newEventsList = eventsList.filter(data => data.status == "Upcoming");}
+    else {newEventsList = eventsList.filter(data => data.category == categories[currentCategory].name);}
     
   return (
     <div className='font-defaultFont'>
@@ -45,16 +78,22 @@ export default function Index() {
         <div className='flex'>
             <div className='w-[30%]'>
                 <div>
-                <form action="" className='flex pt-4 text-xl'>
-                    <input placeholder='Search by title' type="text" className='outline-0 border-b-2 w-[80%] h-12 border-[#3F72AF] pl-4'/>
-                    <button className='mx-4 text-2xl text-[#3F72AF]'><BiSearch/></button>
-                </form>
+                <SearchBar
+                  value={searchKey} 
+                  formSubmit={handleSearchSubmit}
+                  handleSearchKey ={e=>setSearchKey(e.target.value)}
+                />
+                <div className='mt-6'>
+                  <h1 className='text-2xl text-[#064663] '>Event Categories</h1>
+                  <div className='w-32 h-[2px] ml-8 mt-2 rounded bg-[#064663]'></div>
+
+                </div>
 
                 <div className='pt-4'>
                     {
                         categories.map((category,i)=>(
                           cat(category,i)
-                        ))  
+                        ))
                     }
                 </div>
                 </div>
@@ -63,14 +102,16 @@ export default function Index() {
             {
               newEventsList.map((data) => (
                 <Card
+                  key = {data.id}
                   id = {data.id}
-                  titles = {data.title}
+                  title = {data.title}
                   image = {data.image}
                   location = {data.location}
                   category = {data.category}
                   date = {data.date}
                   shortdesc = {data.shortdesc}
                   desc = {data.desc}
+                  status = {data.status}
                 />
               ))
             }
