@@ -85,5 +85,20 @@ router.post("/signupAlumni", async (req, res) => {
         res.status(400).send("Invalid Details");
       }
 })
+router.get("/AllAlumni", async (req, res) => {
+  try {
+    const alumnis = await Alumni.find().exec();
+    res.json({
+      success: true,
+      alumnis,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+});
 
 module.exports=router;
