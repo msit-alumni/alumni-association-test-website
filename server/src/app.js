@@ -27,6 +27,6 @@ app.use(require("./routes/newsRoutes"));
 app.use(require("./routes/eventRoutes"));
 app.use(require("./routes/loginRoutes/studentRoutes"));
 
-app.listen(port, ()=>{
+app.listen(port, '0.0.0.0', ()=>{
     console.log(`listening on port ${port}`);
 });
