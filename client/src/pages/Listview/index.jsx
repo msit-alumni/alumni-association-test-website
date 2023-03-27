@@ -5,6 +5,7 @@ import Footer from '../../components/common/Footer';
 import SearchBar from '../../components/AllEvents/SearchBar';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import {Link} from 'react-router-dom';
 
 
 
@@ -181,10 +182,10 @@ export default function Index() {
                                                     <span className="text-md text-gray-700 font-semibold font-Merriweather ">{data.branch}</span>
                                                     <p className=" text-gray-500 text-md font-Merriweather ">{data.city}</p>
 
-                                                    <div className="   mt-3 bg-[#FFFFFF]   hover:bg-[#3F72AF] text-[#3F72AF]  hover:text-white">
-                                                        <button className="  text-xl  font-Merriweather py-3 px-3  font-Merriweather ">
+                                                    <div className="   mt-3 bg-[#FFFFFF] border-t-[2px] border-[#DBE2EF]   hover:bg-[#3F72AF] text-[#3F72AF] hover:border-[#3F72AF] hover:text-white ease-in-out duration-300">
+                                                        <Link to={`/profile/${data._id}`}><button className="  text-xl  font-Merriweather py-3 px-3  font-Merriweather ">
                                                             View Profile
-                                                        </button>
+                                                        </button></Link>
                                                     </div>
                                                 </div>
                                             </div>

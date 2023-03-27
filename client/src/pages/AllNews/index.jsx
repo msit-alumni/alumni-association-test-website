@@ -28,12 +28,10 @@ export default function Index() {
 
   console.log(newsList);
     let categories =[
-        {name:"All Events",id:0},
-        {name:"Past Events",id:1},
-        {name:"Upcoming Events",id:2},
-        {name:"Category 1",id:3},
-        {name:"Category 2",id:4},
-        {name:"Category 3",id:5},
+        {name:"All News",id:0},
+        {name:"Category 1",id:1},
+        {name:"Category 2",id:2},
+        {name:"Category 3",id:3},
       ];
 
     const [currentCategory, change] = useState(0);
@@ -83,10 +81,6 @@ export default function Index() {
     }
     else if(currentCategory == 0)
     {newEventsList = newsList;}
-    else if(currentCategory == 1)
-    {newEventsList = newsList.filter(data => data.status == "Past");}
-    else if(currentCategory == 2)
-    {newEventsList = newsList.filter(data => data.status == "Upcoming");}
     else {newEventsList = newsList.filter(data => data.category == categories[currentCategory].name);}
     
     
@@ -106,7 +100,7 @@ export default function Index() {
                   handleSearchKey ={e=>setSearchKey(e.target.value)}
                 />
                 <div className='mt-6'>
-                  <h1 className='text-2xl text-[#064663] '>Event Categories</h1>
+                  <h1 className='text-2xl text-[#064663] '>News Categories</h1>
                   <div className='w-32 h-[2px] ml-8 mt-2 rounded bg-[#064663]'></div>
 
                 </div>

@@ -13,6 +13,7 @@ import Listview from "../src/pages/Listview"
 import RegisterStudent from "../src/pages/registerStudent"
 import LoginStudent from "../src/pages/loginStudent"
 import PostEvent from "../src/pages/PostEvent"
+import Profile from "../src/pages/Profile"
 
 
 const App = () => {
@@ -32,6 +33,8 @@ const App = () => {
         {/* <Route path='/admin' exact element={<Admin />} /> */}
         {/* <Route path='/admin/postNews' exact element={<PostNews />} /> */}
         <Route path='/admin/postEvent' exact element={<PostEvent />} />
+        <Route path='/profile/:_id' exact element={<Profile />} />
+        
       </Routes>
     </div>
   );
