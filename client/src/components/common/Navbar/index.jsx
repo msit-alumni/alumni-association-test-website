@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   let Links = [
     { name: "About", link: "#footer" },
-    { name: "Events", link: "#events" },
-    { name: "News & Stories", link: "#events" },
-    { name: "Albums", link: "#album" },
+    { name: "Events", link: "/events" },
+    { name: "News & Stories", link: "/news" },
+    { name: "Albums", link: "/#album" },
     { name: "Contact Us", link: "#footer" },
   ];
 
@@ -66,8 +66,8 @@ const Navbar = () => {
             </div>
             {serviceOpen && (
             <div className="w-[265px] absolute right-0 z-10 py-2 bg-[#f9f7f7]  text-theme rounded-lg mt-2">
-            <Link to="/Listview">
-              <a href="#" className="block px-4 py-2   hover:bg-[#dbe2ef]">
+            <Link to="/members">
+              <a href="/members" className="block px-4 py-2   hover:bg-[#dbe2ef]">
                 Alumni Directory - List View
               </a>
               </Link>
