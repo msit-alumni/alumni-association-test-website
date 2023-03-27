@@ -10,7 +10,6 @@ function importAll(r) {
  const data = importAll(require.context('../../../../assets/images/CarouselMain', false, /\.(png|JPE?G|svg)$/));
 // console.log(data);
 const images=Object.values(data)
-console.log(images)
 
 const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

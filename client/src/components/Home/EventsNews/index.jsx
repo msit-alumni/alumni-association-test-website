@@ -28,9 +28,9 @@ const index = () => {
                 <div className='bg-[#064663] h-[2px] w-36 rounded mt-2 ml-4 mb-4'></div>
                 <NewsList/>
                 <div className='h-6 md:h-2'></div>
-                <button className='ml-4 mt-1 bg-[#3F72AF] md:text-[9px] xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:bg-theme font-defaultFont py-2 px-4 rounded duration-500'>
+                <Link to="/AllNews"><button className='ml-4 mt-1 bg-[#3F72AF] md:text-[9px] xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:bg-theme font-defaultFont py-2 px-4 rounded duration-500'>
       View All
-    </button>
+    </button></Link>
             </div>
 
         </div>
