@@ -156,7 +156,6 @@ const Register = () => {
     
                         <div className="flex-grow h-px bg-gray-400"></div>
                       </div>
-    
                       <div className="text-medium text-[12.5px] ">
                         <div className="mt-2">
                           <h6 className="font-[MerriWeather]">Name</h6>

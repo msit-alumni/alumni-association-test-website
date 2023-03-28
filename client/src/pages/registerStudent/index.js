@@ -4,25 +4,36 @@ import Footer from "../../components/common/Footer";
 import img from "./img.jpg";
 import logo from "./logo2.png";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import {signupSchema} from "../../schema/alumni"
 
 const Register = () => {
-    const [register,setregister]=useState(0);
+  const initialValues = {
+    name:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+  };
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues,
+      validationSchema: signupSchema,
+      validateOnChange: true,
+      validateOnBlur: false,
+      //// By disabling validation onChange and onBlur formik will validate on submit.
+      onSubmit: (values, action) => {
+        // postData();
+        console.log( values);
+        //// to get rid of all the values after submitting the form
+        action.resetForm();
+      },
+    });
 
-    const [user,setUser]=useState({
-      name:"",email:"",mobile:"",dob:"",password:"",course:"",batch:"",branch:"",shift:""
-    })
-    let name,value;
-    const handleInputs=(e)=>{
-      name=e.target.name;
-      value=e.target.value;
-      console.log(name,value)
-      setUser({...user,[name]:value})
-    }
+  console.log(errors);
+
+    const [register,setregister]=useState(0);
 
   const postData = async (e) => {
     e.preventDefault();
-    const {name,email,mobile,dob,password,course,batch,branch,shift}=user;
-    const res = await fetch("/signupStudent", {
+    const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
+    const res = await fetch("/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,9 +45,14 @@ const Register = () => {
         dob,
         password,
         course,
+        city,
         batch,
         branch,
-        shift
+        shift,
+        company,
+        designation,
+        experience,
+        sector
       }),
     });
     const data = await res.json();
@@ -140,55 +156,70 @@ const Register = () => {
     
                         <div className="flex-grow h-px bg-gray-400"></div>
                       </div>
-    
                       <div className="text-medium text-[12.5px] ">
                         <div className="mt-2">
                           <h6 className="font-[MerriWeather]">Name</h6>
                           <input
                             type="text"
                             placeholder="Name"
-                            value={user.name}
-                            onChange={handleInputs}
+                            value={values.name}
+                            onChange={handleChange}
                             name="name"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                           />
+                          {touched.name && errors.name ? (
+                      <p className="text-[#b22b27]">{errors.name}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">E-mail</h6>
                           <input
                             type="text  placeholder-gray-600 "
                             placeholder="E-mail"
-                            value={user.email}
+                            value={values.email}
                             name="email"
-                            onChange={handleInputs} 
+                            onChange={handleChange} 
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.email && touched.email ? (
+                      <p className="text-[#b22b27]">{errors.email}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">Mobile No</h6>
                           <input
                             type="number"
                             placeholder="Mobile No"
-                            value={user.mobile}
-                            onChange={handleInputs}
+                            value={values.mobile}
+                            onChange={handleChange}
                             name="mobile"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.mobile && touched.mobile ? (
+                      <p className="text-[#b22b27]">{errors.mobile}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">Date of Birth</h6>
                           <input
-                            type="number"
+                            type="date"
                             placeholder="Date of Birth"
-                            value={user.dob}
-                            onChange={handleInputs}
+                            value={values.dob}
+                            onChange={handleChange}
                             name="dob"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.dob && touched.dob ? (
+                      <p className="text-[#b22b27]">{errors.dob}</p>
+                    ) : null}
                         </div>
     
                         <div className="mt-5">
@@ -196,12 +227,16 @@ const Register = () => {
                           <input
                             type="password"
                             placeholder="Password"
-                            value={user.password}
-                            onChange={handleInputs}
+                            value={values.password}
+                            onChange={handleChange}
                             name="password"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.password && touched.password ? (
+                      <p className="text-[#b22b27]">{errors.password}</p>
+                    ) : null}
                         </div>
     
                         <div className="py-1"></div>
@@ -245,7 +280,7 @@ const Register = () => {
                             Create Account
                           </button>
                         </div>
-                    <Link to="/signinAlumni">
+                    <Link to="/signinStudent">
                         <p className="text-sm text-center mt-1 font-dark  text-black">
                           Already registered?{" "}
                           <a href="#" className="font-medium text-blue-500">
@@ -265,50 +300,93 @@ const Register = () => {
                         <input
                           type="text"
                           placeholder="Course"
-                          value={user.course}
+                          value={values.course}
                           name="course"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.course && touched.course ? (
+                      <p className="text-[#b22b27]">{errors.course}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Batch</h6>
-                        <input
+                        <select
                           type="text"
                           placeholder="Batch"
-                          value={user.batch}
-                          onChange={handleInputs}
+                          value={values.batch}
+                          onChange={handleChange}
                           name="batch"
                             autoComplete="off"
+                            onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
+                        >
+                          <option value="2005-09">2005-09</option>
+                          <option value="2006-10">2006-10</option>
+                          <option value="2007-11">2007-11</option>
+                          <option value="2008-12">2008-12</option>
+                          <option value="2009-13">2009-13</option>
+                          <option value="2010-14">2010-14</option>
+                          <option value="2011-15">2011-15</option>
+                          <option value="2012-16">2012-16</option>
+                          <option value="2013-17">2013-17</option>
+                          <option value="2014-18">2014-18</option>
+                          <option value="2015-19">2015-19</option>
+                          <option value="2016-20">2016-20</option>
+                          <option value="2017-21">2017-21</option>
+                          <option value="2018-22">2018-22</option>
+                          <option value="2019-23">2019-23</option>
+                          <option value="2020-24">2020-24</option>
+                          <option value="2021-25">2021-25</option>
+                          <option value="2022-26">2022-26</option>
+                          <option value="2023-27">2023-27</option>
+                          <option value="2024-28">2024-28</option>
+                          <option value="2025-29">2025-29</option>
+
+                        </select>
+                        {errors.batch && touched.batch ? (
+                      <p className="text-[#b22b27]">{errors.batch}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Branch</h6>
-                        <input
+                        <select
                           type="text"
                           placeholder="Branch"
-                          value={user.branch}
-                          onChange={handleInputs}
+                          value={values.branch}
+                          onChange={handleChange}
                           name="branch"
                             autoComplete="off"
+                            onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
+                        >
+                          <option value="IT">IT</option>
+                          <option value="CSE">CSE</option>
+                          <option value="ECE">ECE</option>
+                          <option value="EEE">EEE</option>
+                        </select>
+                        {errors. branch && touched.branch ? (
+                      <p className="text-[#b22b27]">{errors.branch}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Shift</h6>
                         <input
                           type="text"
                           placeholder="Shift"
-                          value={user.shift}
+                          value={values.shift}
                           name="shift"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.shift && touched.shift ? (
+                      <p className="text-[#b22b27]">{errors.shift}</p>
+                    ) : null}
                       </div>
-
                     </form>
                     <div className="py-2"></div>
                         <div className="text-center lg:text-left">
