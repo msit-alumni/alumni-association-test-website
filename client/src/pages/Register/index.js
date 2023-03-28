@@ -4,24 +4,35 @@ import Footer from "../../components/common/Footer";
 import img from "./img.jpg";
 import logo from "./logo2.png";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import {signupSchema} from "../../schema/alumni"
 
 const Register = () => {
-    const [register,setregister]=useState(0);
+  const initialValues = {
+    name:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+  };
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues,
+      validationSchema: signupSchema,
+      validateOnChange: true,
+      validateOnBlur: false,
+      //// By disabling validation onChange and onBlur formik will validate on submit.
+      onSubmit: (values, action) => {
+        // postData();
+        console.log( values);
+        //// to get rid of all the values after submitting the form
+        action.resetForm();
+      },
+    });
 
-    const [user,setUser]=useState({
-      name:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
-    })
-    let name,value;
-    const handleInputs=(e)=>{
-      name=e.target.name;
-      value=e.target.value;
-      console.log(name,value)
-      setUser({...user,[name]:value})
-    }
+  console.log(errors);
+
+    const [register,setregister]=useState(0);
 
   const postData = async (e) => {
     e.preventDefault();
-    const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=user;
+    const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
     const res = await fetch("/signupAlumni", {
       method: "POST",
       headers: {
@@ -152,48 +163,64 @@ const Register = () => {
                           <input
                             type="text"
                             placeholder="Name"
-                            value={user.name}
-                            onChange={handleInputs}
+                            value={values.name}
+                            onChange={handleChange}
                             name="name"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                           />
+                          {touched.name && errors.name ? (
+                      <p className="text-[#b22b27]">{errors.name}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">E-mail</h6>
                           <input
                             type="text  placeholder-gray-600 "
                             placeholder="E-mail"
-                            value={user.email}
+                            value={values.email}
                             name="email"
-                            onChange={handleInputs} 
+                            onChange={handleChange} 
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.email && touched.email ? (
+                      <p className="text-[#b22b27]">{errors.email}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">Mobile No</h6>
                           <input
                             type="number"
                             placeholder="Mobile No"
-                            value={user.mobile}
-                            onChange={handleInputs}
+                            value={values.mobile}
+                            onChange={handleChange}
                             name="mobile"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.mobile && touched.mobile ? (
+                      <p className="text-[#b22b27]">{errors.mobile}</p>
+                    ) : null}
                         </div>
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">Date of Birth</h6>
                           <input
                             type="number"
                             placeholder="Date of Birth"
-                            value={user.dob}
-                            onChange={handleInputs}
+                            value={values.dob}
+                            onChange={handleChange}
                             name="dob"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.dob && touched.dob ? (
+                      <p className="text-[#b22b27]">{errors.dob}</p>
+                    ) : null}
                         </div>
     
                         <div className="mt-5">
@@ -201,12 +228,16 @@ const Register = () => {
                           <input
                             type="password"
                             placeholder="Password"
-                            value={user.password}
-                            onChange={handleInputs}
+                            value={values.password}
+                            onChange={handleChange}
                             name="password"
                             autoComplete="off"
+                            onBlur={handleBlur}
                             className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
                           />
+                          {errors.password && touched.password ? (
+                      <p className="text-[#b22b27]">{errors.password}</p>
+                    ) : null}
                         </div>
     
                         <div className="py-1"></div>
@@ -270,108 +301,144 @@ const Register = () => {
                         <input
                           type="text"
                           placeholder="Course"
-                          value={user.course}
+                          value={values.course}
                           name="course"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.course && touched.course ? (
+                      <p className="text-[#b22b27]">{errors.course}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">City</h6>
                         <input
                           type="text"
                           placeholder="City"
-                          value={user.city}
+                          value={values.city}
                           name="city"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.city && touched.city ? (
+                      <p className="text-[#b22b27]">{errors.city}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Batch</h6>
                         <input
                           type="text"
                           placeholder="Batch"
-                          value={user.batch}
-                          onChange={handleInputs}
+                          value={values.batch}
+                          onChange={handleChange}
                           name="batch"
                             autoComplete="off"
+                            onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.batch && touched.batch ? (
+                      <p className="text-[#b22b27]">{errors.batch}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Branch</h6>
                         <input
                           type="text"
                           placeholder="Branch"
-                          value={user.branch}
-                          onChange={handleInputs}
+                          value={values.branch}
+                          onChange={handleChange}
                           name="branch"
                             autoComplete="off"
+                            onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors. branch && touched.branch ? (
+                      <p className="text-[#b22b27]">{errors.branch}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Shift</h6>
                         <input
                           type="text"
                           placeholder="Shift"
-                          value={user.shift}
+                          value={values.shift}
                           name="shift"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.shift && touched.shift ? (
+                      <p className="text-[#b22b27]">{errors.shift}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Company</h6>
                         <input
                           type="text"
                           placeholder="Company"
-                          value={user.company}
-                          onChange={handleInputs}
+                          value={values.company}
+                          onChange={handleChange}
                           name="company"
                             autoComplete="off"
+                            onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.company && touched.company ? (
+                      <p className="text-[#b22b27]">{errors.company}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Experience</h6>
                         <input
                           type="text"
                           placeholder="Experience"
-                          value={user.experience}
+                          value={values.experience}
                           name="experience"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.experience && touched.experience ? (
+                      <p className="text-[#b22b27]">{errors.experience}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Designation</h6>
                         <input
                           type="text"
                           placeholder="Designation"
-                          value={user.designation}
+                          value={values.designation}
                           name="designation"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.designation && touched.designation ? (
+                      <p className="text-[#b22b27]">{errors.designation}</p>
+                    ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Sector</h6>
                         <input
                           type="text"
                           placeholder="Sector"
-                          value={user.sector}
+                          value={values.sector}
                           name="sector"
                             autoComplete="off"
-                          onChange={handleInputs}
+                            onBlur={handleBlur}
+                          onChange={handleChange}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         />
+                        {errors.sector && touched.sector ? (
+                      <p className="text-[#b22b27]">{errors.sector}</p>
+                    ) : null}
                       </div>
                     </form>
                     <div className="py-2"></div>
