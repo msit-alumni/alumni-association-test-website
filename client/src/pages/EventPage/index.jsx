@@ -40,7 +40,7 @@ useEffect(() => {
       <div className='mx-auto w-[80%] md:w-[900px]'>
           <div className='drop-shadow-xl bg-[#fdfdfd] pb-6'>
               <div>
-                  <img className='w-full' src={image} alt="aa" />
+                  <img className='w-full' src={event.image} alt="aa" />
                   <div className='w-[80%] mx-auto'>
                       <h1 className='text-xl md:text-2xl font-semibold mt-6 mb-3'>DATE & TIME:</h1>
                       <h2 className='text-md md:text-lg'>Start : {event.date}</h2>

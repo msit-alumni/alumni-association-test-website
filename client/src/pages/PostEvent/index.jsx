@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 const Index = () => {
 
+
+
+
     const [user,setUser]=useState({
         title:"",location:"",date:"",status:"",category:"",desc:"",image:"",shortdesc:""
       })
@@ -12,10 +15,15 @@ const Index = () => {
         console.log(name,value)
         setUser({...user,[name]:value})
       }
-  
+      const handleFileUpload=async(e)=>{
+        const file=e.target.files[0];
+        const base64=await convertToBase64(file);
+        setUser({ ...user, image: base64 });
+      }
     const postData = async (e) => {
       e.preventDefault();
       const {title,location,date,status,category,desc,image,shortdesc}=user;
+      // console.log(image)
       const res = await fetch("/admin/postEvent", {
         method: "POST",
         headers: {
@@ -88,12 +96,11 @@ const Index = () => {
                 name="desc"
                 autoComplete="off" 
         />
-        <input type="string"
+        <input type="file"
                 placeholder="image"
-                value={user.image}
-                onChange={handleInputs}
+                onChange={(e)=>handleFileUpload(e)}
                 name="image"
-                autoComplete="off" 
+                accept=".jpeg,.png,.jpg"
         />
         <button onClick={postData}>SUBMIT</button>
       </form>
@@ -102,3 +109,17 @@ const Index = () => {
 }
 
 export default Index
+
+
+function convertToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const fileReader=new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload=()=>{
+      resolve(fileReader.result);
+    }
+    fileReader.onerror=(error)=>{
+      reject(error)
+    }
+  })
+}

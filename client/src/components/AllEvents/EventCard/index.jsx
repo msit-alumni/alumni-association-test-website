@@ -10,7 +10,7 @@ export default function index(event) {
     <div>
       <div className='font-defaultFont w-[750px] h-[250px] bg-[#f5f5f5] p-4 mt-6 mx-8 flex shadow-lg' >
         <div className='w-[34%]'>
-          <img className='rounded-md' src={image} alt="" />
+          <img className='rounded-md' src={event.image} alt="" />
         </div>
         <div className='w-[67%] px-4'>
           <h1 className='font-bold text-[23px] '>{event.title}</h1>

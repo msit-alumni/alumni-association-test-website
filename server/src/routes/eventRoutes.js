@@ -4,11 +4,11 @@ const router = express.Router();
 const event=mongoose.model("Events")
 const adminauth = require("../middleware/adminauth")
 
-if(adminauth)
-{
-  router.get("/admin/postEvent", async (req, res) => {
-  });
-}
+// if(adminauth)
+// {
+//   router.get("/admin/postEvent", async (req, res) => {
+//   });
+// }
 router.get("/AllEvent", async (req, res) => {
     try {
       const events = await event.find().exec();
