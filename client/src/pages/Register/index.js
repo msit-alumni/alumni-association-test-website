@@ -209,7 +209,7 @@ const Register = () => {
                         <div className="mt-5">
                           <h6 className="font-[MerriWeather]">Date of Birth</h6>
                           <input
-                            type="number"
+                            type="date"
                             placeholder="Date of Birth"
                             value={values.dob}
                             onChange={handleChange}
@@ -330,7 +330,7 @@ const Register = () => {
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Batch</h6>
-                        <input
+                        <select
                           type="text"
                           placeholder="Batch"
                           value={values.batch}
@@ -339,14 +339,37 @@ const Register = () => {
                             autoComplete="off"
                             onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
+                        >
+                          <option value="2005-09">2005-09</option>
+                          <option value="2006-10">2006-10</option>
+                          <option value="2007-11">2007-11</option>
+                          <option value="2008-12">2008-12</option>
+                          <option value="2009-13">2009-13</option>
+                          <option value="2010-14">2010-14</option>
+                          <option value="2011-15">2011-15</option>
+                          <option value="2012-16">2012-16</option>
+                          <option value="2013-17">2013-17</option>
+                          <option value="2014-18">2014-18</option>
+                          <option value="2015-19">2015-19</option>
+                          <option value="2016-20">2016-20</option>
+                          <option value="2017-21">2017-21</option>
+                          <option value="2018-22">2018-22</option>
+                          <option value="2019-23">2019-23</option>
+                          <option value="2020-24">2020-24</option>
+                          <option value="2021-25">2021-25</option>
+                          <option value="2022-26">2022-26</option>
+                          <option value="2023-27">2023-27</option>
+                          <option value="2024-28">2024-28</option>
+                          <option value="2025-29">2025-29</option>
+
+                        </select>
                         {errors.batch && touched.batch ? (
                       <p className="text-[#b22b27]">{errors.batch}</p>
                     ) : null}
                       </div>
                       <div className="mt-2">
                         <h6 className="font-[MerriWeather]">Branch</h6>
-                        <input
+                        <select
                           type="text"
                           placeholder="Branch"
                           value={values.branch}
@@ -355,7 +378,12 @@ const Register = () => {
                             autoComplete="off"
                             onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
+                        >
+                          <option value="IT">IT</option>
+                          <option value="CSE">CSE</option>
+                          <option value="ECE">ECE</option>
+                          <option value="EEE">EEE</option>
+                        </select>
                         {errors. branch && touched.branch ? (
                       <p className="text-[#b22b27]">{errors.branch}</p>
                     ) : null}
@@ -377,7 +405,7 @@ const Register = () => {
                     ) : null}
                       </div>
                       <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Company</h6>
+                        <h6 className="font-[MerriWeather]">Company (currently working with)</h6>
                         <input
                           type="text"
                           placeholder="Company"
@@ -393,7 +421,7 @@ const Register = () => {
                     ) : null}
                       </div>
                       <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Experience</h6>
+                        <h6 className="font-[MerriWeather]">Total Experience (in Yrs.)</h6>
                         <input
                           type="text"
                           placeholder="Experience"
