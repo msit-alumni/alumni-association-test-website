@@ -3,9 +3,7 @@ import Navbar from "../../components/common/Navbar";
 import Footer from '../../components/common/Footer';
 import Card from '../../components/AllNews/NewsCard';
 import { useState , useEffect} from 'react';
-// import { eventsList } from '../../config/eventsData';
 import SearchBar from '../../components/AllEvents/SearchBar';
-import { Link } from 'react-router-dom';
 
 export default function Index() {
   const [newsList, setNewsList] = useState([]);

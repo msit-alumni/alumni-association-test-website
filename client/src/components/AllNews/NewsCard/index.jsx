@@ -2,19 +2,13 @@ import React from 'react'
 import image from '../../../assets/images/Events/event2.png'
 import { AiOutlineCalendar } from "react-icons/ai"
 import { BsFillShareFill } from "react-icons/bs"
+import { Link } from 'react-router-dom';  
+
 
 const index = (data) => {
   var shortdesc = data.desc.slice(1,79);
   shortdesc = shortdesc+" ...";
-  function display()
-  {
-    if(data.category.length > 0) {
-      return <img className='h-[170px] w-[268px] rounded-md object-cover' src={image} alt="" />
-    }
-    else {
-      return <img className='h-[122px] w-[268px] rounded-md object-cover' src={image} alt="" />
-    }
-  }
+
   function display2()
   {
     if(data.category.length > 0) {
@@ -28,7 +22,7 @@ const index = (data) => {
     <div>
       <div className='w-[90%] mx-auto p-4 bg-[#f5f5f5] shadow-lg my-6'>
         <div className='flex'>
-          {display()}
+        <img className='h-[170px] w-[268px] rounded-md object-cover' src={image} alt="" />
           <div className='mx-4'>
             <div className='flex justify-between'>
               <div className='flex'>
@@ -39,7 +33,10 @@ const index = (data) => {
             </div>
             <h1 className='font-bold text-xl my-4'>{data.title}</h1>
             <p className='text-sm'>{shortdesc}</p>
-            {display2()}
+            <div className='flex justify-between'>
+              {display2()}
+              <Link to={`/news/${data._id}`}><button className='rounded-lg py-3 px-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
+            </div>
           </div>
 
         </div>

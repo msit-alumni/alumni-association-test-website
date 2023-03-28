@@ -169,7 +169,7 @@ export default function Index() {
                             {
                                 newList.map((data) => (
                                           <div className="w-full sm:w-1/2 md:w-1/2 xl:w-1/3 p-4">
-                                            <a href="" className="c-card block bg-[#FFFFFF] shadow-md hover:shadow-xl  overflow-hidden">
+                                            <a href="" className="c-card block bg-[#FFFFFF] shadow-md ease-in-out duration-300 hover:shadow-2xl   overflow-hidden">
                                             <div className="">
                                                 <img className=" mx-auto object-cover w-40 h-40 mb-3 mt-7 rounded-full shadow-lg"
                                                     src="https://images.hindustantimes.com/img/2022/12/10/550x309/FBL-WC-2022-MATCH57-NED-ARG-250_1670640281926_1670640281926_1670640316976_1670640316976.jpg"
