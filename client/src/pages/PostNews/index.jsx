@@ -5,7 +5,7 @@ import Navbar from "../../components/common/Navbar"
 
 const Index = () => {
     const [user, setUser] = useState({
-        title:"", location:"", date:"", status:"", category:"", desc:"", image:""
+        title:"", location:"", date:"", category:"", desc:"", image:""
     });
 
     const handleInputs = (e) => {
@@ -25,9 +25,9 @@ const Index = () => {
 
     const postData = async (e) => {
         e.preventDefault();
-        const { title, location, date, status, category, desc, image } = user;
+        const { title, location, date,  category, desc, image } = user;
         console.log(desc);
-        const res = await fetch("/admin/postEvent", {
+        const res = await fetch("/admin/postNews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,6 @@ const Index = () => {
                 title,
                 location,
                 date,
-                status,
                 category,
                 desc,
                 image,
@@ -47,8 +46,8 @@ const Index = () => {
     };
 
     return (
-      <div>
-        <Navbar/>
+        <div>
+            <Navbar/>
         <div className="w-full px-[20%] mt-32">
             <form method='POST'>
                 <div className="flex mt-4">
@@ -59,17 +58,6 @@ const Index = () => {
                         value={user.title}
                         onChange={handleInputs}
                         name="title"
-                        autoComplete="off"
-                    />
-                </div>
-                <div className="flex mt-4">
-                    <h3 className="mr-6">Status:</h3>
-                    <input
-                        type="string"
-                        placeholder="Enter the status"
-                        value={user.status}
-                        onChange={handleInputs}
-                        name="status"
                         autoComplete="off"
                     />
                 </div>
@@ -96,25 +84,14 @@ const Index = () => {
                     />
                 </div>
                 <div className="flex mt-4">
-                    <h3 className="mr-6">Location:</h3>
-                    <input
-                        type="string"
-                        placeholder="Enter the location of event"
-                        value={user.location}
-                        onChange={handleInputs}
-                        name="location"
-                        autoComplete="off"
-                        />
-                        </div>
-                        <div className="flex mt-4">
-                        <h3 className="mr-6">Description:</h3>
+                    <h3 className="mr-6">Description:</h3>
                         <ReactQuill
-                                             className="quill-editor"
-                                             theme="snow"
-                                             value={user.desc}
-                                             onChange={handleDescChange}
-                                         />
-                        </div>
+                            className="quill-editor"
+                            theme="snow"
+                            value={user.desc}
+                            onChange={handleDescChange}
+                        />
+                </div>
                         <br /><br /><br />
                         <div className="flex mt-4">
                         <h3 className="mr-6">Image:</h3>
@@ -128,8 +105,7 @@ const Index = () => {
                         Submit
                         </button>
                         </form>
-                        </div>
-                        </div>
+                        </div></div>
                         );
                         };
                         

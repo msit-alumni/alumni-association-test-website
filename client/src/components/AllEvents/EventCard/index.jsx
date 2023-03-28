@@ -37,11 +37,9 @@ export default function index(event) {
               {
                 event.status == "Past" && <button className='rounded-full py-2 px-4 ease-in-out duration-300 text-black bg-[#DBE2EF]'>{event.status} Event</button>
               }
-              <Link to={`/events/${event.id}`}><button className='rounded-lg py-3 px-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
+              <Link to={`/events/${event._id}`}><button className='rounded-lg py-3 px-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
             </div>
         </div>
-      
-
       </div>
     </div>
   )

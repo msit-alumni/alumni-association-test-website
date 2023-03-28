@@ -6,13 +6,12 @@ import {AiFillEye} from "react-icons/ai"
 import { HiLocationMarker } from "react-icons/hi"
 import { BiNotepad } from "react-icons/bi"
 import { useParams } from 'react-router-dom'
-import image from '../../assets/images/Events/event1.png'
-
+import parse from 'html-react-parser';
 
 
 const Index = () => {
 const [eventsList, setEventsList] = useState([]);
-const { eventId } = useParams();
+const { _id } = useParams();
 
 useEffect(() => {
   fetch('/AllEvent')
@@ -24,13 +23,14 @@ useEffect(() => {
     })
     .then(data => {
       if(data.events.length>0){
-       setEventsList(data.events.filter((event) => event._id == eventId));
+       setEventsList(data.events.filter((event) => event._id == _id));
     }
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
     });
 }, []);
+
   function display(event) {
     return <div className='font-defaultFont'>
     <Navbar/>
@@ -83,23 +83,11 @@ useEffect(() => {
               <h1 className='text-lg md:text-xl ml-3'>DESCRIPTION</h1>
           </div>
           <div>
-              <p className='ml-3 mt-4 md:ml-14'>
-              Dear Friends,
-              <br /><br />
-              Greetings from MSITDAA!
-              <br /><br />
-              MSIT Delhi Alumni Association invites you to participate in the event of "Becoming YOUTH CONFERENCE" will be on Sunday Jan 22, 2023
-              at Auditorium, Msit Delhi.
-              <br /><br />
-
-              It's a First-come-First-Serve offer. ONLY registered participants will have entry. 
-              Please register: https://msit.com/events/7708 
-              <br /><br />
-              Friends and family members are welcome. 
-              You may share the link in your network.We look forward to your active participation in the event.
-              </p>
-              <br /><br />
-
+              <div  className='ml-3 mt-4 md:ml-14'>
+                {parse(event.desc)}
+                
+              </div>
+              
               <p className="ml-3 md:ml-14">
                   Puneet sir<br />
                   Secretary, MSIT<br />

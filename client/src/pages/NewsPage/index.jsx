@@ -2,27 +2,46 @@ import React , { useState , useEffect} from 'react'
 import Navbar from "../../components/common/Navbar"
 import Footer from '../../components/common/Footer'
 import { useParams } from 'react-router-dom'
-import image from '../../assets/images/Events/event1.png'
 import { AiOutlineCalendar,AiFillEye } from "react-icons/ai"
-import image2 from "../../assets/images/newsImages/Img.png"
-
-
+import parse from 'html-react-parser';
 
 
 const Index = () => {
 
-  return (
-    <div className='font-defaultFont'>
-        <Navbar/>
+    const { _id } = useParams();
+    const [newsList, setNewsList] = useState([]);
+
+    useEffect(() => {
+        fetch('/getAllNews')
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+            if(data.news.length>0){
+             setNewsList(data.news.filter((news) => news._id == _id));
+          }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+      }, []);
+
+      function display(news)
+      {
+        return <div>
+            <Navbar/>
             <div className='h-36'></div>
             <div className='w-full h-48 md:h-96 flex pl-[12%]'>
-                <img className='w-48 h-48 md:w-96 md:h-96 object-cover border-8 border-white shadow-lg' src={image} alt="" />
-                <div className=' bg-[#3F72AF] my-24 pr-[10%] py-8 pl-[5%] text-white'>
-                    <h1 className='text-2xl font-bold leading-relaxed tracking-wide'>Maharaja Surajmal Institute of Technology wishes you a colorful and happy Holi!</h1>      
+                <img className='w-48 h-48 md:w-96 md:h-96 object-cover border-8 border-white shadow-lg' src={news.image} alt="" />
+                <div className=' bg-[#3F72AF] w-full my-24 pr-[10%] py-8 pl-[5%] text-white'>
+                    <h1 className='text-2xl font-bold leading-relaxed tracking-wide'>{news.title}</h1>      
                     <div className='flex justify-between mt-6'>
                         <div className='flex text-lg'>
                             <AiOutlineCalendar className='mt-[3px] text-2xl'/>
-                            <h1 className='ml-4'>Sunday, Jan 22, 2023</h1>
+                            <h1 className='ml-4'>{news.date}</h1>
                         </div>
                         <div className='flex text-lg'>
                             <AiFillEye className='mt-[3px] text-2xl'/>
@@ -32,11 +51,20 @@ const Index = () => {
                 </div>
             </div>
             <div className=' text-lg my-12 mx-[12%] bg-[#F9F7F7] shadow-xl p-12 leading-8'>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <img src={image2} className="w-full my-12" alt="" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            {parse(news.desc)}
+                
             </div>
         <Footer/>
+        </div>
+      }
+
+  return (
+    <div className='font-defaultFont'>
+        {
+            newsList.map((news)=>(
+            display(news)
+            ))
+        }
     </div>
   )
 }

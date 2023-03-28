@@ -22,7 +22,7 @@ const index = (data) => {
     <div>
       <div className='w-[90%] mx-auto p-4 bg-[#f5f5f5] shadow-lg my-6'>
         <div className='flex'>
-        <img className='h-[170px] w-[268px] rounded-md object-cover' src={image} alt="" />
+        <img className='h-[170px] w-[268px] rounded-md object-cover' src={data.image} alt="" />
           <div className='mx-4'>
             <div className='flex justify-between'>
               <div className='flex'>

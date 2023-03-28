@@ -8,6 +8,7 @@ const index = () => {
     <div>
         {lastThree.map((event)=>(
         <EventsPlate
+          _id = {event._id}
           title={event.title}
           image={event.image}
           location = {event.location} 

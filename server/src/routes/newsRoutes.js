@@ -31,14 +31,13 @@ router.get("/getAllNews", async (req, res) => {
   });
 
 
-router.post("/news",async(req,res)=>{
+router.post("/admin/postNews",async(req,res)=>{
     try{
-        const {title , date, time , desc , image, category }  = req.body;
+        const {title , date, desc , image, category }  = req.body;
 
         const news = new News({
             title,
             date,
-            time,
             desc,
             image,
             category

@@ -28,7 +28,7 @@ router.get("/AllEvent", async (req, res) => {
 
 router.post("/admin/postEvent",async(req,res)=>{
     try{
-        const {title , location , date, status , shortdesc , category , desc , image }  = req.body;
+        const {title , location , date, status, category , desc , image }  = req.body;
 
         const events = new event({
             title,
@@ -37,8 +37,7 @@ router.post("/admin/postEvent",async(req,res)=>{
             status,
             category,
             desc,
-            image,
-            shortdesc
+            image
         })
         events.save();
     }

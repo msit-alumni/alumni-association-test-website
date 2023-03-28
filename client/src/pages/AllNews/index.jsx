@@ -117,6 +117,7 @@ export default function Index() {
               newEventsList.map((data) => (
                 <Card
                   key = {data._id}
+                  _id = {data._id}
                   title = {data.title}
                   image = {data.image}
                   time = {data.time}

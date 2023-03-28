@@ -13,8 +13,10 @@ import Listview from "../src/pages/Listview"
 import RegisterStudent from "./pages/registerStudent"
 import LoginStudent from "./pages/loginStudent"
 import PostEvent from "../src/pages/PostEvent"
+import PostNews from "../src/pages/PostNews"
 import Profile from "../src/pages/Profile"
 import NewsPage from "../src/pages/NewsPage"
+import Admin from "../src/pages/Admin"
 
 
 const App = () => {
@@ -26,15 +28,15 @@ const App = () => {
         <Route path='/album/:name' exact element={<Album />} />
         <Route path='/signupAlumni' element={<Register />} />
         <Route path='/signinAlumni' element={<Register2 />} />
-        <Route path='/events/:eventId' exact element={<EventPage />} />
+        <Route path='/events/:_id' exact element={<EventPage />} />
         <Route path='/events' exact element={<AllEvents />} />
         <Route path='/news' exact element={<AllNews />} />
         <Route path='/members' exact element={<Listview />} />
         <Route path='/signupStudent' exact element={<RegisterStudent />} />
         <Route path='/signinStudent' exact element={<LoginStudent />} />
-        {/* <Route path='/admin' exact element={<Admin />} /> */}
-        {/* <Route path='/admin/postNews' exact element={<PostNews />} /> */}
+        <Route path='/admin' exact element={<Admin />} />
         <Route path='/admin/postEvent' exact element={<PostEvent />} />
+        <Route path='/admin/postNews' exact element={<PostNews />} />
         <Route path='/profile/:_id' exact element={<Profile />} />
         <Route path='/news/:_id' exact element={<NewsPage />} />
         

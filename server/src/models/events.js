@@ -21,10 +21,6 @@ const events = new mongoose.Schema({
         type:String,
         required:true
     },
-    shortdesc:{
-        type:String,
-        required:true
-    },
     desc:{
         type:String,
         required:true

@@ -4,9 +4,9 @@ import { FaCalendarAlt } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 
 const index = (event) => {
-  let num=5;
+
   return (
-    <Link to={`/events/${num}`} className='flex font-[Merriweather] ease-in-out duration-200 hover:bg-[#faf4f5] border-[#dbe2ef] hover:border-[#84a4cc] border-[1px] py-2 md:mr-20 px-4'>
+    <Link to={`/events/${event._id}`} className='flex font-[Merriweather] ease-in-out duration-200 hover:bg-[#faf4f5] border-[#dbe2ef] hover:border-[#84a4cc] border-[1px] py-2 md:mr-20 px-4'>
       <img className='w-32 rounded-md my-[3px]' src={event.image} alt="" />
       <div className='text-left ml-6'>
         <h3 className='text-sm font-[700]'>{event.title}</h3>
