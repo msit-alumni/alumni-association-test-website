@@ -22,7 +22,8 @@ router.post("/signupAlumni", async (req, res) => {
         company,
         experience,
         sector,
-        designation
+        designation,
+        verified
       } = req.body;
   console.log(email,password,course,batch,branch)
       Alumni.findOne({ email: email }).then((savedAlumni) => {
@@ -45,7 +46,8 @@ router.post("/signupAlumni", async (req, res) => {
         company,
         experience,
         sector,
-        designation
+        designation,
+        verified
       });
       const token=await alumni.generateAuthTokenAlumni()
      console.log(token)

@@ -26,8 +26,8 @@ export default function Index() {
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
-                setListview(data.alumnis);
-                changeList(data.alumnis);
+                setListview(data.alumnis.filter((alumni) => alumni.verified == "true"));
+                changeList(data.alumnis.filter((alumni) => alumni.verified == "true"));
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);

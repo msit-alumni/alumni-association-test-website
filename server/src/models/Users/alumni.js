@@ -70,7 +70,7 @@ const alumniSchema = new mongoose.Schema({
         required:[true , "Please enter your sector of work"]
     },
     verified:{
-        type:Boolean
+        type:String
     }
     
 })

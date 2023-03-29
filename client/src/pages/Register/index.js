@@ -34,6 +34,7 @@ const Register = () => {
 
   const postData = async (e) => {
     e.preventDefault();
+    const verified = "false";
     const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
     SetSubmit(1);
     const res = await fetch("/signupAlumni", {
@@ -55,7 +56,8 @@ const Register = () => {
         company,
         designation,
         experience,
-        sector
+        sector,
+        verified
       }),
     });
     const data = await res.json();
