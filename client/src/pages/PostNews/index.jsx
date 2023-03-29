@@ -27,7 +27,7 @@ const Index = () => {
         e.preventDefault();
         const { title, location, date,  category, desc, image } = user;
         console.log(desc);
-        const res = await fetch("/admin/postNews", {
+        const res = await fetch("https://msitalumni-backend.onrender.com/admin/postNews", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

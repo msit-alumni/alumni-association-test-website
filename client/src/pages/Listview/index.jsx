@@ -18,7 +18,7 @@ export default function Index() {
     const [newList, changeList] = useState(Listview);
     
     useEffect(() => {
-        fetch('/AllAlumni')
+        fetch('https://msitalumni-backend.onrender.com/AllAlumni')
             .then(response => {
                 if (response.ok) {
                     return response.json();

@@ -37,7 +37,7 @@ const Register = () => {
     const verified = "false";
     const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
     SetSubmit(1);
-    const res = await fetch("/signupAlumni", {
+    const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

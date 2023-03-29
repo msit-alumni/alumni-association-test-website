@@ -9,7 +9,7 @@ const Index = () => {
 
 
   useEffect(() => {
-    fetch('/AllAlumni')
+    fetch('https://msitalumni-backend.onrender.com/AllAlumni')
         .then(response => {
             if (response.ok) {
                 return response.json();

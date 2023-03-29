@@ -14,7 +14,7 @@ const [eventsList, setEventsList] = useState([]);
 const { _id } = useParams();
 
 useEffect(() => {
-  fetch('/AllEvent')
+  fetch('https://msitalumni-backend.onrender.com/AllEvent')
     .then(response => {
       if (response.ok) {
         return response.json();

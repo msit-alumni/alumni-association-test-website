@@ -33,7 +33,7 @@ const Register = () => {
   const postData = async (e) => {
     e.preventDefault();
     const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
-    const res = await fetch("/signupAlumni", {
+    const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
