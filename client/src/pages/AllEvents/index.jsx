@@ -4,6 +4,7 @@ import Footer from '../../components/common/Footer';
 import Card from '../../components/AllEvents/EventCard';
 import { useState , useEffect} from 'react';
 // import { eventsList } from '../../config/eventsData';
+import {URL} from "../../App"
 import SearchBar from '../../components/AllEvents/SearchBar';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ export default function Index() {
   const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
-    fetch('/AllEvent')
+    fetch(`${URL}/AllEvent`)
       .then(response => {
         if (response.ok) {
           return response.json();

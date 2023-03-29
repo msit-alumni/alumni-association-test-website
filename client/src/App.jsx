@@ -17,6 +17,7 @@ import PostNews from "../src/pages/PostNews"
 import Profile from "../src/pages/Profile"
 import NewsPage from "../src/pages/NewsPage"
 import Admin from "../src/pages/Admin"
+export const URL=process.env.REACT_URL
 
 
 const App = () => {
