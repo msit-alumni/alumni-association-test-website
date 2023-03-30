@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 app.use(cors({
-    origin:["http://localhost:3000","https://msitalumni-ntt1.onrender.com"]
+    origin:["http://localhost:3000","https://msit-alumni.netlify.app"]
 }));
 require("./db/conn");
 app.use(bodyparser.urlencoded({extended:true}));
