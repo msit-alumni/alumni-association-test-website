@@ -34,7 +34,7 @@ const index = (data) => {
             <h1 className='font-bold text-xl my-4'>{data.title}</h1>
             <p className='text-sm'>{shortdesc}</p>
             <div className='flex justify-between'>
-              {display2()}
+              {/* {display2()} */}
               <Link to={`/news/${data._id}`}><button className='rounded-lg py-3 px-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
             </div>
           </div>

@@ -27,9 +27,9 @@ export default function Index() {
   console.log(newsList);
     let categories =[
         {name:"All News",id:0},
-        {name:"Category 1",id:1},
-        {name:"Category 2",id:2},
-        {name:"Category 3",id:3},
+        // {name:"Category 1",id:1},
+        // {name:"Category 2",id:2},
+        // {name:"Category 3",id:3},
       ];
 
     const [currentCategory, change] = useState(0);
@@ -90,7 +90,7 @@ export default function Index() {
       <div className='h-[140px]'></div>
       <div className='w-[80%] mx-auto'>
         <div className='flex'>
-            <div className='w-[30%]'>
+            <div className='w-[27%]'>
                 <div>
                 <SearchBar
                   value={searchKey} 
@@ -112,7 +112,7 @@ export default function Index() {
                 </div>
                 </div>
             </div>
-            <div className='w-[70%] p-4'>
+            <div className='w-[73%] p-4'>
             {
               newEventsList.map((data) => (
                 <Card

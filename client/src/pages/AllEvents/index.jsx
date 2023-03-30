@@ -32,9 +32,9 @@ export default function Index() {
         {name:"All Events",id:0},
         {name:"Past Events",id:1},
         {name:"Upcoming Events",id:2},
-        {name:"Category 1",id:3},
-        {name:"Category 2",id:4},
-        {name:"Category 3",id:5},
+        // {name:"Category 1",id:3},
+        // {name:"Category 2",id:4},
+        // {name:"Category 3",id:5},
       ];
 
     const [currentCategory, change] = useState(0);
@@ -99,7 +99,7 @@ export default function Index() {
       <div className='h-[140px]'></div>
       <div className='w-[80%] mx-auto'>
         <div className='flex'>
-            <div className='w-[30%]'>
+            <div className='w-[27%]'>
                 <div>
                 <SearchBar
                   value={searchKey} 
@@ -121,7 +121,7 @@ export default function Index() {
                 </div>
                 </div>
             </div>
-            <div className='w-[70%] p-4'>
+            <div className='w-[73%] p-4'>
             {
               newEventsList.map((data) => (
                 <Card

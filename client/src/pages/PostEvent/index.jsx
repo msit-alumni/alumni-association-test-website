@@ -5,7 +5,7 @@ import Navbar from "../../components/common/Navbar"
 
 const Index = () => {
     const [user, setUser] = useState({
-        title:"", location:"", date:"", status:"", category:"", desc:"", image:""
+        title:"", location:"", date:"", status:"", desc:"", image:""
     });
 
     const handleInputs = (e) => {
@@ -25,7 +25,7 @@ const Index = () => {
 
     const postData = async (e) => {
         e.preventDefault();
-        const { title, location, date, status, category, desc, image } = user;
+        const { title, location, date, status,  desc, image } = user;
         console.log(desc);
         const res = await fetch("https://msitalumni-backend.onrender.com/admin/postEvent", {
             method: "POST",
@@ -37,7 +37,7 @@ const Index = () => {
                 location,
                 date,
                 status,
-                category,
+                // category,
                 desc,
                 image,
             }),
@@ -64,14 +64,18 @@ const Index = () => {
                 </div>
                 <div className="flex mt-4">
                     <h3 className="mr-6">Status:</h3>
-                    <input
+                    <select
                         type="string"
                         placeholder="Enter the status"
                         value={user.status}
                         onChange={handleInputs}
                         name="status"
                         autoComplete="off"
-                    />
+                    >
+                        <option>None</option>
+                        <option value="Past">Past</option>
+                        <option value="Upcoming">Upcoming</option>
+                    </select>
                 </div>
                 <div className="flex mt-4">
                     <h3 className="mr-6">Date:</h3>
@@ -84,7 +88,7 @@ const Index = () => {
                         autoComplete="off"
                     />
                 </div>
-                <div className="flex mt-4">
+                {/* <div className="flex mt-4">
                     <h3 className="mr-6">Category:</h3>
                     <input
                         type="string"
@@ -94,7 +98,7 @@ const Index = () => {
                         name="category"
                         autoComplete="off"
                     />
-                </div>
+                </div> */}
                 <div className="flex mt-4">
                     <h3 className="mr-6">Location:</h3>
                     <input

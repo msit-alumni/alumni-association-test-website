@@ -323,6 +323,7 @@ const Register = () => {
                             onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         >
+                          <option>None</option>
                           <option value="2005-09">2005-09</option>
                           <option value="2006-10">2006-10</option>
                           <option value="2007-11">2007-11</option>
@@ -362,6 +363,7 @@ const Register = () => {
                             onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                         >
+                          <option>None</option>
                           <option value="IT">IT</option>
                           <option value="CSE">CSE</option>
                           <option value="ECE">ECE</option>

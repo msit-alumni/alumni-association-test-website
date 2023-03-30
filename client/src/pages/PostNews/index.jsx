@@ -5,7 +5,7 @@ import Navbar from "../../components/common/Navbar"
 
 const Index = () => {
     const [user, setUser] = useState({
-        title:"", location:"", date:"", category:"", desc:"", image:""
+        title:"", location:"", date:"",  desc:"", image:""
     });
 
     const handleInputs = (e) => {
@@ -25,7 +25,7 @@ const Index = () => {
 
     const postData = async (e) => {
         e.preventDefault();
-        const { title, location, date,  category, desc, image } = user;
+        const { title, location, date,   desc, image } = user;
         console.log(desc);
         const res = await fetch("https://msitalumni-backend.onrender.com/admin/postNews", {
             method: "POST",
@@ -36,7 +36,7 @@ const Index = () => {
                 title,
                 location,
                 date,
-                category,
+                // category,
                 desc,
                 image,
             }),
@@ -72,7 +72,7 @@ const Index = () => {
                         autoComplete="off"
                     />
                 </div>
-                <div className="flex mt-4">
+                {/* <div className="flex mt-4">
                     <h3 className="mr-6">Category:</h3>
                     <input
                         type="string"
@@ -82,7 +82,7 @@ const Index = () => {
                         name="category"
                         autoComplete="off"
                     />
-                </div>
+                </div> */}
                 <div className="flex mt-4">
                     <h3 className="mr-6">Description:</h3>
                         <ReactQuill

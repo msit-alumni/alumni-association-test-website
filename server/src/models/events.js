@@ -15,7 +15,7 @@ const events = new mongoose.Schema({
     },
     category:{
         type:String,
-        required:true
+        // required:true
     },
     date:{
         type:String,

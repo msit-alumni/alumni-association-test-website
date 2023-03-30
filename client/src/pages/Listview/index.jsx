@@ -120,7 +120,7 @@ export default function Index() {
            
                 <div className="flex">
 
-                <div className='w-[30%] pr-[2%]'>
+                <div className='w-[27%] pr-[2%]'>
                 <div>
                 <SearchBar
                   value={searchKey} 
@@ -147,7 +147,7 @@ export default function Index() {
                         
                     </main> */}
 
-                    <div className=" w-[70%] container mx-auto">
+                    <div className=" w-[73%] container mx-auto">
                         <div className="bg-[#F9F7F7]">
                             <div className=" flex ">
                                 <div className="w-[1%]  bg-[#041C32]">
