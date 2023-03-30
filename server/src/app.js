@@ -6,9 +6,9 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
-// app.use(cors({
-//     origin:["http://localhost:3000","https://msit-alumni.netlify.app"]
-// }));
+app.use(cors({
+    origin:["http://localhost:3000","https://msit-alumni.netlify.app"]
+}));
 require("./db/conn");
 app.use(bodyparser.urlencoded({extended:true}));
 const port = process.env.PORT || 5000;
