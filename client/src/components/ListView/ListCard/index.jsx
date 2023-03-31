@@ -7,7 +7,7 @@ const index = (data) => {
                                         <a href="" className="c-card block bg-[#FFFFFF] shadow-md hover:shadow-xl  overflow-hidden">
                                             <div className="relative   pb-48 overflow-hidden">
                                                 <img className="absolute mx-auto inset-0 h-full w-full object-cover  "
-                                                    src="https://images.hindustantimes.com/img/2022/12/10/550x309/FBL-WC-2022-MATCH57-NED-ARG-250_1670640281926_1670640281926_1670640316976_1670640316976.jpg"
+                                                    src={data.image}
                                                     alt="" />
                                             </div>
                                             <div className=" text-center ">

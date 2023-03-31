@@ -9,7 +9,7 @@ import {signupSchema} from "../../schema/alumni"
 
 const Register = () => {
   const initialValues = {
-    name:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+    name:"",image:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
   };
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -27,12 +27,20 @@ const Register = () => {
     });
 
   console.log(errors);
+  
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    values.image=base64;
+    // console.log(base64)
+};
+
 
     const [register,setregister]=useState(0);
 
   const postData = async (e) => {
     e.preventDefault();
-    const {name,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
+    const {name,image,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
     const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
       headers: {
@@ -47,6 +55,7 @@ const Register = () => {
         course,
         city,
         batch,
+        image,
         branch,
         shift,
         company,
@@ -157,6 +166,14 @@ const Register = () => {
                         <div className="flex-grow h-px bg-gray-400"></div>
                       </div>
                       <div className="text-medium text-[12.5px] ">
+                        <div className="flex mt-2">
+                        <h3 className="mr-6">Upload profile image:</h3>
+                        <input
+                                             type="file"
+                                             accept="image/*"
+                                             onChange={handleFileUpload}
+                                         />
+                        </div>
                         <div className="mt-2">
                           <h6 className="font-[MerriWeather]">Name</h6>
                           <input
@@ -416,3 +433,15 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+// Helper function to convert image to base64
+                        const convertToBase64 = (file) => {
+                        return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = (error) => reject(error);
+                        });
+                        };
