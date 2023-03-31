@@ -104,4 +104,15 @@ router.get("/AllAlumni", async (req, res) => {
   }
 });
 
+router.put("/Verify", async (req, res) => {
+
+  try {
+   
+    const result = await Alumni.findByIdAndUpdate(req.body.alumniId, { $set: { verified: "true" } }, { new: true });
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports=router;
