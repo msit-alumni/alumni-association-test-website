@@ -10,12 +10,13 @@ app.use(cors({
     origin:["http://localhost:3000","https://msit-alumni.netlify.app"]
 }));
 require("./db/conn");
-app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.json({limit: '50mb'}));
+app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 const port = process.env.PORT || 5000;
 
 
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 require("./models/news");
 require("./models/events");
