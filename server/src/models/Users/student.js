@@ -20,6 +20,10 @@ const studentSchema = new mongoose.Schema({
         required:[true , "Please enter your password"], 
         minLength:[8,"password must be atleast 8 characters"],
     },
+    image:{
+        type:String,
+        required:[true , "Please provide an image"]
+    },
     mobile:{
         type:String,
         required:[true , "Please enter your Mobile Number"], 

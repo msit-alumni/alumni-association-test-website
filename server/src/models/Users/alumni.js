@@ -53,6 +53,10 @@ const alumniSchema = new mongoose.Schema({
         type:String,
         required:[true , "Please enter your Shift"]
     },
+    image:{
+        type:String,
+        required:[true , "Please provide an image"]
+    },
     company:{
         type:String,
         required:[true , "Please enter your company"]
