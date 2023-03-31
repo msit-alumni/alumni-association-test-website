@@ -64,7 +64,7 @@ useEffect(() => {
           </div>
       </div>
       <div className='w-60% p-8 mt-8'>
-          <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{event.title} at Auditorium, MSIT</p>
+          <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{event.title} at {event.location}</p>
           <div className='flex text-black md:text-white text-xl md:text-2xl w-full mt-6'>
                   <FaCalendar className='w-[27px] h-[27px] md:ml-8' />
                   <p className='ml-4'>{event.date}</p>
@@ -87,34 +87,6 @@ useEffect(() => {
                 {parse(event.desc)}
                 
               </div>
-              
-              <p className="ml-3 md:ml-14">
-                  Puneet sir<br />
-                  Secretary, MSIT<br />
-                  ===============<br />
-                  If you have not taken your MSIT Delhi Alumni I-card yet, <br />
-                  please applyhttps://msit.com/page/alumni-icard-120 <br />
-                  <br />
-
-                  If you have not taken your life-long MSIT Delhi Alumni email yet (yourname@msitalumni.com ), please 
-                  email us office@msitdalumni.com <br />
-                  ====<br />
-                  MSIT Delhi Alumni Association<br />
-                  C-4 MARKET,<br />
-                  Fire Station Rd,Janakpuri,<br />
-                  New Delhi 110 058<br />
-                  Mob: +91 83760 60600<br />
-                  Tel: +91-11-2686 8523/2659 7178<br />
-                  Email: secretary@MSITalumni.com<br />
-                  Website: http://www.MSITalumni.com<br />
-                  Linkedin: https://www.linkedin.com/company/MSIT-delhi-alumni-association<br />
-                  Youtube: https://www.youtube.com/user/MSIT<br />
-                  Facebook: https://www.facebook.com/MSITalumni/<br />
-                  Twitter: http://twitter.com/MSIT<br />
-                  Instagram: https://www.instagram.com/MSIT/<br /><br />
-                  Telegram: https://t.me/MSIT<br />
-              </p>
-
 
           </div>
       </div>
