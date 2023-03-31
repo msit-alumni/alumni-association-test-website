@@ -37,10 +37,10 @@ useEffect(() => {
     <div className='h-24 bg-[#3F72AF] w-full'></div>
     <div className='h-[300px] w-full absolute z-[-1] bg-[#3F72AF]'></div>
     <div className='md:flex mt-12 w-full md:w-[80%] mx-auto drop-shadow-xl'>
-      <div className='mx-auto w-[80%] md:w-[900px]'>
+      <div className='mx-auto w-[50%] '>
           <div className='drop-shadow-xl bg-[#fdfdfd] pb-6'>
               <div>
-                  <img className='w-full' src={event.image} alt="aa" />
+                  <img className='w-[94%] pt-[2%] ml-[3%]' src={event.image} alt="aa" />
                   <div className='w-[80%] mx-auto'>
                       <h1 className='text-xl md:text-2xl font-semibold mt-6 mb-3'>DATE & TIME:</h1>
                       <h2 className='text-md md:text-lg'>Start : {event.date}</h2>
@@ -63,7 +63,7 @@ useEffect(() => {
               </div>
           </div>
       </div>
-      <div className='w-60% p-8 mt-8'>
+      <div className='w-50% p-8 mt-8'>
           <p className='text-black md:text-white text-center md:text-left text-xl md:text-2xl'>{event.title} at {event.location}</p>
           <div className='flex text-black md:text-white text-xl md:text-2xl w-full mt-6'>
                   <FaCalendar className='w-[27px] h-[27px] md:ml-8' />
