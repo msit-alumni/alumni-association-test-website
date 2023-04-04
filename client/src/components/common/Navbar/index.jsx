@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaBars, FaCaretDown } from "react-icons/fa";
-import Logo from "../../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
