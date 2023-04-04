@@ -2,7 +2,7 @@
 import React , {useState} from 'react'
 import Navbar from '../../components/common/Navbar'
 import Footer from '../../components/common/Footer'
-import img from "./img.jpg"
+import img from "./img.svg"
 import logo from "./logo2.png"
 import { Link } from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
