@@ -1,7 +1,7 @@
 import React , { useState , useEffect} from 'react'
 import Navbar from "../../components/common/Navbar"
 import Footer from '../../components/common/Footer'
-import {FaWhatsapp, FaCalendar, FaLinkedinIn, FaTwitter, FaFacebook,FaEye,IoIosPin} from "react-icons/fa"
+import {FaWhatsapp, FaCalendar, FaLinkedinIn, FaTwitter, FaFacebook} from "react-icons/fa"
 import {AiFillEye} from "react-icons/ai"
 import { HiLocationMarker } from "react-icons/hi"
 import { BiNotepad } from "react-icons/bi"

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   let Links = [
-    { name: "About", link: "#footer" },
+    { name: "About", link: "/about" },
     { name: "Events", link: "/events" },
     { name: "News & Stories", link: "/news" },
     { name: "Albums", link: "/#album" },
-    { name: "Contact Us", link: "#footer" },
+    { name: "Contact Us", link: "contactUs" },
   ];
 
   let [open, setOpen] = useState(false);

@@ -17,6 +17,10 @@ import PostNews from "../src/pages/PostNews"
 import Profile from "../src/pages/Profile"
 import NewsPage from "../src/pages/NewsPage"
 import Admin from "../src/pages/Admin"
+import About from "./pages/About"
+import Contact from "../src/pages/Contact"
+
+
 export const URL=process.env.REACT_URL
 
 
@@ -40,7 +44,8 @@ const App = () => {
         <Route path='/admin/postNews' exact element={<PostNews />} />
         <Route path='/profile/:_id' exact element={<Profile />} />
         <Route path='/news/:_id' exact element={<NewsPage />} />
-        
+        <Route path='/contactUs' exact element={<Contact />} />
+        <Route path='/about' exact element={<About />} />
       </Routes>
     </div>
   );

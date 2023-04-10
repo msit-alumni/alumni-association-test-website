@@ -116,5 +116,14 @@ router.put("/Verify", async (req, res) => {
     console.log(error)
   }
 })
+router.get("/myprofile", async (req, res) => {
+  Alumni.find({_id:req.user._id}).populate("company").then(myprofile=>{
+    res.json({myprofile})
+}).catch(err=>{
+   console.log(err);
+})
+ 
+})
+
 
 module.exports=router;
