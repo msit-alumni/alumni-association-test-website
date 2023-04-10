@@ -177,13 +177,13 @@ export default function Index() {
                                             </div>
                                             <div className=" text-center ">
                                                 <h1 className="mt-2  text-xl  font-Merriweather font-bold">{data.name}</h1>
-                                                <h4 className="text-semibold text-lg font-Merriweather rounded-full text-[#3F72AF]">{data.course}</h4>
+                                                <h4 className="text-semibold text-lg font-Merriweather rounded-full text-[#3F72AF]">{data.company} </h4>
                                                 <div className="  items-center">
-                                                    <span className="text-md text-gray-700 font-semibold font-Merriweather ">{data.branch}</span>
+                                                    
                                                     <p className=" text-gray-500 text-md font-Merriweather ">{data.city}</p>
 
                                                     <div className="   mt-3 bg-[#FFFFFF] border-t-[2px] border-[#DBE2EF]   hover:bg-[#3F72AF] text-[#3F72AF] hover:border-[#3F72AF] hover:text-white ease-in-out duration-300">
-                                                        <Link to={`/profile/${data._id}`}><button className="  text-xl  font-Merriweather py-3 px-3  font-Merriweather ">
+                                                        <Link to={`/profile/${data._id}`}><button className="  text-lg  font-Merriweather py-2 px-2  font-Merriweather ">
                                                             View Profile
                                                         </button></Link>
                                                     </div>

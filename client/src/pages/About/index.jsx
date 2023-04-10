@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from "../../components/common/Navbar";
 import Footer from "../../components/common/Footer";
-import Richa from '../../components/common/Footer';
+import Richa from '../../assets/images/Team/richa.jpg';
 import Gunjan from '../../assets/images/Team/gunjan.png'
 import Sonika from '../../assets/images/Team/sonika.jpg'
 import Ravi from '../../assets/images/Team/ravi.jpg'
@@ -16,7 +16,7 @@ import Kaif from '../../assets/images/Team/kaif.jpg'
 import Utkarsh from '../../assets/images/Team/utkarsh.jpg'
 import Uday from '../../assets/images/Team/uday.jpg'
 import Tanay from '../../assets/images/Team/tanay.jpg'
-import kapt from '../../assets/images/Team/tanay.jpg'
+import kapt from '../../assets/images/Team/director.jpg'
 
 
 const index = () => {
@@ -126,53 +126,63 @@ const index = () => {
                 <div className="h-[2px] mt-4 w-48 rounded m-auto bg-[#112D4E]"></div>
             </div> 
             <div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
-          <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Sunesh} alt="messi" />
-            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                <span href="#">Sunesh Malik</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
-        </div>
-        <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shilpam} alt="messi" />
-            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                <span href="#">Shilpam Malik</span></h1>
-            <h2 className="text-xl italic ">Assistant Professor</h2>
-        </div>
-        <div className="text-center text-gray-500">
-        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Ravi} alt="messi" />
-            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                <span href="#">Ravi Choudhary </span></h1>
-            <h2 className="text-xl italic ">Assistant Professor</h2>
-        </div>
-        <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36   rounded-full " src={Sonika} alt="messi" />
-            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                <span href="#">Sonika Malik</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
-        </div>
-        <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shaily} alt="messi" />
-            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                <span href="#">Shaily Malik</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
-        </div>
-        <div className="text-center text-gray-500">
+            <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Puneet} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Puneet Azad</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
+            <h2 className="text-xl italic ">Convener and Associate Prof.</h2>
         </div>
+
         <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Richa} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Richa Gupta</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (ECE)</h2>
         </div>
+        
+
+        <div className="text-center text-gray-500">
+            <img className="mx-auto mb-4 w-36 h-36   rounded-full " src={Sonika} alt="messi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Sonika Malik</span></h1>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (IT)</h2>
+        </div>
+
+        <div className="text-center text-gray-500">
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shilpam} alt="messi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Shilpam Malik</span></h1>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (EEE)</h2>
+        </div>
+
+        <div className="text-center text-gray-500">
+        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Ravi} alt="messi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Ravi Choudhary </span></h1>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (ECE)</h2>
+        </div>
+
+         <div className="text-center text-gray-500">
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Sunesh} alt="messi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Sunesh Malik</span></h1>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (IT)</h2>
+        </div>
+
+
+        <div className="text-center text-gray-500">
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shaily} alt="messi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Shaily Malik</span></h1>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (CSE)</h2>
+        </div>
+
+
         <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Gunjan} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Gunjan</span></h1>
-            <h2 className="text-xl italic ">Team Head</h2>
+            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (CSE)</h2>
         </div>
             </div>  
 
@@ -190,7 +200,32 @@ const index = () => {
                 <h2 className="mb-4 text-4xl font-semibold text-[#064663]  "> Student Team</h2>
                 <div className="h-[2px] mt-4 w-48 rounded m-auto bg-[#112D4E]"></div>
             </div> 
-            <div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
+           
+
+<div className=" py-16 grid gap-6 lg:gap-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+<div className="text-center text-gray-500">
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Tanay} alt="messi"/>
+    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+        <a href="#">Tanay Aggarwal</a></h1>
+    <h2 className="text-xl italic ">Team Advisor</h2>
+</div>
+<div className="text-center text-gray-500">
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Ankit} alt="messi"/>
+    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+        <a href="#">Ankit Chaudhary</a></h1>
+    <h2 className="text-xl italic ">UI/UX Designer </h2>
+</div>
+<div className="text-center text-gray-500">
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Anshita} alt="messi" />
+    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+        <a href="#">Anshita Chaudhary</a></h1>
+    <h2 className="text-xl italic ">UI/UX Designer</h2>
+</div>
+
+</div>
+
+
+<div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
                 <div className="text-center text-gray-500">
                     <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Utkarsh} alt="messi" />
                     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
@@ -201,42 +236,20 @@ const index = () => {
           <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Uday} alt="messi" />
           <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
               <a href="#">Uday Singh Sangwan </a></h1>
-          <h2 className="text-xl italic ">Full Stack Web Developer</h2>
+          <h2 className="text-xl italic ">Backend Developer</h2>
       </div>
       <div className="text-center text-gray-500">
         <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Kaif} alt="messi" />
         <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
             <a href="#">Mohd Kaif </a></h1>
-        <h2 className="text-xl italic ">Full Stack Web Developer</h2>
+        <h2 className="text-xl italic ">Frontend Developer</h2>
     </div>
     <div className="text-center text-gray-500">
       <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Yash} alt="messi" />
       <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
           <a href="#">Yash Choudhary</a></h1>
-      <h2 className="text-xl italic ">Full Stack Web Developer</h2>
+      <h2 className="text-xl italic ">Frontend Developer</h2>
   </div>
-</div>
-
-<div className=" py-16 grid gap-6 lg:gap-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-<div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Tanay} alt="messi"/>
-    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-        <a href="#">Tanay Aggarwal</a></h1>
-    <h2 className="text-xl italic ">Full Stack Web Developer</h2>
-</div>
-<div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Ankit} alt="messi"/>
-    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-        <a href="#">Ankit Chaudhary</a></h1>
-    <h2 className="text-xl italic ">Full Stack Web Developer </h2>
-</div>
-<div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Anshita} alt="messi" />
-    <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-        <a href="#">Anshita Chaudhary</a></h1>
-    <h2 className="text-xl italic ">Full Stack Web Developer</h2>
-</div>
-
 </div>
 
             
