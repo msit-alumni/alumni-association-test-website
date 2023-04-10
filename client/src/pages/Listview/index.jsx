@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { FaBars, FaCaretDown } from "react-icons/fa";
 import Navbar from "../../components/common/Navbar";
 import Footer from '../../components/common/Footer';
 import SearchBar from '../../components/AllEvents/SearchBar';
@@ -12,11 +11,11 @@ import {Link} from 'react-router-dom';
 export default function Index() {
 
     const [Listview, setListview] = useState([]);
-    const [currentCategory, change] = useState(-2);
     const [searchKey, setSearchKey] = useState('');
-    const [selectedCategory, changeCategory] = useState("");
-    const [newList, changeList] = useState(Listview);
-    
+    const [selectedCategory, changeCat] = useState("");
+    const [currentCategory, changeCategory] = useState(-2);
+    const [tempList, changeTempList] = useState([]);    
+    const [select, changeSelect] = useState(0);
     useEffect(() => {
         fetch('https://msitalumni-backend.onrender.com/AllAlumni')
             .then(response => {
@@ -27,7 +26,6 @@ export default function Index() {
             })
             .then(data => {
                 setListview(data.alumnis.filter((alumni) => alumni.verified == "true"));
-                changeList(data.alumnis.filter((alumni) => alumni.verified == "true"));
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -36,14 +34,11 @@ export default function Index() {
 
     let categories =[
         {name:"Search by Role",id:0 ,category:"designation" , items: ['SDE', 'SDE2', 'SDE3'] },
-        {name:"Course",category:"course",id:1 , items: ['btech','mtech', 'bca']},
-        {name:"Year of Graduation",category:"batch",id:2, items: ['2008', '2009', '2010' , '2011' , '2012' , '2013 ' , '2014 ', '2015' , '2016']},
-        {name:"Department",id:3,category:"branch", items: ['CSE', 'ECE', 'IT','EEE']},
-        {name:"Current Location ",category:"city",id:4, items: ['Mumbai', 'Delhi', 'Haryana']},
-        {name:"Company",id:5 ,category:"company", items: ['TCS', 'Google', 'Amazon']},
-        {name:"Designation",id:6 ,category:"designation", items: ['CSE', 'ECE', 'IT']},
-        {name:"Work Industry ",id:7,category:"sector", items: ['CSE', 'ECE', 'IT'] },
-
+        {name:"Batch",category:"batch",id:1, items: ['2001-05','2002-06','2003-07','2004-08','2005-09','2006-10','2007-11','2008-12','2009-13','2010-14','2011-15','2012-16','2013-17','2014-18','2015-19','2016-20','2017-21','2018-22','2019-23']},
+        {name:"Department",id:2,category:"branch", items: ['CSE', 'ECE', 'IT','EEE']},
+        {name:"Current Location ",category:"city",id:3, items: ['Mumbai', 'Delhi', 'Haryana']},
+        {name:"Company",id:4,category:"company", items: ['TCS', 'Google', 'Amazon']},
+        // {name:"Work Industry ",id:5,category:"sector", items: ['CSE', 'ECE', 'IT'] }
       ];
 
 
@@ -54,34 +49,18 @@ export default function Index() {
       
     // blogs by category
       const handleSearchResults = () =>{
-        change(-1);
+        changeCategory(-1);
       }
-  
+
       const handleCategoryClick = (e) => {
-        change(e.target.id);
-        changeCategory(categories[e.target.id].category);
-        
+        changeCat(categories[e.target.id].category);
+        changeCategory(e.target.id);
       }
-      console.log(selectedCategory+"new");
-      function categorySearch(category) {
-        const tempList = Listview.filter((data) => 
-        data[selectedCategory].toLowerCase().includes(category.value.toLowerCase().trim()));
-        changeList(tempList);
-      }
-  
-      let correctedCategory;
-      if(currentCategory == -1)
-      {
-        correctedCategory = 0;
-      }
-      else
-      {
-        correctedCategory = currentCategory;
-      }
+      
   
   
       function cat(category,i) {
-        if (correctedCategory == category.id) {
+        if (currentCategory == category.id) {
           return <div> 
                     <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
                     <div className='bg-[#FFFFFF] h-12 w-full  '>
@@ -97,22 +76,68 @@ export default function Index() {
                     </div>
                  </div>
         }
-          return <button key={i} id={category.id} onClick={(handleCategoryClick)}   className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#DBE2EF] hover:border-[#041C32]'>{category.name}</button>
-      }
-  
-      
-      if(currentCategory == -1)
-      {
-        newList = Listview.filter((data) => 
-        data.name.toLowerCase().includes(searchKey.toLowerCase().trim()));  
-      }
-    
-      function reset()
-      {
-        changeList(Listview);
+        // else if (correctedCategory == 0)
+        // {
+        //     return  <div> 
+        //     <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
+        //     <div className='bg-[#FFFFFF] h-12 w-full  '>
+        //         <Dropdown 
+        //             placeholderClassName=' border-white italic' 
+        //             options={category.items} 
+        //             placeholder="search"  
+        //             className='border-0' 
+        //             controlClassName=''  
+        //             menuClassName=''
+        //             onChange={categorySearch}
+        //         />
+        //     </div>
+        //  </div>
+        // }
+          return <button key={i} id={category.id}  onClick={(handleCategoryClick)} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#DBE2EF] hover:border-[#041C32]'>{category.name}</button>
       }
 
-    return (
+      function reset()
+      {
+        console.log("reset")
+        newList = Listview;
+        setSearchKey('');
+        changeSelect(0);
+      }
+
+      function categorySearch(category) {
+        changeSelect(1);
+        console.log(select);
+        var temp2List = Listview.filter((data) => 
+        data[selectedCategory].toLowerCase().includes(category.value.toLowerCase().trim()));    
+        changeTempList(temp2List);
+      }
+
+
+
+      var newList;
+      if(currentCategory == -2)
+      {
+        newList = Listview;
+      }
+      else if (currentCategory == -1)
+      {
+        newList = Listview.filter((data) => 
+        data.name.toLowerCase().includes(searchKey.toLowerCase().trim()));
+      }
+      else{
+        if(select === 0)
+        {
+            newList = Listview;
+            console.log("1stwala");
+        }
+        else
+        {
+            newList = tempList;
+            console.log("2ndwala");
+        }
+      }
+
+      return (
         <div className="font-defaultFont">
             <Navbar />
         
@@ -155,10 +180,13 @@ export default function Index() {
                                 <div
                                     className="max-w-screen-xl px-6  bg-[#F9F7F7] w-[99%] py-6 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
                                     <nav className="flex flex-wrap    ">
-                                        <div className=" ">
+                                        <div className=" flex justify-between w-[100%]">
                                             <h1
                                                 className=" place-content-start font-bold text-[#041C32]  text-2xl  mr-50 font-Merriweather">
-                                                {Listview.length} Members in community</h1>
+                                                {newList.length} Members in community</h1>
+                                                <button onClick={reset} className="bg-[#3F72AF]  text-white  textlg  py-2 px-4 rounded-md font-Merriweather ">
+                                        View All
+                                    </button>
                                         </div>
 
                                     </nav>
@@ -194,37 +222,12 @@ export default function Index() {
                                 ))
                             }
                         </div>
-                        <div className="bg-[#F9F7F7]">
-                            <div className=" flex justify-content-center ">
-                                <div
-                                    className="max-w-screen-xl px-6  bg-[#F9F7F7] w-[99%] py-6 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-                                    <nav className="flex flex-wrap bg-[#F9F7F7]   ">
-                                        <div className=" bg-[#F9F7F7]">
-                                            <h1
-                                                className=" place-content-start font-bold text-[#041C32]  text-2xl  mr-50 font-Merriweather">
-                                                {Listview.length} Members in community</h1>
-                                        </div>
-
-                                    </nav>
-                                </div>
-
-                                <div className="   mt-6 w-[20%] place-content-start ">
-                                    <button onClick={reset} className="bg-[#3F72AF]  text-white  textlg  py-2 px-4 rounded-md font-Merriweather ">
-                                        View All
-                                    </button>
-                                </div>
-                            </div>
-
-
-                        </div>
                     </div>
                 </div>
 
             </div>
             <Footer />
         </div>
-
-
 
     )
     

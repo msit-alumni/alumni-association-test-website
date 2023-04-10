@@ -155,7 +155,7 @@ export default function Index() {
 </div>
 </div>
 
-            <input  className="px-2 outline-none border-b-2 border-black bg-[#F9F7F7] w-[70%] " id="phone" type="text" name="phone" placeholder="Phone No.  "/>
+            <input  className=" outline-none border-b-2 border-black bg-[#F9F7F7] w-[70%] " id="phone" type="text" name="phone" placeholder="Phone No.  "/>
             </div>
           </div>
         </div>
