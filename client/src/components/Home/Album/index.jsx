@@ -38,10 +38,7 @@ const index = () => {
                 <div className="text-center">
                     <h2
                         className="font-semibold pt-8 pl-4 dark:text-white font-defaultFont text-xl lg:leading-9 md:leading-7 leading-9 text-[#064663] md:w-full  mx-auto">
-                        <button
-                            className="bg-transparent ease-in-out duration-300 hover:bg-[#064663] text-[#064663] font-semibold font-[MerriWeather] hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                            View ALL
-                        </button>
+                      
                         <div className="h-4 bg-[#f8fafc] w-[100%]"></div>
                     </h2>
                 </div>

@@ -69,6 +69,8 @@ const Register = () => {
       }),
     });
     const data = await res.json();
+      localStorage.setItem("jwt", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
     console.log("ndkjsjgbsgbsdnssnvsndvisivns")
     console.log(data);
   };

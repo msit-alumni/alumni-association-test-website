@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import Navbar from '../../components/common/Navbar'
 import Footer from '../../components/common/Footer'
 import image from '../../assets/images/newsImages/Profile Photo.png'
@@ -11,7 +11,20 @@ import { GrLinkedinOption } from 'react-icons/gr'
 import { AiFillTwitterCircle } from 'react-icons/ai'
 import { BsPeople } from 'react-icons/bs'
 
-const index = () => {
+const Index = () => {
+
+    const [data, setData] = useState([])
+    useEffect(() => {
+        fetch("/myprofile", {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
+                console.log(result.myprofile)
+                setData(result.myprofile)
+            })
+    }, [])   
 
     console.log("ahfoiagsiignfdsbndgg")
   return (
@@ -160,4 +173,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

@@ -3,29 +3,29 @@ export const Albums = [
         id: 1,
         name: 'album2022',
         title: 'Alumni Meet 2022',
-        desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
+        desc: '',
         image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=14PoP1OV0S_kYgVfcw0NzLR26FJx-Nm0q"
     },
     {
         id: 2,
         name: 'alumni2012',
         title: 'Alumni Meet 2012',
-        desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
+        desc: '',
         image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1N_xLCWHnZGKUeYeNs8hqC-r8O92Y1UGM"
     },
     {
         id: 3,
         name: 'alumni2016',
         title: 'Alumni Meet 2016',
-        desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
+        desc: '',
         image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=160vZn1DgVlye_t1hE6QujGTj3dMr10Sb"
     },
     {
         id: 4,
-        name: 'alumni2025',
-        title: 'Alumni Meet 2025',
-        desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasipsa eligendi animi dolores fugiat culpa minus iste. Exfacilis a consequatur.',
-        image: "https://images.hindustantimes.com/img/2022/12/10/550x309/FBL-WC-2022-MATCH57-NED-ARG-250_1670640281926_1670640281926_1670640316976_1670640316976.jpg"
+        name: 'alumni2021',
+        title: 'Alumni Meet 2021',
+        desc: '',
+        image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1mimsuiDuF8bCwnV8gOreQtM9Ru_OE6GH"
     },
     
 ];

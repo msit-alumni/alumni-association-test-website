@@ -8,28 +8,31 @@ import {AiOutlineMail, AiFillPhone} from "react-icons/ai"
 
 export default function Index() {
 
+  const [phoneCode, setPhonecode] =useState([]);
+
     useEffect(()=>{
-        fetchPhonecode()
-    }, [])
-
-    const [phoneCode, setPhonecode] =useState([])
-
-
-
-
-    const fetchPhonecode = async ()=>{
-        try {
-        const responce = await fetch("https://json.extendsclass.com/bin/2f3a1d286f67")
-        const data = await responce.json();
-        setPhonecode((prevData)=> [...prevData, ...data])
-
-            
-        } catch (error) {
-            console.log(error)
+      fetch("https://json.extendsclass.com/bin/2f3a1d286f67")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
         }
-      
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        setPhonecode((prevData)=> [...prevData, ...data]);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+    }, []);
 
-
+    function display () {
+      return <select>
+      <option className='bg-[#F9F7F7]'>Code</option>
+          {phoneCode.map((item, index)=>{
+          return <option key={index} value={item.dial_code}> {item.dial_code}</option>
+        })}
+      </select>
     }
 
  
@@ -43,9 +46,9 @@ export default function Index() {
     <div className =" md:flex ">
       <div className="w-[40%] pl-16 ">
         <div className="p-8 ">
-          <div className="w-48 md:w-96  bg-[#F9F7F7] shadow-lg">
+          <div className="w-48 md:w-96  bg-[#F9F7F7] shadow-lg pl-2 pt-2">
             <div className="pl-4">
-              <h1 className="text-[#041C32] font-semibold text-2xl pb-6 ">Contact Info</h1>
+              <h1 className="text-[#041C32] font-semibold text-2xl pb-6 pt-2">Contact Info</h1>
             </div>
             <div className="grid grid-rows-1 gap-4  ">
               <div className="p-4">
@@ -93,16 +96,16 @@ export default function Index() {
 
             </div>
 
-            <div className="py-8 mx-auto item-center  ">
-              <div className=" items-center w-[40%] grid  grid-cols-3   justify-between">
-                <div className="container  ">
-                  <FaFacebook className='text-blue-600'/>
+            <div className="py-8 mx-auto item-center">
+              <div className=" items-center w-[40%] grid  grid-cols-3 mx-auto  justify-between">
+                <div className="container">
+                  <FaFacebook className='text-blue-600 text-3xl'/>
                 </div>
                 <div className="container  ">
-                  <FaLinkedinIn className='text-blue-600'/>
+                  <FaLinkedinIn className='text-blue-600 text-3xl'/>
                 </div>
                 <div className="container  ">
-                  <FaTwitter className='text-blue-400'/>
+                  <FaTwitter className='text-blue-400 text-3xl'/>
                 </div> 
 
               </div>
@@ -123,7 +126,7 @@ export default function Index() {
                 <p className="text-[#C5221F] font-semibold ">*</p>
               </div>
               <div className="py-1 ">
-                <input className="border-b-2 border-black bg-[#F9F7F7] w-full " id="name" type="text" name="name" placeholder="Your Name "/>
+                <input className="outline-none border-b-2 border-black bg-[#F9F7F7] w-full " id="name" type="text" name="name" placeholder="Your Name "/>
               </div>
             </div>
             
@@ -134,7 +137,7 @@ export default function Index() {
               <p className="text-[#C5221F] font-semibold ">*</p>
             </div>
             <div className="py-1 ">
-              <input className="border-b-2 border-black bg-[#F9F7F7] w-full " id="email" type="text" name="email" placeholder="Your Email  "/>
+              <input className="outline-none border-b-2 border-black bg-[#F9F7F7] w-full " id="email" type="text" name="email" placeholder="Your Email  "/>
             </div>
           </div>
 
@@ -148,16 +151,11 @@ export default function Index() {
 <div className="flex">
 <div className='w-[30%] border-black bg-[#F9F7F7] ' >
 <div className=" w-[90%] border-b-2 border-black ">
-<select>
-<option className='bg-[#F9F7F7]'>Code</option>
-    {phoneCode.map((item, index)=>{
-       return <option key={index} value={item.dial_code}> {item.dial_code}</option>
-    })}
-</select>
+    {display()}
 </div>
 </div>
 
-            <input  className="border-b-2 border-black bg-[#F9F7F7] w-[70%] " id="phone" type="text" name="phone" placeholder="Phone No.  "/>
+            <input  className="px-2 outline-none border-b-2 border-black bg-[#F9F7F7] w-[70%] " id="phone" type="text" name="phone" placeholder="Phone No.  "/>
             </div>
           </div>
         </div>
@@ -168,7 +166,7 @@ export default function Index() {
           <p className="text-[#C5221F] font-semibold ">*</p>
         </div>
         <div className="py-1 ">
-          <input className="border-b-2 border-black bg-[#F9F7F7] w-full " id="message" type="text" name="message" placeholder="Your message"/>
+          <input className="outline-none border-b-2 border-black bg-[#F9F7F7] w-full " id="message" type="text" name="message" placeholder="Your message"/>
         </div>
       </div>
              

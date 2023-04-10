@@ -113,24 +113,24 @@ export const Images = [
         name: 'album2022'
 
     },
-    {
-        id: 20,
-        photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=10IARBWKpg410gFbhO6vdiHWpPdoK1p1k  ",
-        name: 'album2022'
+    // {
+    //     id: 20,
+    //     photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=10IARBWKpg410gFbhO6vdiHWpPdoK1p1k  ",
+    //     name: 'album2022'
 
-    },
+    // },
     {
         id: 21,
         photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1MaszFP1SmdoZJ1AvYtRnq3sSXF1_-Pxt",
         name: 'album2022'
 
     },
-    {
-        id: 22,
-        photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1axWETL5-XdoO-BwNuD6Th1qERYC9QdTF",
-        name: 'album2022'
+    // {
+    //     id: 22,
+    //     photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1axWETL5-XdoO-BwNuD6Th1qERYC9QdTF",
+    //     name: 'album2022'
 
-    },
+    // },
     {
         id: 23,
         photo: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1u_UKYlKNtwghH4_cQraARR9-2p725ccs",
@@ -459,6 +459,48 @@ export const Images = [
           "id": 86,
           "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1wDi-GuAmUgGCnvYRoP1h_iC8V_UXl-Bb",
           "name": "alumni2016"
+        },
+        {
+          "id": 87,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1mimsuiDuF8bCwnV8gOreQtM9Ru_OE6GH",
+          "name": "alumni2021"
+        },
+        {
+          "id": 88,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1BFftGye5ovrOkiddb5cCA5KaD9M-W4SB",
+          "name": "alumni2021"
+        },
+        {
+          "id": 89,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1NOisNIOdJ_Vyx94mE1Di2PgqX_R5OPON",
+          "name": "alumni2021"
+        },
+        {
+          "id": 90,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1TBREc4MvWFpUla8BxaOCog7nOLpqGxCf",
+          "name": "alumni2021"
+        },
+        {
+          "id": 92,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1kytTmUk72lrvFAxASeW_-x_y4Qa0gSNh",
+          "name": "alumni2021"
+        },
+        {
+          "id": 93,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1fLWs7aiBBBbiJtdYVdjbC7TD2Pf1czKl",
+          "name": "alumni2021"
+        },
+        {
+          "id": 94,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1_eQPfqXq7a0-69D7FI5395DfV1sLbq9_",
+          "name": "alumni2021"
+        },
+        {
+          "id": 95,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1Y7-w5bKgsQPHGX71Mgt9lH1tXyIlqE2w",
+          "name": "alumni2021"
         }
+      
 
 ];
+

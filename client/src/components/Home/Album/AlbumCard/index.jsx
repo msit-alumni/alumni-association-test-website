@@ -13,7 +13,7 @@ const index = (prop) => {
               src={prop.image}
             />
             <div className="justify-content-end align-items-end ">
-              <div className="text-white justify-content-end align-items-end text-xs md:text-[20px] bottom-0  hover:text-align-bottom opacity-0 absolute hover:opacity-100 hover:bg-slate-900 rounded-lg hover:bg-opacity-50 p-4 ease-in-out duration-300">
+              <div className="text-white justify-content-end align-items-end text-xs md:text-[20px] bottom-0  hover:text-align-bottom absolute bg-slate-900 rounded-lg bg-opacity-50 p-4 ">
                 <h2 className="font-defaultFont font-bold text-center pb-4">
                 {prop.title}
                 </h2>

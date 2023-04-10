@@ -4,9 +4,8 @@ const Footer = () => {
 
     let FooterLinks =[
         {name:"Home",link:"/"},
-        {name:"About",link:"/"},
-        {name:"Write Us",link:"/"},
-        {name:"Contact",link:"/"},
+        {name:"About",link:"/about"},
+        {name:"Contact",link:"/contactUs"},
         {name:"Terms and Conditions",link:"/"},
         {name:"Privacy Policy",link:"/"},
       ];
@@ -25,7 +24,7 @@ const Footer = () => {
         </nav>
             <div className='flex pb-6 pt-2 w-[90%] mx-auto justify-between'>
                 <p className="float-left text-black text-xs">copyright 2023 | All rights reserved</p>
-                <p className="float-right text-black text-xs">meet the team</p>
+                {/* <p className="float-right text-black text-xs">meet the team</p> */}
             </div>
 
     </div>

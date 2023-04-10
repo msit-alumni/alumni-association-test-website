@@ -117,12 +117,11 @@ router.put("/Verify", async (req, res) => {
   }
 })
 router.get("/myprofile", async (req, res) => {
-  Alumni.find({_id:req.user._id}).populate("company").then(myprofile=>{
+  Alumni.find({_id:req.user._id}).then(myprofile=>{
     res.json({myprofile})
 }).catch(err=>{
    console.log(err);
 })
- 
 })
 
 
