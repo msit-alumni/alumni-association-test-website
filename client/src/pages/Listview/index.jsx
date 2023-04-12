@@ -5,17 +5,30 @@ import SearchBar from '../../components/AllEvents/SearchBar';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import {Link} from 'react-router-dom';
+import SearchCat from '../../components/ListView/SearchCat';
+import { Country } from 'country-state-city';
 
 
 
 export default function Index() {
+    const countries=Country.getAllCountries();
+    // console.log(countries)
+    const updatedCountries = countries.map((country) => ({
+        label: country.name,
+        value: country.name,
+        ...country
+      }));
 
     const [Listview, setListview] = useState([]);
     const [searchKey, setSearchKey] = useState('');
+    const [searchKey2, setSearchKey2] = useState('');
+    const [searchKey3, setSearchKey3] = useState('');
     const [selectedCategory, changeCat] = useState("");
     const [currentCategory, changeCategory] = useState(-2);
-    const [tempList, changeTempList] = useState([]);    
+    const [tempList, changeTempList] = useState([]);
     const [select, changeSelect] = useState(0);
+    const [select2, changeSelect2] = useState(0);
+    const [country,setCountry]=useState();
     useEffect(() => {
         fetch('https://msitalumni-backend.onrender.com/AllAlumni')
             .then(response => {
@@ -31,25 +44,47 @@ export default function Index() {
                 console.error('There was a problem with the fetch operation:', error);
             });
     }, []);
+    
+    useEffect(() => {
+        if (country) {
+          console.log(country);
+          var temp2List = Listview.filter((data) => data[selectedCategory] == country); 
+          console.log(temp2List);
+          changeTempList(temp2List);
+        }
+      }, [country, selectedCategory]);
 
     let categories =[
-        {name:"Search by Role",id:0 ,category:"designation" , items: ['SDE', 'SDE2', 'SDE3'] },
-        {name:"Batch",category:"batch",id:1, items: ['2001-05','2002-06','2003-07','2004-08','2005-09','2006-10','2007-11','2008-12','2009-13','2010-14','2011-15','2012-16','2013-17','2014-18','2015-19','2016-20','2017-21','2018-22','2019-23']},
-        {name:"Department",id:2,category:"branch", items: ['CSE', 'ECE', 'IT','EEE']},
-        {name:"Current Location ",category:"city",id:3, items: ['Mumbai', 'Delhi', 'Haryana']},
-        {name:"Company",id:4,category:"company", items: ['TCS', 'Google', 'Amazon']},
-        // {name:"Work Industry ",id:5,category:"sector", items: ['CSE', 'ECE', 'IT'] }
-      ];
+        {name:"Designation",id:0 ,category:"designation" , items: ['SDE', 'SDE2', 'SDE3'] },
+        {name:"Company",id:1,category:"company", items: ['TCS', 'Google', 'Amazon']},
+        {name:"Batch",category:"batch",id:2, items: ['2001-05','2002-06','2003-07','2004-08','2005-09','2006-10','2007-11','2008-12','2009-13','2010-14','2011-15','2012-16','2013-17','2014-18','2015-19','2016-20','2017-21','2018-22','2019-23']},
+        {name:"Department",id:3,category:"branch", items: ['CSE', 'ECE', 'IT','EEE']},
+        {name:"Country",category:"country",id:4, items: countries},
+     ];
 
 
       const handleSearchSubmit = (event) => {
         event.preventDefault();
         handleSearchResults();
       }
+      const handleSearchSubmit2 = (event) => {
+        event.preventDefault();
+        handleSearchResults2();
+      }
+      const handleSearchSubmit3 = (event) => {
+        event.preventDefault();
+        handleSearchResults3();
+      }
       
     // blogs by category
       const handleSearchResults = () =>{
         changeCategory(-1);
+      }
+      const handleSearchResults2 = () =>{
+        changeCategory(0);
+      }
+      const handleSearchResults3 = () =>{
+        changeCategory(1);
       }
 
       const handleCategoryClick = (e) => {
@@ -60,6 +95,56 @@ export default function Index() {
   
   
       function cat(category,i) {
+        if (currentCategory == 0 && 0 == category.id)
+        {   
+            return <div>
+                        <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
+                        <SearchCat  
+                            value={searchKey2} 
+                            formSubmit={handleSearchSubmit2}
+                            handleSearchKey ={e=>setSearchKey2(e.target.value)}
+                            />
+            </div>
+        }
+        if (currentCategory == 1 && 1 == category.id)
+        {   
+            return <div>
+                        <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
+                        <SearchCat
+                            value={searchKey3} 
+                            formSubmit={handleSearchSubmit3}
+                            handleSearchKey ={e=>setSearchKey3(e.target.value)}
+                            />
+            </div>
+        }
+        if(currentCategory==4&&4==category.id){
+        return <div>  <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
+                        <select
+                        type="text"
+                        placeholder="Country"
+                        // value="India"
+                        name="country"
+                        autoComplete="off"
+                        // onBlur={handleBlur}
+                        onChange={(event) => {
+                          setCountry(event.target.value)
+                          changeSelect2(1);
+                          
+                          
+                          
+                        }}
+                        // onChange={categorySearch}
+                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                      >
+                        <option value="">--Select Country--</option>
+                        {updatedCountries.map((country) => (
+                          <option key={country.id} value={country.value}>
+                            {country.label}
+                          </option>
+                        ))}
+                      </select>
+          </div>  
+        }
         if (currentCategory == category.id) {
           return <div> 
                     <button key={i} id={category.id} className='py-3 my-2 mr-4 pl-4 text-xl bg-[#DBE2EF] border-l-[5px] w-full text-left border-[#041C32]'>{category.name}</button>
@@ -76,6 +161,7 @@ export default function Index() {
                     </div>
                  </div>
         }
+
         // else if (correctedCategory == 0)
         // {
         //     return  <div> 
@@ -107,8 +193,11 @@ export default function Index() {
       function categorySearch(category) {
         changeSelect(1);
         console.log(select);
+        console.log(category);
+        console.log(category.value)
         var temp2List = Listview.filter((data) => 
-        data[selectedCategory].toLowerCase().includes(category.value.toLowerCase().trim()));    
+        data[selectedCategory].toLowerCase().includes(category.value.toLowerCase().trim())); 
+        console.log(temp2List)   
         changeTempList(temp2List);
       }
 
@@ -123,6 +212,19 @@ export default function Index() {
       {
         newList = Listview.filter((data) => 
         data.name.toLowerCase().includes(searchKey.toLowerCase().trim()));
+      }
+      else if (currentCategory == 0)
+      {
+        newList = Listview.filter((data) => 
+        data.designation.toLowerCase().includes(searchKey2.toLowerCase().trim()));
+      }
+      else if (currentCategory == 1)
+      {
+        newList = Listview.filter((data) => 
+        data.company.toLowerCase().includes(searchKey3.toLowerCase().trim()));
+      }else if (currentCategory == 4 && select2)
+      {
+        newList = tempList;
       }
       else{
         if(select === 0)
@@ -161,6 +263,7 @@ export default function Index() {
                     }
                 </div>
                 </div>
+                
 
             </div>
 

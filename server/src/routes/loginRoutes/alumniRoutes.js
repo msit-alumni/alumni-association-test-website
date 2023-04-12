@@ -26,7 +26,7 @@ router.post("/signupAlumni", async (req, res) => {
         designation,
         verified
       } = req.body;
-  console.log(email,password,course,batch,branch)
+  console.log(email,password,batch,branch)
       Alumni.findOne({ email: email }).then((savedAlumni) => {
         if (savedAlumni) {
           return res.status(422).json({ error: "Alumni already exist" });
