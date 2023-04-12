@@ -24,15 +24,17 @@ const Register = () => {
   const updatedStates = (countryId) =>
     State
       .getStatesOfCountry(countryId)
-      .map((state) => ({latitude:state.latitude, label: state.name, value: state.id, ...state }));
+      .map((state) => ({latitude:state.latitude, label: state.name, value: state.isoCode, ...state }));
       
 
 // console.log(updatedStates)
 
 
   const initialValues = {
-    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:"",latitude:"",longitude:""
+    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
   };
+  const [latitude,setLat]=useState();
+  const [longitude,setLng]=useState();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched ,setValues} =
     useFormik({
       initialValues,
@@ -62,7 +64,7 @@ const Register = () => {
   const postData = async (e) => {
     e.preventDefault();
     const verified = "false";
-    const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,latitude,longitude}=values;
+    const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
     console.log(state)
     SetSubmit(1);
     const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
@@ -84,8 +86,8 @@ const Register = () => {
         shift,
         company,
         designation,
-        latitude,
         longitude,
+        latitude,
         experience,
         sector,
         verified
@@ -386,10 +388,36 @@ const Register = () => {
                             ...values,
                             state: stateValue,
                           });
-                          updatedStates(values.country).map((state)=>{
-                            console.log(state.latitude)
-                          })
+                          const selectedCountry = values.country
+                          // console.log(selectedCountry)
+                          let selectedState
+                          if(values.state){
+                             selectedState = values.state;
+                             console.log(selectedState)
+                          // Get the list of states for the selected country
+                          const states = updatedStates(selectedCountry);
+                          console.log(states)
+                          // Check if the selected state is present in the list of states for the selected country
+                          
+                            const state =  states.find((state) => state.value === selectedState);
+                          
+                          // console.log(state.value)
+                          if (state) {
+                            // console.log(state.latitude);
+                            setLat(state.latitude);
+                            setLng(state.longitude);
+                            console.log(latitude);
+                            console.log(longitude)
+                          } else {
+                            console.log("Selected state not found");
+                          }
+                          }
+                          
+                          
+
+                          
                         }}
+                        
                       >
                         {updatedStates(values.country).map((state) => (
                           
