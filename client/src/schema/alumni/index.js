@@ -11,8 +11,8 @@ export const signupSchema = Yup.object({
   .matches(/[a-z]/, 'Password requires a lowercase letter')
   .matches(/[A-Z]/, 'Password requires an uppercase letter')
   .matches(/[^\w]/, 'Password requires a symbol'),
-  course: Yup.string().required("Please select your course"),
-  city: Yup.string().required("Please enter your city "),
+  country: Yup.string().required("Please select your course"),
+  state: Yup.string().required("Please enter your city "),
   batch: Yup.string().required("Please enter your batch"),
   branch: Yup.string().required("Please select your branch"),
   shift: Yup.string().required("Please select your shift"),

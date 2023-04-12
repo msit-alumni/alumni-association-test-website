@@ -8,12 +8,32 @@ import { useFormik } from "formik";
 import {signupSchema} from "../../schema/alumni"
 import img1 from "../../assets/images/connect logo 2.png"
 import img2 from "../../assets/images/Register/img2.png"
+import { Country, State }  from 'country-state-city';
 
 const Register = () => {
+
+  const countries = Country.getAllCountries();
+  // const state=State.getAllStates();
+  // console.log(state)
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+    ...country
+  }));
+  // console.log(updatxedCountries)
+  const updatedStates = (countryId) =>
+    State
+      .getStatesOfCountry(countryId)
+      .map((state) => ({latitude:state.latitude, label: state.name, value: state.id, ...state }));
+      
+
+// console.log(updatedStates)
+
+
   const initialValues = {
-    name:"",email:"",mobile:"",image:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:"",latitude:"",longitude:""
   };
-  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched ,setValues} =
     useFormik({
       initialValues,
       validationSchema: signupSchema,
@@ -42,7 +62,8 @@ const Register = () => {
   const postData = async (e) => {
     e.preventDefault();
     const verified = "false";
-    const {name,email,mobile,dob,image,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
+    const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,latitude,longitude}=values;
+    console.log(state)
     SetSubmit(1);
     const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
@@ -55,14 +76,16 @@ const Register = () => {
         mobile,
         dob,
         password,
-        course,
-        city,
+        country,
+        state,
         batch,
         image,
         branch,
         shift,
         company,
         designation,
+        latitude,
+        longitude,
         experience,
         sector,
         verified
@@ -321,35 +344,63 @@ const Register = () => {
                   <div id="second">
                   <form method="POST" className="text-[12.5px]">
                     <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Course</h6>
-                      <input
+                      <h6 className="font-[MerriWeather]">Country</h6>
+                      <select
                         type="text"
-                        placeholder="Course"
-                        value={values.course}
-                        name="course"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleChange}
+                        placeholder="Country"
+                        value={values.country}
+                        name="country"
+                        autoComplete="off"
+                        onBlur={handleBlur}
+                        onChange={(event) => {
+                          setValues({ country: event.target.value, state: null });
+                        }}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.course && touched.course ? (
-                    <p className="text-[#b22b27]">{errors.course}</p>
+                      >
+                        <option value="">--Select Country--</option>
+                        {updatedCountries.map((country) => (
+                          <option key={country.id} value={country.value}>
+                            {country.label}
+                          </option>
+                        ))}
+                      </select>
+
+                      {errors.country && touched.country ? (
+                    <p className="text-[#b22b27]">{errors.country}</p>
                   ) : null}
                     </div>
                     <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">City</h6>
-                      <input
+                      <h6 className="font-[MerriWeather]">State</h6>
+                      <select
                         type="text"
-                        placeholder="City"
-                        value={values.city}
-                        name="city"
+                        placeholder="State"
+                        value={values.state}
+                        // options={updatedStates(values.country ? values.country.value : null)}
+                        name="state"
                           autoComplete="off"
                           onBlur={handleBlur}
-                        onChange={handleChange}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.city && touched.city ? (
-                    <p className="text-[#b22b27]">{errors.city}</p>
+                        onChange={(e) => {
+                          const stateValue = e.target.value;
+                          setValues({
+                            ...values,
+                            state: stateValue,
+                          });
+                          updatedStates(values.country).map((state)=>{
+                            console.log(state.latitude)
+                          })
+                        }}
+                      >
+                        {updatedStates(values.country).map((state) => (
+                          
+                        <option key={state.value} value={state.value}>
+                          {state.label}
+                        </option>
+                      ))}
+                    </select>
+              
+                      {errors.state && touched.state ? (
+                    <p className="text-[#b22b27]">{errors.state}</p>
                   ) : null}
                     </div>
                     <div className="mt-2">

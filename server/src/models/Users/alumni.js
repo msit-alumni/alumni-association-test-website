@@ -33,13 +33,21 @@ const alumniSchema = new mongoose.Schema({
         type:String,
         require:[true,"Please enter your DOB"]
     },
-    course:{
+    country:{
         type:String,
-        required:[true , "Please enter your course"], 
+        required:[true , "Please enter your country"], 
     },
-    city:{
+    state:{
         type:String,
-        required:[true,"Please enter your Current City"]
+        required:[true,"Please enter your Current state"]
+    },
+    latitude:{
+        type:Number,
+        required:[true , "Please enter your sector of work"]
+    },
+    longitude:{
+        type:Number,
+        required:[true , "Please enter your sector of work"]
     },
     batch:{
         type:String,
