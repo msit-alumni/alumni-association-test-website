@@ -32,7 +32,7 @@ const CardCarousel = () => {
     </div>
     <div className="mb-8 w-[90%] m-[auto]">
         <div>
-            <OwlCarousel nav = {false} items ={cardsLength} className='owl-theme' loop margin={10}>
+            <OwlCarousel autoplay autoplayTimeout={"1500"} nav = {false} items ={cardsLength} className='owl-theme' loop margin={10}>
                 {data.map(card => (
                     <Card key={card.name}
                             image = {card.image}

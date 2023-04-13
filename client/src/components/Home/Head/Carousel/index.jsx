@@ -14,7 +14,7 @@ const images=Object.values(data)
 const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [intervalId, setIntervalId] = useState(null);
-    const [timeInterval, setTimeInterval] = useState(5000);
+    const [timeInterval, setTimeInterval] = useState(2000);
   
     const handleDotClick = (index) => {
         clearInterval(intervalId);

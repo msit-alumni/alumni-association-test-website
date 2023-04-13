@@ -37,7 +37,7 @@ const index = () => {
                 </div>
                 <div className="text-center">
                     <h2
-                        className="font-semibold pt-8 pl-4 dark:text-white font-defaultFont text-xl lg:leading-9 md:leading-7 leading-9 text-[#064663] md:w-full  mx-auto">
+                        className="font-semibold pt-8 pl-4 dark:text-white font-defaultFont text-xl md:leading-7 lg:leading-9 leading-9 text-[#064663] md:w-full  mx-auto">
                       
                         <div className="h-4 bg-[#f8fafc] w-[100%]"></div>
                     </h2>

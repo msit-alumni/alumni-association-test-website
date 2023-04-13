@@ -184,9 +184,9 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="w-[60%]">
-        <div className="p-8">
-        <div className="container cover-object  ">
+      <div className="w-[60%] mx-auto">
+        <div className="md:p-8">
+        <div className="container">
           <img
             src={mapp}
             className=""

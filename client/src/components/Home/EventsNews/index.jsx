@@ -23,7 +23,7 @@ const index = () => {
         </div>
         <div className='h-10 md:h-[0px]'></div>
         <div className='md:w-[50%] md:border-l-2 border-[#064663]'>
-            <div className='mx-[15%] md:pl-[18%] md:mx-[10%]'>
+            <div className='mx-[15%] md:pl-[12%] md:mx-[10%]'>
                 <h2 className='text-2xl text-left text-[#064663] font-bold'>News and Stories</h2>
                 <div className='bg-[#064663] h-[2px] w-36 rounded mt-2 ml-4 mb-4'></div>
                 <NewsList/>
