@@ -1,25 +1,26 @@
 import React from 'react'
 import EventsPlate from './eventsPlate'
+import {Events} from "../../../../config/events"
 import { useState , useEffect} from 'react';
 const Index = () => {
   
-  const [eventsList, setEventsList] = useState([]);
+  const [eventsList, setEventsList] = useState(Events);
 
-  useEffect(() => {
-    fetch('https://msitalumni-backend.onrender.com/AllEvent')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
-        setEventsList(data.events);
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://msitalumni-backend.onrender.com/AllEvent')
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       }
+  //       throw new Error('Network response was not ok.');
+  //     })
+  //     .then(data => {
+  //       setEventsList(data.events);
+  //     })
+  //     .catch(error => {
+  //       console.error('There was a problem with the fetch operation:', error);
+  //     });
+  // }, []);
   const lastThree = eventsList.slice(-3);
 
   return (

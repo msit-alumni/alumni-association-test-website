@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../../../assets/images/Events/event2.png'
+// import image from '../../../assets/images/Events/event2.png'
 import { AiOutlineCalendar } from "react-icons/ai"
 import { BsFillShareFill } from "react-icons/bs"
 import { Link } from 'react-router-dom';  

@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCalendar } from "react-icons/fa";
-import image from "../../../assets/images/Events/event2.png"
+// import image from "../../../assets/images/Events/event2.png"
 import {Link} from 'react-router-dom';
 
 export default function index(event) {

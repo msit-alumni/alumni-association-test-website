@@ -1,25 +1,26 @@
 import React from 'react'
 import NewsPlate from './newsPlate'
 import { useState , useEffect} from 'react';
+import {News }from "../../../../config/new"
 const Index = () => {
 
-  const [newsList, setNewsList] = useState([]);
+  const [newsList, setNewsList] = useState(News);
 
-  useEffect(() => {
-    fetch('https://msitalumni-backend.onrender.com/getAllNews')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Network response was not ok.');
-      })
-      .then(data => {
-        setNewsList(data.news);
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://msitalumni-backend.onrender.com/getAllNews')
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       }
+  //       throw new Error('Network response was not ok.');
+  //     })
+  //     .then(data => {
+  //       setNewsList(data.news);
+  //     })
+  //     .catch(error => {
+  //       console.error('There was a problem with the fetch operation:', error);
+  //     });
+  // }, []);
 
   const lastFour = newsList.slice(-4);
   

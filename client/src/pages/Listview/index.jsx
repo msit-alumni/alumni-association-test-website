@@ -7,6 +7,7 @@ import 'react-dropdown/style.css';
 import {Link} from 'react-router-dom';
 import SearchCat from '../../components/ListView/SearchCat';
 import { Country } from 'country-state-city';
+import { Alumni } from '../../config/alumnis';
 
 
 
@@ -19,7 +20,7 @@ export default function Index() {
         ...country
       }));
 
-    const [Listview, setListview] = useState([]);
+    const [Listview, setListview] = useState(Alumni);
     const [searchKey, setSearchKey] = useState('');
     const [searchKey2, setSearchKey2] = useState('');
     const [searchKey3, setSearchKey3] = useState('');
@@ -29,21 +30,21 @@ export default function Index() {
     const [select, changeSelect] = useState(0);
     const [select2, changeSelect2] = useState(0);
     const [country,setCountry]=useState();
-    useEffect(() => {
-        fetch('https://msitalumni-backend.onrender.com/AllAlumni')
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                setListview(data.alumnis.filter((alumni) => alumni.verified == "true"));
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch('https://msitalumni-backend.onrender.com/AllAlumni')
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             }
+    //             throw new Error('Network response was not ok.');
+    //         })
+    //         .then(data => {
+    //             setListview(data.alumnis.filter((alumni) => alumni.verified == "true"));
+    //         })
+    //         .catch(error => {
+    //             console.error('There was a problem with the fetch operation:', error);
+    //         });
+    // }, []);
     
     useEffect(() => {
         if (country) {

@@ -207,19 +207,19 @@ const index = () => {
     <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Tanay} alt="messi"/>
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Tanay Aggarwal</a></h1>
-    <h2 className="text-xl italic ">Team Advisor</h2>
+    <h2 className="text-xl italic ">Lead Engineer</h2>
 </div>
 <div className="text-center text-gray-500">
     <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Ankit} alt="messi"/>
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Ankit Chaudhary</a></h1>
-    <h2 className="text-xl italic ">UI/UX Designer </h2>
+    <h2 className="text-xl italic ">Design Engineer</h2>
 </div>
 <div className="text-center text-gray-500">
     <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Anshita} alt="messi" />
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Anshita Chaudhary</a></h1>
-    <h2 className="text-xl italic ">UI/UX Designer</h2>
+    <h2 className="text-xl italic ">Design Engineer</h2>
 </div>
 
 </div>
@@ -230,25 +230,25 @@ const index = () => {
                     <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Utkarsh} alt="messi" />
                     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                         <span href="#">Utkarsh Ahuja</span></h1>
-                    <h2 className="text-xl italic ">Full Stack Web Developer</h2>
+                    <h2 className="text-xl italic ">Software Engineer</h2>
                 </div>
         <div className="text-center text-gray-500">
           <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Uday} alt="messi" />
           <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
               <a href="#">Uday Singh Sangwan </a></h1>
-          <h2 className="text-xl italic ">Backend Developer</h2>
+          <h2 className="text-xl italic ">Backend Engineer</h2>
       </div>
       <div className="text-center text-gray-500">
         <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Kaif} alt="messi" />
         <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
             <a href="#">Mohd Kaif </a></h1>
-        <h2 className="text-xl italic ">Frontend Developer</h2>
+        <h2 className="text-xl italic ">Frontend Engineer</h2>
     </div>
     <div className="text-center text-gray-500">
       <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Yash} alt="messi" />
       <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
           <a href="#">Yash Choudhary</a></h1>
-      <h2 className="text-xl italic ">Frontend Developer</h2>
+      <h2 className="text-xl italic ">Frontend Engineer</h2>
   </div>
 </div>
 

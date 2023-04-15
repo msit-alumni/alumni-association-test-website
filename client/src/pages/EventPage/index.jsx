@@ -7,29 +7,30 @@ import { HiLocationMarker } from "react-icons/hi"
 import { BiNotepad } from "react-icons/bi"
 import { useParams } from 'react-router-dom'
 import parse from 'html-react-parser';
+import {Events} from "../../config/events"
 
 
 const Index = () => {
-const [eventsList, setEventsList] = useState([]);
+const [eventsList, setEventsList] = useState(Events);
 const { _id } = useParams();
 
-useEffect(() => {
-  fetch('https://msitalumni-backend.onrender.com/AllEvent')
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Network response was not ok.');
-    })
-    .then(data => {
-      if(data.events.length>0){
-       setEventsList(data.events.filter((event) => event._id == _id));
-    }
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-}, []);
+// useEffect(() => {
+//   fetch('https://msitalumni-backend.onrender.com/AllEvent')
+//     .then(response => {
+//       if (response.ok) {
+//         return response.json();
+//       }
+//       throw new Error('Network response was not ok.');
+//     })
+//     .then(data => {
+//       if(data.events.length>0){
+//        setEventsList(data.events.filter((event) => event._id == _id));
+//     }
+//     })
+//     .catch(error => {
+//       console.error('There was a problem with the fetch operation:', error);
+//     });
+// }, []);
 
   function display(event) {
     return <div className='font-defaultFont'>

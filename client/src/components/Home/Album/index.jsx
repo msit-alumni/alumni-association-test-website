@@ -31,7 +31,7 @@ const index = () => {
                 <div className=" rounded-[10px] p-4 h-58">
                     <div className="grid gap-x-5 gap-y-5 grid-cols-2 sm:grid-cols-4 pt-6">
 
-                    {Albums.map(createAlbumCard)} 
+                    {Albums.map(createAlbumCard)}
 
                     </div>
                 </div>
