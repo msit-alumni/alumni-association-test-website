@@ -62,7 +62,7 @@ const [phoneCode, setPhonecode] = useState([]);
 
     function display () {
       return <select>
-      <option className='bg-[#F9F7F7]'>Code</option>
+      <option className='bg-[#F9F7F7]'>+91</option>
           {phoneCode.map((item, index)=>{
           return <option key={index} value={item.dial_code}> {item.dial_code}</option>
         })}
@@ -132,13 +132,13 @@ const [phoneCode, setPhonecode] = useState([]);
             <div className="py-8 mx-auto item-center">
               <div className=" items-center w-[40%] grid  grid-cols-3 mx-auto  justify-between">
                 <div className="container">
-                  <FaFacebook className='text-blue-600 text-3xl'/>
+                  <a href="https://www.facebook.com/msitnewdelhi/"><FaFacebook className='text-blue-600 text-3xl'/></a>
                 </div>
                 <div className="container  ">
-                  <FaLinkedinIn className='text-blue-600 text-3xl'/>
+                  <a href="https://www.linkedin.com/school/maharaja-surajmal-institute-of-technology-msitnewdelhi/people/?originalSubdomain=in"><FaLinkedinIn className='text-blue-600 text-3xl'/></a>
                 </div>
                 <div className="container  ">
-                  <FaTwitter className='text-blue-400 text-3xl'/>
+                  <a href="https://twitter.com/msitnewdelhi?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><FaTwitter className='text-blue-400 text-3xl'/></a>
                 </div> 
 
               </div>
@@ -148,9 +148,9 @@ const [phoneCode, setPhonecode] = useState([]);
         <div className="p-8 ">
           { formSubmit == 0 && <div className="w-48 md:w-96  bg-[#F9F7F7] shadow-lg">
             <div className="pl-4 py-4">
-              <h1 className="text-[#041C32] font-semibold text-2xl">Reach Out</h1>
+              <h1 className="text-[#041C32] font-semibold text-3xl">Reach Out</h1>
             </div>
-            <div className="py-8 pl-2 ">
+            <div className="pb-8 pt-3 pl-1 ">
               <div className="grid grid-rows-1 gap-4">
 
                 <div className="pb-2">
@@ -235,11 +235,18 @@ const [phoneCode, setPhonecode] = useState([]);
       <div className="w-[60%] mx-auto">
         <div className="md:p-8">
         <div className="container">
-          <img
+          {/* <img
             src={mapp}
             className=""
-            alt="" />
-            {/* <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Maharaja%20surajmal%20institute%20of%20technology%20+(College%20)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure area map</a></iframe></div> */}
+            alt="" /> */}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.3028004842226!2d77.08987957495799!3d28.620685575671185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04afb8dbcfe1%3A0xaff19e718be2136b!2sMaharaja%20Surajmal%20Institute%20Of%20Technology!5e0!3m2!1sen!2sin!4v1683400597092!5m2!1sen!2sin" 
+            width="650" height="900"
+             className='border-0'
+             allowfullscreen="" 
+             loading="lazy" 
+             referrerpolicy="no-referrer-when-downgrade">
+
+             </iframe>
         </div>
       </div>
       </div>
