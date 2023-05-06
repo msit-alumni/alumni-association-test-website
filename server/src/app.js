@@ -20,6 +20,7 @@ app.use(express.urlencoded({limit: '50mb'}));
 
 require("./models/news");
 require("./models/events");
+require("./models/reach");
 require("./models/Users/alumni");
 require("./models/Users/student");
 require("./models/Users/admin");
@@ -28,6 +29,7 @@ app.use(require("./routes/loginRoutes/alumniRoutes"));
 app.use(require("./routes/loginRoutes/adminRoutes"));
 app.use(require("./routes/newsRoutes"));
 app.use(require("./routes/eventRoutes"));
+app.use(require("./routes/reachRoute"));
 app.use(require("./routes/loginRoutes/studentRoutes"));
 
 app.listen(port, '0.0.0.0', ()=>{

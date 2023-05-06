@@ -4,31 +4,30 @@ import Footer from '../../components/common/Footer'
 import { useParams } from 'react-router-dom'
 import { AiOutlineCalendar,AiFillEye } from "react-icons/ai"
 import parse from 'html-react-parser';
-import {News } from "../../config/new"
 
 
 const Index = () => {
 
     const { _id } = useParams();
-    const [newsList, setNewsList] = useState(News);
+    const [newsList, setNewsList] = useState([]);
 
-    // useEffect(() => {
-    //     fetch('https://msitalumni-backend.onrender.com/getAllNews')
-    //       .then(response => {
-    //         if (response.ok) {
-    //           return response.json();
-    //         }
-    //         throw new Error('Network response was not ok.');
-    //       })
-    //       .then(data => {
-    //         if(data.news.length>0){
-    //          setNewsList(data.news.filter((news) => news._id == _id));
-    //       }
-    //       })
-    //       .catch(error => {
-    //         console.error('There was a problem with the fetch operation:', error);
-    //       });
-    //   }, []);
+    useEffect(() => {
+        fetch('https://msitalumni-backend.onrender.com/getAllNews')
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          })
+          .then(data => {
+            if(data.news.length>0){
+             setNewsList(data.news.filter((news) => news._id == _id));
+          }
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+      }, []);
 
       function display(news)
       {

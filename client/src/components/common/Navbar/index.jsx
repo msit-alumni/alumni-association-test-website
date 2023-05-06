@@ -72,9 +72,11 @@ const Navbar = () => {
                 Alumni Directory - List View
               </a>
               </Link>
-              <a href="#" className="block px-4 py-2 hover:bg-[#dbe2ef]">
+              <Link to="/MapView">
+              <a href="" className="block px-4 py-2 hover:bg-[#dbe2ef]">
               Alumni Directory - Map View
               </a>
+              </Link>
             </div>
           )}
           </div>

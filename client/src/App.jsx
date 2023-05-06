@@ -19,6 +19,7 @@ import NewsPage from "../src/pages/NewsPage"
 import Admin from "../src/pages/Admin"
 import About from "./pages/About"
 import Contact from "../src/pages/Contact"
+import MapView from "../src/pages/MapView"
 
 
 export const URL=process.env.REACT_URL
@@ -46,6 +47,7 @@ const App = () => {
         <Route path='/news/:_id' exact element={<NewsPage />} />
         <Route path='/contactUs' exact element={<Contact />} />
         <Route path='/about' exact element={<About />} />
+        <Route path='/mapView' exact element={<MapView />} />
       </Routes>
     </div>
   );

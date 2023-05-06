@@ -3,29 +3,27 @@ import Navbar from "../../components/common/Navbar";
 import Footer from '../../components/common/Footer';
 import Card from '../../components/AllEvents/EventCard';
 import { useState , useEffect} from 'react';
-// import { eventsList } from '../../config/eventsData';
 import {URL} from "../../App"
 import SearchBar from '../../components/AllEvents/SearchBar';
-import {Events} from "../../config/events"
 
 export default function Index() {
-  const [eventsList, setEventsList] = useState(Events);
+  const [eventsList, setEventsList] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("https://msitalumni-backend.onrender.com/AllEvent")
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       }
-  //       throw new Error('Network response was not ok.');
-  //     })
-  //     .then(data => {
-  //       setEventsList(data.events);
-  //     })
-  //     .catch(error => {
-  //       console.error('There was a problem with the fetch operation:', error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("https://msitalumni-backend.onrender.com/AllEvent")
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        setEventsList(data.events);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
 
   console.log(eventsList);
     let categories =[

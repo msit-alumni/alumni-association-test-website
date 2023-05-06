@@ -4,26 +4,25 @@ import Footer from '../../components/common/Footer';
 import Card from '../../components/AllNews/NewsCard';
 import { useState , useEffect} from 'react';
 import SearchBar from '../../components/AllEvents/SearchBar';
-import {News } from "../../config/new"
 
 export default function Index() {
-  const [newsList, setNewsList] = useState(News);
+  const [newsList, setNewsList] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('https://msitalumni-backend.onrender.com/getAllNews')
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       }
-  //       throw new Error('Network response was not ok.');
-  //     })
-  //     .then(data => {
-  //       setNewsList(data.news);
-  //     })
-  //     .catch(error => {
-  //       console.error('There was a problem with the fetch operation:', error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch('https://msitalumni-backend.onrender.com/getAllNews')
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        setNewsList(data.news);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
 
   console.log(newsList);
     let categories =[
