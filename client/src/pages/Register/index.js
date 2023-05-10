@@ -67,7 +67,7 @@ const Register = () => {
     const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
     console.log(latitude,longitude)
     SetSubmit(1);
-    const res = await fetch("http://locahost:5000/signupAlumni", {
+    const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
