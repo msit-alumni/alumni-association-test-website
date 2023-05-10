@@ -38,6 +38,19 @@ const update = (id) => {
     console.error('There was a problem with the fetch operation:', error);
   });
 }
+const deletedata = (id) => {
+  fetch('https://msitalumni-backend.onrender.com/delete', {
+    method:"delete",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body:JSON.stringify({
+      alumniId: id
+    })
+  }).catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+}
 
   function card(profile) {
       return <tr className='border-2 border-black'>
@@ -46,6 +59,7 @@ const update = (id) => {
       <td className='border-2 border-black'>{profile.branch}</td>
       <td><Link to={`/profile/${profile._id}`}><button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">View Profile</button></Link></td>
       <td><button onClick={() => { update(profile._id) }} className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">Verify</button></td>
+      <td><button onClick={() => { deletedata(profile._id) }} className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">Delete</button></td>
     </tr>
   }
 

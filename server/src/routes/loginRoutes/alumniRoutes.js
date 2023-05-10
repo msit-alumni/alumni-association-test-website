@@ -117,6 +117,15 @@ router.put("/Verify", async (req, res) => {
     console.log(error)
   }
 })
+router.delete("/delete", async (req, res) => {
+
+  try {
+    const result = await Alumni.deleteOne( {_id: req.body.alumniId});
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+  }
+})
 router.get("/myprofile", async (req, res) => {
   Alumni.find({_id:req.user._id}).then(myprofile=>{
     res.json({myprofile})
