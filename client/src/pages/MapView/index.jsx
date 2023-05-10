@@ -29,10 +29,10 @@ const Index = () => {
     const firstFive = [
         { name: "Delhi", lat: 28.6759163, lng: 77.3198015 },
         { name: "USA", lat: 35.6540207, lng: -116.994084 },
-        { name: "MSIT", lat: 57.3674255, lng: 11.9360806 },
-        // { name: "Hyundai Sho", lat: 28.6835286, lng: 77.4224202 },
-        // { name: "Pacific", lat: 28.6340945, lng: 77.0987653 },
-        // { name: "India Gate", lat: 28.6394255, lng: 77.2430126 }
+        { name: "USA", lat: 35.6540207, lng: -116.994084 },
+        { name: "United States", lat: 40.7128, lng: -74.0060 },
+        { name: "United Kingdom", lat: 53.4808, lng: 2.2426 },
+        { name: "Malaysia", lat: 3.1390, lng:  101.6869 },   
       ];
 
     const fillBlueOptions = { fillColor: 'blue' }
@@ -56,6 +56,7 @@ const Index = () => {
     };
 
 
+
   return (
     <div>
         <Navbar/>
@@ -68,15 +69,17 @@ const Index = () => {
             //   {...interactionOptions}
             >
               <TileLayer url={osm.maptiler.url} />
-              <Circle center={firstFive[0]} pathOptions={fillBlueOptions} radius={radius} />
+              {/* <Circle center={firstFive[0]} pathOptions={fillBlueOptions} radius={radius} /> */}
+              
 
                 {
                   firstFive.map(place => (
                   <Circle center={place} pathOptions={fillBlueOptions} radius={radius} />))
+                  
                 }
 
-              {/* <Marker position={[marker.lat, marker.lng]}></Marker>
-              <Marker position={[marker2.lat, marker2.lng]}></Marker> */}
+              {/* <Marker position={[firstFive[0].lat, firstFive[0].lng]}></Marker> */}
+              {/* <Marker position={[marker2.lat, marker2.lng]}></Marker> */}
               {/* {displayMarkers} */}
         </MapContainer>
         {/* <Footer/> */}

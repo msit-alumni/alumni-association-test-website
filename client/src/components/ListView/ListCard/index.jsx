@@ -13,7 +13,7 @@ const index = (data) => {
                                             <div className=" text-center ">
 
                                                 <h1 className="mt-2  text-xl  font-Merriweather font-bold">{data.name}</h1>
-                                                <h4 className="text-semibold text-lg font-Merriweather rounded-full text-[#3F72AF]">{data.company} , {data.city}</h4>
+                                                <h4 className="text-semibold text-lg font-Merriweather rounded-full text-[#3F72AF]">{data.company} , {data.country}</h4>
                                                 <div className="  items-center">
                                                     {/* <span className="text-md text-gray-700 font-semibold font-Merriweather ">
                                                         {data.branch}</span> */}
