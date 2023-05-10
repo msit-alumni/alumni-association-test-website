@@ -22,7 +22,7 @@ L.Icon.Default.mergeOptions({
 
 const Index = () => {
 
-    const [zoom1 , setZoom ] = useState(13);
+    const [zoom1 , setZoom ] = useState(2);
     const [radius , setRadius] = useState(250000);
 
 

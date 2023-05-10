@@ -83,9 +83,10 @@ useEffect(() => {
               <h1 className='text-lg md:text-xl ml-3'>DESCRIPTION</h1>
           </div>
           <div>
-              <div  className='ml-3 mt-4 md:ml-14'>
+              <div  className='ml-3 mt-4 md:ml-14 '>
+                <p>
                 {parse(event.desc)}
-                
+                </p>
               </div>
 
           </div>

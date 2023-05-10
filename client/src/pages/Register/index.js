@@ -86,8 +86,8 @@ const Register = () => {
         shift,
         company,
         designation,
-        longitude,
-        latitude,
+        // longitude,
+        // latitude,
         experience,
         sector,
         verified

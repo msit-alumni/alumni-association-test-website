@@ -79,18 +79,18 @@ const Index = () => {
                       <h1 className='ml-4 mt-[4px] text-xl'>Work Experience</h1>
                   </div>
                   <div className='text-[14px] mt-6'>
-                      <h2 className='font-bold text-lg'>Amazon</h2>
-                      <p className='mt-2'>Software Developer</p>
-                      <p className='mt-2'>2020 - Present</p>
-                      <p className='mt-2'>Gurugram</p>
+                      <h2 className='font-bold text-lg'>{profile.company}</h2>
+                      <p className='mt-2'>{profile.designation}</p>
+                      <p className='mt-2'></p>
+                      <p className='mt-2'>{profile.country}</p>
                   </div>
-                  <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
+                  {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
                   <div className='text-[14px] mt-6'>
                       <h2 className='font-bold text-lg'>Infosys</h2>
                       <p className='mt-2'>Software Developer</p>
                       <p className='mt-2'>2015-2020</p>
                       <p className='mt-2'>Noida</p>
-                  </div>
+                  </div> */}
                   <div className='w-full h-[2px] rounded-xl my-8 bg-black'></div>
                   <div className='flex text-3xl '>
                       <SlGraduation />
@@ -98,29 +98,25 @@ const Index = () => {
                   </div>
                   <div className='text-[14px] mt-6'>
                       <h2 className='font-bold text-lg'>Maharaja Surajmal Institute of Technology</h2>
-                      <p className='mt-2'>MBA</p>
-                      <p className='mt-2'>2012 - 2014</p>
+                      <p className='mt-2'>BTECH</p>
+                      <p className='mt-2'>{profile.batch}</p>
                   </div>
-                  <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
+                  {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
                   <div className='text-[14px] mt-6'>
                       <h2 className='font-bold text-lg'>Maharaja Surajmal Institute of Technology</h2>
                       <p className='mt-2'>B. Tech</p>
                       <p className='mt-2'>2008 - 2012</p>
-                  </div>
+                  </div> */}
                   <div className='w-full h-[2px] rounded-xl my-8 bg-black'></div>
                   <div className='flex text-3xl '>
                       <AiOutlineTrophy />
                       <h1 className='ml-4 mt-[4px] text-xl'>Achievements</h1>
                   </div>
                   <div className='text-sm mt-6'>
-                      <h2 className='font-bold text-lg'>Achievement Title</h2>
-                      <p className='mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                      <h2 className='font-bold text-lg'></h2>
+                      <p className='mt-2'></p>
                   </div>
-                  <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
-                  <div className='text-sm mt-6'>
-                      <h2 className='font-bold text-lg'>Achievement Title</h2>
-                      <p className='mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                  </div>
+                  
               </div>
               <div className='w-[30%] my-12'>
                   <div className='mx-2 p-8 bg-[#F9F7F7]'>
@@ -140,7 +136,7 @@ const Index = () => {
                           <h1>DOB: {profile.dob}</h1>
                       </div>
                       <div className='mt-6'>
-                          <h1>Relationship Status: Unmarried</h1>
+                          <h1></h1>
                       </div>
                       <div className='mt-6'>
                           <div className='w-[50%] flex mx-auto justify-between text-3xl'>
