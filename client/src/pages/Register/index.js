@@ -33,8 +33,8 @@ const Register = () => {
   const initialValues = {
     name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
   };
-  const [latitude,setLat]=useState();
-  const [longitude,setLng]=useState();
+  // const [latitude,setLat]=useState();
+  // const [longitude,setLng]=useState();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched ,setValues} =
     useFormik({
       initialValues,
@@ -60,12 +60,14 @@ const Register = () => {
 };
 
     const [register,setregister]=useState(0);
-
+console.log(values)
   const postData = async (e) => {
     e.preventDefault();
     const verified = "false";
     const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
-    console.log(latitude,longitude)
+    // console.log(latitude,longitude)
+    console.log(name,email,password,dob,branch,company)
+
     SetSubmit(1);
     const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
       method: "POST",
@@ -94,8 +96,8 @@ const Register = () => {
       }),
     });
     const data = await res.json();
-      localStorage.setItem("jwt", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      // localStorage.setItem("jwt", data.token);
+      // localStorage.setItem("user", JSON.stringify(data.user));
     console.log("ndkjsjgbsgbsdnssnvsndvisivns")
     console.log(data);
   };
@@ -207,22 +209,22 @@ const Register = () => {
                                              onChange={handleFileUpload}
                                          />
                         </div>
-                      <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Name</h6>
-                        <input
-                          type="text"
-                          placeholder="Name"
-                          value={values.name}
-                          onChange={handleChange}
-                          name="name"
+                        <div className="mt-2">
+                      <h6 className="font-[MerriWeather]">Name</h6>
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        value={values.name}
+                        name="name"
                           autoComplete="off"
                           onBlur={handleBlur}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                        {touched.name && errors.name ? (
+                        onChange={handleChange}
+                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                      />
+                      {errors.name && touched.name ? (
                     <p className="text-[#b22b27]">{errors.name}</p>
                   ) : null}
-                      </div>
+                    </div>
                       <div className="mt-5">
                         <h6 className="font-[MerriWeather]">E-mail</h6>
                         <input
@@ -354,9 +356,7 @@ const Register = () => {
                         name="country"
                         autoComplete="off"
                         onBlur={handleBlur}
-                        onChange={(event) => {
-                          setValues({ country: event.target.value, state: null });
-                        }}
+                        onChange={handleChange}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       >
                         <option value="">--Select Country--</option>
@@ -402,15 +402,15 @@ const Register = () => {
                             const state =  states.find((state) => state.value === selectedState);
                           
                           // console.log(state.value)
-                          if (state) {
-                            // console.log(state.latitude);
-                            setLat(state.latitude);
-                            setLng(state.longitude);
-                            console.log(latitude);
-                            console.log(longitude)
-                          } else {
-                            console.log("Selected state not found");
-                          }
+                          // if (state) {
+                          //   console.log(state.latitude);
+                          //   setLat(state.latitude);
+                          //   setLng(state.longitude);
+                          //   console.log(latitude);
+                          //   console.log(longitude)
+                          // } else {
+                          //   console.log("Selected state not found");
+                          // }
                           }
                           
                           
