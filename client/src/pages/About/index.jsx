@@ -130,14 +130,14 @@ const index = () => {
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Puneet} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Puneet Azad</span></h1>
-            <h2 className="text-xl italic ">Convener and Associate Prof.</h2>
+            <h2 className="text-xl italic ">Convener and Associate Prof. (ECE)</h2>
         </div>
 
         <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Richa} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Richa Gupta</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (ECE)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (ECE)</h2>
         </div>
         
 
@@ -145,28 +145,28 @@ const index = () => {
             <img className="mx-auto mb-4 w-36 h-36   rounded-full " src={Sonika} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Sonika Malik</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (IT)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (IT)</h2>
         </div>
 
         <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shilpam} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Shilpam Malik</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (EEE)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (EEE)</h2>
         </div>
 
         <div className="text-center text-gray-500">
         <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Ravi} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Ravi Choudhary </span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (ECE)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (ECE)</h2>
         </div>
 
          <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Sunesh} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Sunesh Malik</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (IT)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (IT)</h2>
         </div>
 
 
@@ -174,7 +174,7 @@ const index = () => {
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shaily} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Shaily Malik</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (CSE)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (CSE)</h2>
         </div>
 
 
@@ -182,7 +182,7 @@ const index = () => {
             <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Gunjan} alt="messi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Gunjan</span></h1>
-            <h2 className="text-xl italic ">Tead Member And Asst. Prof. (CSE)</h2>
+            <h2 className="text-xl italic ">Team Member and Asst. Prof. (CSE)</h2>
         </div>
             </div>  
 
