@@ -4,6 +4,7 @@ const Alumni=require("../../models/Users/alumni")
 const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const middleware=require("../../middleware/alumniauth")
 
 router.post("/signupAlumni", async (req, res) => {
 
@@ -52,12 +53,9 @@ router.post("/signupAlumni", async (req, res) => {
         designation,
         verified
       });
-      const token=await alumni.generateAuthTokenAlumni()
-     console.log(token)
-      res.cookie("jwt",token,{
-         expires:new Date(Date.now()+3000000),
-         httpOnly:true
-      })
+     
+    
+    
       await alumni.save();
       console.log("alumni registered")
     } catch (e) {
@@ -68,30 +66,31 @@ router.post("/signupAlumni", async (req, res) => {
   
 
   router.post("/signinAlumni",async(req,res)=>{
-    try {
-        const {
-          email,
-          password
-        } = req.body;
-        const id=await Alumni.findOne({email:email});
-        const token=await id.generateAuthTokenAlumni()
-       res.cookie("jwt",token,{
-        expires:new Date(Date.now()+3000000),
-        httpOnly:true
-     })
-        const isMatch=await bcrypt.compare(password,id.password)
-        if(isMatch){
-          console.log("login Success");
-            res.status(201).redirect("/index")
-           }
-           else{
-            res.send("Invalid login details")
-           }
-      } catch (e) {
-        res.status(400).send("Invalid Details");
-      }
+    const{email,password} = req.body;
+if(!email || !password){
+    return res.status(422).json({error:"please add all the fields"})
+}
+  Alumni.findOne({email:email}).then(savedUser=>{
+    if(!savedUser){
+       return res.status(422).json({error:"invalid email or password"})
+    }
+    bcrypt.compare(password,savedUser.password).then(doMatch=>{
+        if(doMatch){
+            console.log("successfully signin")
+            const token = jwt.sign({_id:savedUser._id},process.env.ALUMNI_SECRET_KEY);
+            console.log(token)
+            const {_id , name , email} = savedUser
+            res.json({token , user:{_id , name,email}})
+        }
+        else{
+            return res.status(422).json({error:"invalid email or password"})
+        }
+    }).catch(err=>{
+        console.log(err);
+    })
+  })
 })
-router.get("/AllAlumni", async (req, res) => {
+router.get("/AllAlumni", alumniauth, async (req, res) => {
   try {
     const alumnis = await Alumni.find().exec();
     res.json({

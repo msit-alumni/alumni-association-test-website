@@ -30,7 +30,11 @@ export default function Index() {
     const [select2, changeSelect2] = useState(0);
     const [country,setCountry]=useState();
     useEffect(() => {
-        fetch('https://msitalumni-backend.onrender.com/AllAlumni')
+        fetch('http://localhost:5000/AllAlumni',{
+        //   headers: {
+        //     "Authorization": "Bearer " + localStorage.getItem("jwt")
+        // }
+        })
             .then(response => {
                 if (response.ok) {
                     return response.json();

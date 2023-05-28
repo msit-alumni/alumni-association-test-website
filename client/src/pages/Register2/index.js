@@ -22,8 +22,8 @@ const Register2 = ()=>{
   
     const postData = async (e) => {
       e.preventDefault();
-      const {email,password}=user;
-      const res = await fetch("https://msitalumni-backend.onrender.com/signinAlumni", {
+      const {email,password}=user; 
+      const res = await fetch("http://localhost:5000/signinAlumni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,9 +32,17 @@ const Register2 = ()=>{
           email,
           password
         }),
+      }).then(res => res.json())
+      .then(data => {
+          console.log(data)
+          if (data.error) {
+            console.log("data error")
+          }
+          else {
+              localStorage.setItem("jwt", data.token);
+              localStorage.setItem("user", JSON.stringify(data.user));
+          }
       });
-      const data = await res.json();
-      console.log(data);
     };
 
     return (

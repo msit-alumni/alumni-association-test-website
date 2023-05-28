@@ -9,6 +9,7 @@ import {signupSchema} from "../../schema/alumni"
 import img1 from "../../assets/images/connect logo 2.png"
 import img2 from "../../assets/images/Register/img2.png"
 import { Country, State }  from 'country-state-city';
+import cookie from "js-cookie"
 
 const Register = () => {
 
@@ -69,7 +70,7 @@ console.log(values)
     console.log(name,email,password,dob,branch,company)
 
     SetSubmit(1);
-    const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
+    const res = await fetch("http://localhost:5000/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,9 +97,11 @@ console.log(values)
       }),
     });
     const data = await res.json();
-      // localStorage.setItem("jwt", data.token);
-      // localStorage.setItem("user", JSON.stringify(data.user));
-    console.log("ndkjsjgbsgbsdnssnvsndvisivns")
+    cookie.set("jwt",data.token);
+    cookie.set("user",JSON.stringify(data.user));
+    //   localStorage.setItem("jwt", data.token);
+    //   localStorage.setItem("user", JSON.stringify(data.user));
+    // console.log("ndkjsjgbsgbsdnssnvsndvisivns")
     console.log(data);
   };
 
