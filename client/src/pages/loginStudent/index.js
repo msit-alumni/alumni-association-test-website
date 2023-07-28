@@ -1,4 +1,3 @@
-
 import React , {useState} from 'react'
 import Navbar from '../../components/common/Navbar'
 import Footer from '../../components/common/Footer'
@@ -9,6 +8,7 @@ import {useNavigate} from "react-router-dom"
 
 
 const Register2 = ()=>{
+    const navigate = useNavigate();
     const [user,setUser]=useState({
         email:"",password:""
       })
@@ -22,8 +22,8 @@ const Register2 = ()=>{
   
     const postData = async (e) => {
       e.preventDefault();
-      const {email,password}=user;
-      const res = await fetch("https://msitalumni-backend.onrender.com/signinStudent", {
+      const {email,password}=user; 
+      const res = await fetch("http://localhost:5000/signinStudent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,9 +32,20 @@ const Register2 = ()=>{
           email,
           password
         }),
+      }).then(res => res.json())
+      .then(data => {
+          console.log(data)
+          if (data.error) {
+            console.log("data error")
+          }
+          else {
+              localStorage.setItem("jwt", data.token);
+              localStorage.setItem("name", data.user.name);
+              localStorage.setItem("role", "student");
+              localStorage.setItem("user", JSON.stringify(data.user))
+              navigate("/student/profile")
+          }
       });
-      const data = await res.json();
-      console.log(data);
     };
 
     return (
@@ -137,7 +148,7 @@ const Register2 = ()=>{
                             <div className="flex">
                                 <button onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">Login</button>
                             </div>
-                            <Link to="/signupAlumni">
+                            <Link to="/signupStudent">
                             <p className="text-sm text-center mt-1 font-dark  text-black">
                                 Don't have an account? <a href="#" className="font-medium text-blue-500">Register</a>
                             </p>

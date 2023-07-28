@@ -6,10 +6,12 @@ import logo from "./logo2.png";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import {signupSchema} from "../../schema/alumni"
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate()
   const initialValues = {
-    name:"",image:"",email:"",mobile:"",dob:"",password:"",course:"",city:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+    name:"",image:"",email:"",mobile:"",dob:"",password:"",course:"",batch:"",branch:"",shift:""
   };
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -40,31 +42,27 @@ const Register = () => {
 
   const postData = async (e) => {
     e.preventDefault();
-    const {name,image,email,mobile,dob,password,course,city,batch,branch,shift,company,designation,experience,sector}=values;
-    const res = await fetch("https://msitalumni-backend.onrender.com/signupAlumni", {
+    const {name,email,password,mobile,image,dob,course,batch,branch,shift}=values;
+    const res = await fetch("http://localhost:5000/signupStudent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
-        email,
-        mobile,
-        dob,
-        password,
-        course,
-        city,
-        batch,
-        image,
-        branch,
-        shift,
-        company,
-        designation,
-        experience,
-        sector
+      email,
+      password,
+      mobile,
+      image,
+      dob,
+      course,
+      batch,
+      branch,
+      shift
       }),
     });
     const data = await res.json();
+    navigate("/");
     console.log(data);
   };
 

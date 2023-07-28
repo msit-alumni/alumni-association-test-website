@@ -42,8 +42,9 @@ const Register2 = ()=>{
           else {
               localStorage.setItem("jwt", data.token);
               localStorage.setItem("name", data.user.name);
+              localStorage.setItem("role", "alumni");
               localStorage.setItem("user", JSON.stringify(data.user))
-              navigate("/myprofile")
+              navigate("/alumni/profile")
           }
       });
     };

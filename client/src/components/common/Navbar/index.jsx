@@ -21,6 +21,12 @@ const Navbar = () => {
     setName(Name);
   }
   ,[name])
+  let [role,setRole]=useState();
+  useEffect(() => {
+    let Role=localStorage.getItem("role");
+    setRole(Role);
+  }
+  ,[role])
   
 
   return (
@@ -92,9 +98,17 @@ const Navbar = () => {
             <button
             className="bg-theme md:text-[9px]  xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
     duration-500"
-          ><Link to="/myprofile">
-            {name}
-            </Link>
+          >
+            {
+              role=="student"?
+              <Link to="/student/profile">
+              {name}
+              </Link>:
+              <Link to="/alumni/profile">
+              {name}
+              </Link>
+            }
+            
           </button>:
           <button onClick={() => setJoinOpen(!joinOpen)}
           className="bg-theme md:text-[9px]  xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
