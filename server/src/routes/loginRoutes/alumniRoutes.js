@@ -4,7 +4,7 @@ const Alumni=require("../../models/Users/alumni")
 const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const middleware=require("../../middleware/alumniauth")
+const alumniauth=require("../../middleware/alumniauth")
 
 router.post("/signupAlumni", async (req, res) => {
 
@@ -125,12 +125,12 @@ router.delete("/delete", async (req, res) => {
     console.log(error)
   }
 })
-router.get("/myprofile", async (req, res) => {
-  Alumni.find({_id:req.user._id}).then(myprofile=>{
-    res.json({myprofile})
-}).catch(err=>{
-   console.log(err);
-})
+router.get("/myprofile", alumniauth , async (req, res) => {
+  const alumni = await Alumni.findById(req.user._id);
+  res.status(200).json({
+    success:true,
+    alumni
+  })
 })
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaCaretDown } from "react-icons/fa";
 import Logo from "../../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
@@ -15,6 +15,13 @@ const Navbar = () => {
   let [open, setOpen] = useState(false);
   let [serviceOpen, setServiceOpen] = useState(false);
   let [joinOpen, setJoinOpen] = useState(false);
+  let [name,setName]=useState();
+  useEffect(() => {
+    let Name=localStorage.getItem("name");
+    setName(Name);
+  }
+  ,[name])
+  
 
   return (
     <section id="navbar" className="z-50 shadow-md w-full fixed top-0 left-0">
@@ -81,12 +88,22 @@ const Navbar = () => {
           )}
           </div>
           <div >
-          <button onClick={() => setJoinOpen(!joinOpen)}
+            {name?
+            <button
             className="bg-theme md:text-[9px]  xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
     duration-500"
-          >
-            Join
-          </button>
+          ><Link to="/myprofile">
+            {name}
+            </Link>
+          </button>:
+          <button onClick={() => setJoinOpen(!joinOpen)}
+          className="bg-theme md:text-[9px]  xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
+  duration-500"
+        >
+          Join
+        </button>
+          }
+          
           
           {joinOpen && (
             <div className="w-[110px] absolute right-12 z-10 py-2 bg-[#f9f7f7]  text-theme rounded-lg mt-2">

@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom"
 
 
 const Register2 = ()=>{
+    const navigate = useNavigate();
     const [user,setUser]=useState({
         email:"",password:""
       })
@@ -40,7 +41,9 @@ const Register2 = ()=>{
           }
           else {
               localStorage.setItem("jwt", data.token);
-              localStorage.setItem("user", JSON.stringify(data.user));
+              localStorage.setItem("name", data.user.name);
+              localStorage.setItem("user", JSON.stringify(data.user))
+              navigate("/myprofile")
           }
       });
     };
