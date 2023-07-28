@@ -24,10 +24,10 @@ const index = (data) => {
   return (
     <div>
       <div className='w-[90%] mx-auto p-4 bg-[#f5f5f5] shadow-lg my-6'>
-        <div className='flex w-full'>
-        <img className='h-[170px] w-[268px] rounded-md object-cover' src={data.image} alt="" />
-          <div className='mx-4 w-full'>
-            <div className='flex justify-between'>
+        <div className='md:flex w-full'>
+        <img className='w-[90%] mx-auto md:h-[170px] md:w-[268px] rounded-md object-cover' src={data.image} alt="" />
+          <div className='w-[90%] md:w-full ml-4 mx-auto'>
+            <div className='flex justify-between mt-3 md:mt-0'>
               <div className='flex'>
                 <AiOutlineCalendar className='mt-[3px] text-[#3F72AF] text-lg'/>
                 <h3 className='ml-2' >{data.date}</h3>
@@ -35,10 +35,8 @@ const index = (data) => {
               <BsFillShareFill className='text-xl'/>
             </div>
             <h1 className='font-bold text-xl my-4'>{data.title}</h1>
-            {/* <p className='text-sm'>{shortdesc}</p> */}
             <div className='flex justify-between'>
-              {/* {display2()} */}
-              <Link to={`/news/${data._id}`}><button className='rounded-lg py-3 px-6 mt-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
+              <Link to={`/news/${data._id}`}><button className='rounded-lg py-3 px-6 mt-3 md:mt-6 ease-in-out duration-300 text-white bg-[#3F72AF] hover:bg-[#064663]'>View</button></Link>
             </div>
           </div>
 

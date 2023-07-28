@@ -13,6 +13,9 @@ import cookie from "js-cookie"
 
 const Register = () => {
 
+  const [isButtonDisabled, setButtonDisabled] = useState(true);
+  const [isCreateDisabled, setCreateDisabled] = useState(true);
+
   const countries = Country.getAllCountries();
   // const state=State.getAllStates();
   // console.log(state)
@@ -27,8 +30,45 @@ const Register = () => {
       .getStatesOfCountry(countryId)
       .map((state) => ({latitude:state.latitude, label: state.name, value: state.isoCode, ...state }));
       
-
-// console.log(updatedStates)
+      const handleButtonState = (event) => {
+        console.log(errors);
+        handleChange(event);
+        if (
+          errors.email == undefined &&
+          errors.mobile == undefined &&
+          errors.dob == undefined &&
+          errors.password == undefined &&
+          values.name.length > 2 &&
+          values.password.length > 6 
+        ) {
+          console.log(values);
+          setCreateDisabled(false);
+          if (
+            errors.country == undefined &&
+            errors.branch == undefined &&
+            errors.shift == undefined &&
+            errors.experience == undefined &&
+            errors.designation == undefined &&
+            values.batch != "" &&
+            values.branch != "" &&
+            values.shift != "" &&
+            values.experience != "" &&
+            values.designation.length > 2 &&
+            values.sector.length > 2
+          ) {
+            console.log(values)
+            setButtonDisabled(false);
+          }
+          else{
+            setButtonDisabled(true);
+          }
+        }
+        else{
+          setCreateDisabled(true);
+        }
+        handleChange(event);
+      };
+      
 
 
   const initialValues = {
@@ -45,29 +85,28 @@ const Register = () => {
       //// By disabling validation onChange and onBlur formik will validate on submit.
       onSubmit: (values, action) => {
         // postData();
-        console.log( values);
+        // console.log( values);
         //// to get rid of all the values after submitting the form
         action.resetForm();
       },
     });
     const [submit,SetSubmit] = useState(0);
-  console.log(errors);
+  // console.log(errors);
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     values.image=base64;
-    // console.log(base64)
 };
 
     const [register,setregister]=useState(0);
-console.log(values)
+// console.log(values)
   const postData = async (e) => {
     e.preventDefault();
     const verified = "false";
     const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
     // console.log(latitude,longitude)
-    console.log(name,email,password,dob,branch,company)
+    // console.log(name,email,password,dob,branch,company)
 
     SetSubmit(1);
     const res = await fetch("http://localhost:5000/signupAlumni", {
@@ -102,7 +141,7 @@ console.log(values)
     //   localStorage.setItem("jwt", data.token);
     //   localStorage.setItem("user", JSON.stringify(data.user));
     // console.log("ndkjsjgbsgbsdnssnvsndvisivns")
-    console.log(data);
+    // console.log(data);
   };
 
   return (
@@ -221,7 +260,7 @@ console.log(values)
                         name="name"
                           autoComplete="off"
                           onBlur={handleBlur}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       />
                       {errors.name && touched.name ? (
@@ -235,7 +274,7 @@ console.log(values)
                           placeholder="E-mail"
                           value={values.email}
                           name="email"
-                          onChange={handleChange} 
+                          onChange={handleButtonState} 
                           autoComplete="off"
                           onBlur={handleBlur}
                           className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
@@ -250,7 +289,7 @@ console.log(values)
                           type="number"
                           placeholder="Mobile No"
                           value={values.mobile}
-                          onChange={handleChange}
+                          onChange={handleButtonState}
                           name="mobile"
                           autoComplete="off"
                           onBlur={handleBlur}
@@ -266,7 +305,7 @@ console.log(values)
                           type="date"
                           placeholder="Date of Birth"
                           value={values.dob}
-                          onChange={handleChange}
+                          onChange={handleButtonState}
                           name="dob"
                           autoComplete="off"
                           onBlur={handleBlur}
@@ -283,7 +322,7 @@ console.log(values)
                           type="password"
                           placeholder="Password"
                           value={values.password}
-                          onChange={handleChange}
+                          onChange={handleButtonState}
                           name="password"
                           autoComplete="off"
                           onBlur={handleBlur}
@@ -328,12 +367,12 @@ console.log(values)
                         </div>
                       </div>
                       <div className="flex">
-                        <button
-                          onClick={()=>{setregister(1)}}
-                          className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg "
-                        >
-                          Create Account
-                        </button>
+                        {isCreateDisabled && <button disabled={true} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
+                        Create Account
+                      </button>}
+                      {(!isCreateDisabled) && <button disabled={false} onClick={()=>{setregister(1)}} className="w-full px-6 py-2 mt-4 text-white hover:shadow-md ease-in-out duration-300 bg-[#3F72AF] rounded-lg ">
+                      Create Account
+                      </button>}
                       </div>
                   <Link to="/signinAlumni">
                       <p className="text-sm text-center mt-1 font-dark  text-black">
@@ -396,10 +435,10 @@ console.log(values)
                           let selectedState
                           if(values.state){
                              selectedState = values.state;
-                             console.log(selectedState)
+                            //  console.log(selectedState)
                           // Get the list of states for the selected country
                           const states = updatedStates(selectedCountry);
-                          console.log(states)
+                          // console.log(states)
                           // Check if the selected state is present in the list of states for the selected country
                           
                             const state =  states.find((state) => state.value === selectedState);
@@ -440,13 +479,13 @@ console.log(values)
                         type="text"
                         placeholder="Batch"
                         value={values.batch}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         name="batch"
                           autoComplete="off"
                           onBlur={handleBlur}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       >
-                        <option>None</option>
+                        <option value="">None</option>
                         <option value="2005-09">2005-09</option>
                         <option value="2006-10">2006-10</option>
                         <option value="2007-11">2007-11</option>
@@ -480,13 +519,13 @@ console.log(values)
                         type="text"
                         placeholder="Branch"
                         value={values.branch}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         name="branch"
                           autoComplete="off"
                           onBlur={handleBlur}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       >
-                        <option>None</option>
+                        <option value="">None</option>
                         <option value="IT">IT</option>
                         <option value="CSE">CSE</option>
                         <option value="ECE">ECE</option>
@@ -498,16 +537,20 @@ console.log(values)
                     </div>
                     <div className="mt-2">
                       <h6 className="font-[MerriWeather]">Shift</h6>
-                      <input
+                      <select
                         type="text"
                         placeholder="Shift"
                         value={values.shift}
                         name="shift"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleChange}
+                        autoComplete="off"
+                        onBlur={handleBlur}
+                        onChange={handleButtonState}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
+                      >
+                        <option value="">None</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Evening">Evening</option>
+                      </select>
                       {errors.shift && touched.shift ? (
                     <p className="text-[#b22b27]">{errors.shift}</p>
                   ) : null}
@@ -518,7 +561,7 @@ console.log(values)
                         type="text"
                         placeholder="Company"
                         value={values.company}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         name="company"
                           autoComplete="off"
                           onBlur={handleBlur}
@@ -537,7 +580,7 @@ console.log(values)
                         name="experience"
                           autoComplete="off"
                           onBlur={handleBlur}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       />
                       {errors.experience && touched.experience ? (
@@ -553,7 +596,7 @@ console.log(values)
                         name="designation"
                           autoComplete="off"
                           onBlur={handleBlur}
-                        onChange={handleChange}
+                        onChange={handleButtonState}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       />
                       {errors.designation && touched.designation ? (
@@ -567,9 +610,9 @@ console.log(values)
                         placeholder="Sector"
                         value={values.sector}
                         name="sector"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleChange}
+                        autoComplete="off"
+                        onBlur={handleBlur}
+                        onChange={handleButtonState}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                       />
                       {errors.sector && touched.sector ? (
@@ -580,9 +623,12 @@ console.log(values)
                   <div className="py-2"></div>
                       <div className="text-center lg:text-left">
                     <div className="flex">
-                      <button onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
+                      {isButtonDisabled && <button disabled={true} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
                         Submit
-                      </button>
+                      </button>}
+                      {(!isButtonDisabled) && <button disabled={false} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
+                        Submit
+                      </button>}
                     </div>
                     </div>
                   </div>

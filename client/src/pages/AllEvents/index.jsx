@@ -94,10 +94,10 @@ export default function Index() {
   return (
     <div className='font-defaultFont'>
       <Navbar />
-      <div className='h-[140px]'></div>
-      <div className='w-[80%] mx-auto'>
-        <div className='flex'>
-            <div className='w-[27%]'>
+      <div className='h-[75px] md:h-[140px]'></div>
+      <div className='w-[100%] md:w-[80%] mx-auto'>
+        <div className='md:flex'>
+            <div className='w-[80%] md:w-[27%] mx-auto'>
                 <div>
                 <SearchBar
                   value={searchKey} 
@@ -119,7 +119,7 @@ export default function Index() {
                 </div>
                 </div>
             </div>
-            <div className='w-[73%] p-4'>
+            <div className='w-[90%] md:w-[73%] p-0 md:p-4 mx-auto'>
             {
               newEventsList.map((data) => (
                 <Card

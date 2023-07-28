@@ -23,7 +23,7 @@ const index = () => {
   return (
     <div classNameName='font-defaultfont'>
             <Navbar/>
-            <div className=" mx-[8%] top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
+            <div className=" mx-[8%] top-[80px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
            
 
             <div className='font-Merriweather  '>
@@ -52,11 +52,11 @@ const index = () => {
   <div className="w-[25%]">  
      
 
-    <div className="justify-between pl-32">
+    <div className="justify-between pl-8 md:pl-32">
     <div className="pt-12 ">
       <img
         src={kapt}
-        className= " w-md h-md  rounded-lg md:rounded-full"
+        className= "w-md h-md  rounded-full"
         alt="" />
     </div>
 
@@ -73,8 +73,8 @@ const index = () => {
 
 
   </div>
-  <div  className="w-[75%] ml-4  ">
- <div className="w-full ml-4 items-center content-center">
+  <div  className="w-[95%] md:w-[75%] mx-auto">
+ <div className="w-full mx-auto items-center content-center">
 
     {/* <p className="text-md text-black font-Merriweather">Mr. Kalpen Shukla informed the House of his Vision Statement for IITDAA activities for the year 2022-23. </p> */}
     <p className ="  text-md  md:text-lg text-black mt-2 mb-2 font-Merriweather ">Maharaja Surajmal Institute of Technology is a prestigious institution that has produced  
@@ -115,7 +115,7 @@ const index = () => {
 
    
   <div className="w-full h-">
-    <div className="container bg-[#ECF2FF] my-24 px-6 mx-auto">
+    <div className="container bg-[#ECF2FF] mt-24 mb-32 md:my-24 px-6 mx-auto ">
         <div className="h-1 w-full bg-gray-600 "></div>
 
       <section className=" font-Merriweather">
@@ -249,15 +249,15 @@ const index = () => {
       <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
           <a href="#">Yash Choudhary</a></h1>
       <h2 className="text-xl italic ">Frontend Engineer</h2>
+     
   </div>
 </div>
 
-            
+<div className='mb-2'></div>        
 
         </div>
       </section> 
 
-      <div className="h-1 w-full bg-gray-600 "></div>
 
 
   </div>

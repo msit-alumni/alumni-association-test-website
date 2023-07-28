@@ -247,11 +247,11 @@ export default function Index() {
         <div className="font-defaultFont">
             <Navbar />
         
-            <div className=" mx-[8%] top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
+            <div className=" mx-[8%] top-[65px] md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
            
-                <div className="flex">
+                <div className="md:flex">
 
-                <div className='w-[27%] pr-[2%]'>
+                <div className='w-[100%] md:w-[27%] pr-[2%]'>
                 <div>
                 <SearchBar
                   value={searchKey} 
@@ -279,7 +279,7 @@ export default function Index() {
                         
                     </main> */}
 
-                    <div className=" w-[73%] container mx-auto">
+                    <div className=" py-4 w-[100%]  container mx-auto">
                         <div className="bg-[#F9F7F7]">
                             <div className=" flex ">
                                 <div className="w-[1%]  bg-[#041C32]">
@@ -289,9 +289,9 @@ export default function Index() {
                                     <nav className="flex flex-wrap    ">
                                         <div className=" flex justify-between w-[100%]">
                                             <h1
-                                                className=" place-content-start font-bold text-[#041C32]  text-2xl  mr-50 font-Merriweather">
+                                                className=" place-content-start font-bold text-[#041C32]  text-lg md:text-2xl  mr-50 font-Merriweather">
                                                 {newList.length} Members in community</h1>
-                                                <button onClick={reset} className="bg-[#3F72AF]  text-white  textlg  py-2 px-4 rounded-md font-Merriweather ">
+                                                <button onClick={reset} className="bg-[#3F72AF]  text-white  text-lg   py-2 px-4 rounded-md font-Merriweather ">
                                         View All
                                     </button>
                                         </div>

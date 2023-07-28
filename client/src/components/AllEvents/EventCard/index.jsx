@@ -7,13 +7,12 @@ import {Link} from 'react-router-dom';
 export default function index(event) {
   console.log(event.key);
   return (
-    <div>
-      <div className='font-defaultFont w-[750px] h-[250px] bg-[#f5f5f5] p-4 mt-6 mx-8 flex shadow-lg' >
-        <div className='w-[34%]'>
-          <img className='rounded-md' src={event.image} alt="" />
+      <div className='font-defaultFont w-[90%] md:w-[750px] md:h-[250px] bg-[#f5f5f5] p-4 mt-6 mx-auto md:flex shadow-lg' >
+        <div className='w-[100%] md:w-[35%] mx-auto'>
+          <img className='rounded-md mx-auto' src={event.image} alt="" />
         </div>
-        <div className='w-[67%] px-4'>
-          <h1 className='font-bold text-[23px] '>{event.title}</h1>
+        <div className='w-[90%] md:w-[67%] px-4'>
+          <h1 className='font-bold text-[20px] md:text-[23px] '>{event.title}</h1>
           <div className='flex mt-2 ml-3'>
                 <HiLocationMarker className="w-[20px] h-[20px] text-[#3F72AF]" />
                 <h3 className="text-sm ml-2">{event.location}</h3>
@@ -41,6 +40,5 @@ export default function index(event) {
             </div>
         </div>
       </div>
-    </div>
   )
 }
