@@ -45,7 +45,7 @@ const Index = () => {
     const { title, location, date, status, desc, image } = user;
     console.log(desc);
     const res = await fetch(
-      "https://msitalumni-backend.onrender.com/admin/postEvent",
+      "http://backend.msitalumni.com/admin/postEvent",
       {
         method: "POST",
         headers: {

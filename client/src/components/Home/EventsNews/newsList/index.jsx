@@ -6,7 +6,7 @@ const Index = () => {
   const [newsList, setNewsList] = useState([]);
 
   useEffect(() => {
-    fetch('https://msitalumni-backend.onrender.com/getAllNews')
+    fetch('http://backend.msitalumni.com/getAllNews')
       .then(response => {
         if (response.ok) {
           return response.json();

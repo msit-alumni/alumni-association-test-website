@@ -7,8 +7,9 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 app.use(cors({
-    origin:["http://localhost:3000","https://msit-alumni.netlify.app"]
+    origin:["http://localhost:3000","https://msit-alumni.netlify.app","http://msitalumni.com","https://msitalumni.com"]
 }));
+
 require("./db/conn");
 app.use(bodyparser.json({limit: '50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));

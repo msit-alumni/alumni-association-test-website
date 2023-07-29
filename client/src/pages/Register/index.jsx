@@ -109,7 +109,7 @@ const Register = () => {
     // console.log(name,email,password,dob,branch,company)
 
     SetSubmit(1);
-    const res = await fetch("http://localhost:5000/signupAlumni", {
+    const res = await fetch("http://backend.msitalumni.com/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
