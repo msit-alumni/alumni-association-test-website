@@ -26,7 +26,7 @@ router.get("/AllEvent", async (req, res) => {
   });
 
 
-router.post("/admin/postEvent",async(req,res)=>{
+router.post("/admin/postEvent",adminauth,async(req,res)=>{
     try{
         const {title , location , date, status, category , desc , image }  = req.body;
 

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const  express = require("express");
 const router = express.Router();
 const News=mongoose.model("News")
-
+const adminauth = require("../middleware/adminauth")
 
 
 // router.get("/getAllnews",async(req,res)=>{
@@ -31,7 +31,7 @@ router.get("/getAllNews", async (req, res) => {
   });
 
 
-router.post("/admin/postNews",async(req,res)=>{
+router.post("/admin/postNews",adminauth,async(req,res)=>{
     try{
         const {title , date, desc , image, category }  = req.body;
 

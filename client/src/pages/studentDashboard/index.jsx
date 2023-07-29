@@ -17,6 +17,14 @@ const Index = () => {
     const [MatesList, setMatesList] = useState([]);
 
     const [data, setData] = useState([]);
+    const [isStudent, setIsStudent] = useState(false);
+  const [role,setRole]=useState();
+  useEffect(() => {
+    setRole(localStorage.getItem("role"))
+  }, [role]);
+  if (role == "student") {
+    setIsStudent(true);
+  }
 
 useEffect(() => {
     fetch("/student/profile", {
@@ -168,10 +176,8 @@ useEffect(() => {
 
   return (
     <div>
-    {
-        display(data)
-    }
-  </div>
+      {isStudent ? <div>{display(data)}</div> : navigate("/signinStudent")}
+    </div>
 )  
 }
 

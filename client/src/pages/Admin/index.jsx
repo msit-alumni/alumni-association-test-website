@@ -2,10 +2,19 @@ import React from 'react'
 import Navbar from "../../components/common/Navbar"
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-
+  const navigate=useNavigate();
   const [Listview, setListview] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+    const [role,setRole]=useState();
+    useEffect(() => {
+      setRole(localStorage.getItem("role"))
+    }, [role]);
+    if (role == "admin") {
+      setIsAdmin(true);
+    }
 
 
   useEffect(() => {
@@ -65,7 +74,10 @@ const deletedata = (id) => {
 
 
   return (
-    <div className='w-full font-defaultFont'>
+    <div>
+      {
+        isAdmin?
+        <div className='w-full font-defaultFont'>
       <Navbar/>
       <div className='w-full mt-32'></div>
       <div className='w-full px-[30%] flex justify-between mb-32'>
@@ -90,6 +102,11 @@ const deletedata = (id) => {
       </div>
 
     </div>
+    :
+      navigate("/adminLogin")
+      }
+    </div>
+    
   )
 }
 

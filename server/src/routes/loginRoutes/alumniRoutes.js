@@ -90,7 +90,7 @@ if(!email || !password){
     })
   })
 })
-router.get("/AllAlumni", alumniauth, async (req, res) => {
+router.get("/AllAlumni", async (req, res) => {
   try {
     const alumnis = await Alumni.find().exec();
     res.json({

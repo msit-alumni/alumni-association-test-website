@@ -22,6 +22,7 @@ import Contact from "../src/pages/Contact"
 import MapView from "../src/pages/MapView"
 import AlumniDashboard from "../src/pages/alumniDashboard"
 import StudentDashboard from "../src/pages/studentDashboard"
+import AdminLogin from "../src/pages/adminLogin"
 
 
 export const URL=process.env.REACT_URL
@@ -52,6 +53,7 @@ const App = () => {
         <Route path='/mapView' exact element={<MapView />} />
         <Route path='/alumni/profile' exact element={<AlumniDashboard />} />
         <Route path='/student/profile' exact element={<StudentDashboard />} />
+        <Route path='/adminLogin' exact element={<AdminLogin />} />
       </Routes>
     </div>
   );

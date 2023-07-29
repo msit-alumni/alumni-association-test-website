@@ -4,60 +4,60 @@ const Admin=require("../../models/Users/admin")
 const bcrypt=require("bcryptjs")
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const adminauth=require("../../middleware/adminauth")
 
 router.post("/signupAdmin", async (req, res) => {
-  try {
-    const {
+
+    try {
+      const {
       email,
       password
-    } = req.body;
-    Admin.findOne({ email: email }).then((savedStudent) => {
-      if (savedStudent) {
-        return res.status(422).json({ error: "Admin already exist" });
-      }
-    });
-
-    const admin = new Admin({
+      } = req.body;
+  
+      Admin.findOne({ email: email }).then((savedAdmin) => {
+        if (savedAdmin) {
+          return res.status(422).json({ error: "Admin already exist" });
+        }
+      });
+  
+      const admin = new Admin({
       email,
       password
-    });
-    
-    const token=await admin.generateAuthTokenAdmin()
+      });
+      await admin.save();
+      console.log("admin registered")
+    } catch (e) {
+      console.log(e);
+      res.status(400).send("Invalid Details");
+    }
+  });
+  
 
-    res.cookie("jwt",token,{
-       expires:new Date(Date.now()+3000000),
-       httpOnly:true
+  router.post("/signinAdmin",async(req,res)=>{
+    const{email,password} = req.body;
+if(!email || !password){
+    return res.status(422).json({error:"please add all the fields"})
+}
+Admin.findOne({email:email}).then(savedUser=>{
+    if(!savedUser){
+       return res.status(422).json({error:"invalid email or password"})
+    }
+    bcrypt.compare(password,savedUser.password).then(doMatch=>{
+        if(doMatch){
+            console.log("successfully signin")
+            const token = jwt.sign({_id:savedUser._id},process.env.ADMIN_SECRET_KEY);
+            console.log(token)
+            const {_id , name , email} = savedUser
+            res.json({token , user:{_id , name,email}})
+        }
+        else{
+            return res.status(422).json({error:"invalid email or password"})
+        }
+    }).catch(err=>{
+        console.log(err);
     })
-    await admin.save();
-  } catch (e) {
-    console.log(e);
-    res.status(400).send("Invalid Details");
-  }
+  })
 });
 
-router.get("/signinAdmin",async(req,res)=>{
-    try {
-        const {
-          email,
-          password
-        } = req.body;
-        const id=await Admin.findOne({email:email});
-        const token=await id.generateAuthTokenAdmin()
-       res.cookie("jwt",token,{
-        expires:new Date(Date.now()+3000000),
-        httpOnly:true
-     })
-        const isMatch=await bcrypt.compare(password,id.password)
-        if(isMatch){
-            res.status(201).redirect("/index")
-            console.log("login success")
-           }
-           else{
-            res.send("Invalid login details")
-           }
-      } catch (e) {
-        console.log(e);
-        res.status(400).send("Invalid Details");
-      }
-})
+
 module.exports=router;
