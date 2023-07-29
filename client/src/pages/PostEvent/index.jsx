@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 const Index = () => {
     const navigate=useNavigate();
     const [isAdmin, setIsAdmin] = useState(false);
-    const [role,setRole]=useState();
-    useEffect(() => {
-      setRole(localStorage.getItem("role"))
-    }, [role]);
-    if (role == "admin") {
+  useEffect(() => {
+    const roleFromLocalStorage = localStorage.getItem("role");
+    if (roleFromLocalStorage === "admin") {
       setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
     }
-    console.log(role);
+  }, []);
+
   const [user, setUser] = useState({
     title: "",
     location: "",
@@ -65,11 +66,9 @@ const Index = () => {
     console.log(data);
   };
 
-  return (
-    <div>
-        {
-            isAdmin?
-            <div>
+  function display() {
+    return (
+      <div>
       <Navbar />
       <div className="w-full px-[20%] mt-32">
         <form method="POST">
@@ -157,11 +156,20 @@ const Index = () => {
         </form>
       </div>
     </div>
-    :
-    navigate("/adminLogin")
-        }
-    </div>
-    
+    )
+  }
+
+  const renderContent = () => {
+    if (isAdmin) {
+      return <div>{display()}</div>;
+    } else {
+      navigate("/adminLogin");
+      return null; // or render a loading state while navigating
+    }
+  };
+  
+  return(
+     <>{renderContent()}</>
   );
 };
 

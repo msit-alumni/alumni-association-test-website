@@ -13,25 +13,17 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Index = () => {
   const navigate = useNavigate();
-  const [profileList, setProfileList] = useState([]);
-  const [MatesList, setMatesList] = useState([]);
-
   const [data, setData] = useState([]);
   const [isAlumni, setIsAlumni] = useState(false);
-  const [role, setRole] = useState();
-
   useEffect(() => {
-    setRole(localStorage.getItem("role"));
-    console.log(role)
-  }, [role]);
-
-  useEffect(() => {
-    if (role === "alumni") {
+    const roleFromLocalStorage = localStorage.getItem("role");
+    if (roleFromLocalStorage === "alumni") {
       setIsAlumni(true);
     } else {
       setIsAlumni(false);
     }
-  }, [role]);
+  }, []);
+  
   
   useEffect(() => {
     fetch("/alumni/profile", {
@@ -187,21 +179,17 @@ const Index = () => {
       </div>
     );
   }
-  useEffect(() => {
-    function showPage() {
-      console.log(isAlumni);
-      console.log(role)
-      if (isAlumni) {
-        return <div>{display(data)}</div>;
-      } else {
-        navigate("/signinAlumni");
-      }
+  const renderContent = () => {
+    if (isAlumni) {
+      return <div>{display(data)}</div>;
+    } else {
+      navigate("/signinAlumni");
+      return null; // or render a loading state while navigating
     }
-    showPage();
-  }, [role]);
-  return (
-    <div>
-    </div>
+  };
+  
+  return(
+     <>{renderContent()}</>
   );
 };
 

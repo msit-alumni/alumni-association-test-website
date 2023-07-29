@@ -8,13 +8,14 @@ const Index = () => {
   const navigate=useNavigate();
   const [Listview, setListview] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-    const [role,setRole]=useState();
-    useEffect(() => {
-      setRole(localStorage.getItem("role"))
-    }, [role]);
-    if (role == "admin") {
+  useEffect(() => {
+    const roleFromLocalStorage = localStorage.getItem("role");
+    if (roleFromLocalStorage === "admin") {
       setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
     }
+  }, []);
 
 
   useEffect(() => {
@@ -71,13 +72,9 @@ const deletedata = (id) => {
       <td><button onClick={() => { deletedata(profile._id) }} className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">Delete</button></td>
     </tr>
   }
-
-
-  return (
-    <div>
-      {
-        isAdmin?
-        <div className='w-full font-defaultFont'>
+  function display() {
+    return (
+      <div className='w-full font-defaultFont'>
       <Navbar/>
       <div className='w-full mt-32'></div>
       <div className='w-full px-[30%] flex justify-between mb-32'>
@@ -102,12 +99,21 @@ const deletedata = (id) => {
       </div>
 
     </div>
-    :
-      navigate("/adminLogin")
-      }
-    </div>
-    
-  )
+    )
+  }
+
+  const renderContent = () => {
+    if (isAdmin) {
+      return <div>{display()}</div>;
+    } else {
+      navigate("/adminLogin");
+      return null; // or render a loading state while navigating
+    }
+  };
+  
+  return(
+     <>{renderContent()}</>
+  );
 }
 
 export default Index

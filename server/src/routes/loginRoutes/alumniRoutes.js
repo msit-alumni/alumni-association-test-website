@@ -125,7 +125,7 @@ router.delete("/delete", async (req, res) => {
     console.log(error)
   }
 })
-router.get("alumni/profile", alumniauth , async (req, res) => {
+router.get("/alumni/profile", alumniauth , async (req, res) => {
   const alumni = await Alumni.findById(req.user._id);
   res.status(200).json({
     success:true,

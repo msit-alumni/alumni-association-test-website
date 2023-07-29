@@ -13,18 +13,16 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 const Index = () => {
     const navigate = useNavigate()
-    const [profileList, setProfileList] = useState([]);
-    const [MatesList, setMatesList] = useState([]);
-
     const [data, setData] = useState([]);
     const [isStudent, setIsStudent] = useState(false);
-  const [role,setRole]=useState();
   useEffect(() => {
-    setRole(localStorage.getItem("role"))
-  }, [role]);
-  if (role == "student") {
-    setIsStudent(true);
-  }
+    const roleFromLocalStorage = localStorage.getItem("role");
+    if (roleFromLocalStorage === "student") {
+        setIsStudent(true);
+    } else {
+        setIsStudent(false);
+    }
+  }, []);
 
 useEffect(() => {
     fetch("/student/profile", {
@@ -173,11 +171,16 @@ useEffect(() => {
         <Footer/>
       </div>
     }
-
+    const renderContent = () => {
+        if (isStudent) {
+          return <div>{display(data)}</div>;
+        } else {
+          navigate("/signinStudent");
+          return null; // or render a loading state while navigating
+        }
+      };
   return (
-    <div>
-      {isStudent ? <div>{display(data)}</div> : navigate("/signinStudent")}
-    </div>
+    <>{renderContent()}</>
 )  
 }
 
