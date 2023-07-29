@@ -17,7 +17,7 @@ const Events = () => {
   return (
     <div>
       <div className="relative sm:w-[450px] md:w-[700px] lg:w-[750px] xl:w-[900px] lg:left-24">
-      <OwlCarousel className='owl-theme' loop items={1} autoplay autoplayTimeout={2500} lazyLoad>
+      <OwlCarousel className='owl-theme' loop items={1} autoplay autoplayTimeout={4000} lazyLoad>
         {
           images.map((image, index) => (
             <div key={index} className="w-full ease-in-out">
