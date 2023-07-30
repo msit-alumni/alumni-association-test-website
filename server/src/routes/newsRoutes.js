@@ -31,18 +31,18 @@ router.get("/getAllNews", async (req, res) => {
   });
 
 
-router.post("/admin/postNews",adminauth,async(req,res)=>{
+router.post("/admin/postNews",async(req,res)=>{
     try{
-        const {title , date, desc , image, category }  = req.body;
+        const {title , date, desc , pic }  = req.body;
 
         const news = new News({
             title,
             date,
             desc,
-            image,
-            category
+            image:pic,
         })
         news.save();
+        console.log("news uploaded")
     }
     catch(e){
         res.status(400).send("Invalid Details")

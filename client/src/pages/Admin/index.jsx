@@ -19,7 +19,7 @@ const Index = () => {
 
 
   useEffect(() => {
-    fetch('http://backend.msitalumni.com/AllAlumni')
+    fetch('http://localhost:5000/AllAlumni')
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -36,7 +36,7 @@ const Index = () => {
 
 
 const update = (id) => {
-  fetch('http://backend.msitalumni.com/Verify', {
+  fetch('http://localhost:5000/Verify', {
     method:"put",
     headers: {
       "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const update = (id) => {
   });
 }
 const deletedata = (id) => {
-  fetch('http://backend.msitalumni.com/delete', {
+  fetch('http://localhost:5000/delete', {
     method:"delete",
     headers: {
       "Content-Type": "application/json"
@@ -79,8 +79,8 @@ const deletedata = (id) => {
       <div className='w-full mt-32'></div>
       <div className='w-full px-[30%] flex justify-between mb-32'>
         <Link to={`/admin/postEvent`}><button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">POST EVENT</button></Link>
-        <Link to={`/admin/postNews`}><button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">POST NEWS</button></Link>
-      </div>
+        <Link to={``}><button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ease-in-out duration-300 hover:shadow-lg">POST NEWS</button></Link>
+      </div>/admin/postNews
       <div className='ml-[10%]'>
         <h1 className='text-2xl font-bold'>VERIFY ALUMNI</h1>
         <table className='border-2 border-black'>

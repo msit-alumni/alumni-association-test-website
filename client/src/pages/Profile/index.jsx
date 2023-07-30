@@ -29,7 +29,7 @@ const Index = () => {
     //         })
     // }, [])
     useEffect(() => {
-        fetch('http://backend.msitalumni.com/AllAlumni')
+        fetch('http://localhost:5000/AllAlumni')
             .then(response => {
                 if (response.ok) {
                     return response.json();

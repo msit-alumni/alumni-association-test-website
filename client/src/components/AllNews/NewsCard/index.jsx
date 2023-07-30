@@ -7,10 +7,10 @@ import parse from 'html-react-parser';
 
 
 const index = (data) => {
-  var shortdesc1 = parse(data.desc);
-  console.log(shortdesc1)
-  var shortdesc = shortdesc1.slice(0,79);
-  shortdesc = shortdesc+" ...";
+  var shortdesc = parse(data.desc);
+  console.log(shortdesc)
+  // var shortdesc = shortdesc1.slice(0,79);
+  // shortdesc = shortdesc+" ...";
 
   function display2()
   {

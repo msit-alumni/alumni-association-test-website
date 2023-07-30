@@ -11,15 +11,15 @@ const news = new mongoose.Schema({
     },
     desc:{
         type:String,
-        required:true
+        // required:true
     },
     image:{
         type:String,
-        required:true
-    },
-    category:{
-        type:String
+        // required:true
     }
+    // category:{
+    //     type:String
+    // }
 })
 
 mongoose.model("News",news);

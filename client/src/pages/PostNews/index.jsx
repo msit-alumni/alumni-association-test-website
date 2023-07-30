@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import Navbar from "../../components/common/Navbar";
@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 const Index = () => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
   useEffect(() => {
     const roleFromLocalStorage = localStorage.getItem("role");
     if (roleFromLocalStorage === "admin") {
@@ -21,7 +23,6 @@ const Index = () => {
     location: "",
     date: "",
     desc: "",
-    image: "",
   });
 
   const handleInputs = (e) => {
@@ -33,102 +34,112 @@ const Index = () => {
     setUser({ ...user, desc: value });
   };
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setUser({ ...user, image: base64 });
-  };
 
-  const postData = async (e) => {
-    e.preventDefault();
-    const { title, location, date, desc, image } = user;
-    console.log(desc);
-    const res = await fetch(
-      "http://backend.msitalumni.com/admin/postNews",
-      {
-        method: "POST",
+  useEffect(() => {
+    if (url) {
+      const { title, location, date, desc } = user;
+      console.log(desc);
+      fetch("/admin/postNews", {
+        method: "post",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
+          // "Authorization": "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
           title,
           location,
           date,
-          // category,
           desc,
-          image,
+          pic: url,
         }),
-      }
-    );
-    const data = await res.json();
-    console.log(data);
-  };
+      })
+      .then(() => {
+        navigate("/about");
+      })
+      .catch((error) => {
+        console.error("Error posting news:", error);
+      });
+    }
+  }, [url, navigate, user]);
 
+  const postData =  () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "msitalumni");
+    data.append("cloud_name", "dpiswn2th");
+
+    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUrl(data.url);
+        console.log(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+   
+  };
   function display() {
-    return(
+    return (
       <div>
-            <Navbar />
-            <div className="w-full px-[20%] mt-32">
-              <form method="POST">
-                <div className="flex mt-4">
-                  <h3 className="mr-6">Title:</h3>
-                  <input
-                    type="string"
-                    placeholder="Enter event title"
-                    value={user.title}
-                    onChange={handleInputs}
-                    name="title"
-                    autoComplete="off"
-                  />
-                </div>
-                <div className="flex mt-4">
-                  <h3 className="mr-6">Date:</h3>
-                  <input
-                    type="date"
-                    placeholder="date"
-                    value={user.date}
-                    onChange={handleInputs}
-                    name="date"
-                    autoComplete="off"
-                  />
-                </div>
-                {/* <div className="flex mt-4">
-                          <h3 className="mr-6">Category:</h3>
-                          <input
-                              type="string"
-                              placeholder="Enter the category"
-                              value={user.category}
-                              onChange={handleInputs}
-                              name="category"
-                              autoComplete="off"
-                          />
-                      </div> */}
-                <div className="flex mt-4">
-                  <h3 className="mr-6">Description:</h3>
-                  <ReactQuill
-                    className="quill-editor"
-                    theme="snow"
-                    value={user.desc}
-                    onChange={handleDescChange}
-                  />
-                </div>
-                <br />
-                <br />
-                <br />
-                <div className="flex mt-4">
-                  <h3 className="mr-6">Image:</h3>
-                  <input type="file" accept="image/*" onChange={handleFileUpload} />
-                </div>
-                <button
-                  className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={postData}
-                >
-                  Submit
-                </button>
-              </form>
+        <Navbar />
+        <div className="w-full px-[20%] mt-32">
+          <form method="POST">
+            <div className="flex mt-4">
+              <h3 className="mr-6">Title:</h3>
+              <input
+                type="string"
+                placeholder="Enter event title"
+                value={user.title}
+                onChange={handleInputs}
+                name="title"
+                autoComplete="off"
+              />
             </div>
-          </div>
-    )
+            <div className="flex mt-4">
+              <h3 className="mr-6">Date:</h3>
+              <input
+                type="date"
+                placeholder="date"
+                value={user.date}
+                onChange={handleInputs}
+                name="date"
+                autoComplete="off"
+              />
+            </div>
+            <div className="flex mt-4">
+              <h3 className="mr-6">Description:</h3>
+              <ReactQuill
+                className="quill-editor"
+                theme="snow"
+                value={user.desc}
+                onChange={handleDescChange}
+              />
+            </div>
+            <br />
+            <br />
+            <br />
+            <div className="flex mt-4">
+              <h3 className="mr-6">Image:</h3>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
+            <button
+              className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={postData}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    );
   }
   const renderContent = () => {
     if (isAdmin) {
@@ -138,20 +149,8 @@ const Index = () => {
       return null; // or render a loading state while navigating
     }
   };
-  
-  return(
-     <>{renderContent()}</>
-  );
+
+  return <>{renderContent()}</>;
 };
 
 export default Index;
-
-// Helper function to convert image to base64
-const convertToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-};
