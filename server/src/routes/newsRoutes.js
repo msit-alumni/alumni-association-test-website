@@ -33,16 +33,22 @@ router.get("/getAllNews", async (req, res) => {
 
 router.post("/admin/postNews",async(req,res)=>{
     try{
-        const {title , date, desc , pic }  = req.body;
-
+      const {title , date, desc , pic }  = req.body;
+      console.log(title,date,desc,pic)
         const news = new News({
             title,
             date,
             desc,
             image:pic,
         })
-        news.save();
-        console.log("news uploaded")
+        news.save()
+        .then(result=>{
+          console.log("news uploaded")
+          res.json({news:result})
+      }).catch(err=>{
+          console.log(err);
+      })
+       
     }
     catch(e){
         res.status(400).send("Invalid Details")

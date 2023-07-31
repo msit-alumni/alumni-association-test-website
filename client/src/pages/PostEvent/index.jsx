@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 const Index = () => {
     const navigate=useNavigate();
+    const [image, setImage] = useState(null);
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
+    const [date, setDate] = useState("");
+    const [desc, setDesc] = useState("");
+    const [status, setStatus] = useState("");
+
     const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
     const roleFromLocalStorage = localStorage.getItem("role");
@@ -16,54 +23,79 @@ const Index = () => {
     }
   }, []);
 
-  const [user, setUser] = useState({
-    title: "",
-    location: "",
-    date: "",
-    status: "",
-    desc: "",
-    image: "",
-  });
 
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
 
-  const handleDescChange = (value) => {
-    setUser({ ...user, desc: value });
-  };
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setUser({ ...user, image: base64 });
-  };
+  // const handleFileUpload = async (e) => {
+  //   const file = e.target.files[0];
+  //   const base64 = await convertToBase64(file);
+  //   setUser({ ...user, image: base64 });
+  // };
 
-  const postData = async (e) => {
-    e.preventDefault();
-    const { title, location, date, status, desc, image } = user;
-    console.log(desc);
-    const res = await fetch(
-      "http://localhost:5000/admin/postEvent",
-      {
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   const { title, location, date, status, desc, image } = user;
+  //   console.log(desc);
+  //   const res = await fetch(
+  //     "http://localhost:5000/admin/postEvent",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         title,
+  //         location,
+  //         date,
+  //         status,
+  //         desc,
+  //         image,
+  //       }),
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   console.log(data);
+  // };
+
+  
+  function postData() {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "msitalumni");
+    data.append("cloud_name", "dpiswn2th");
+    data.append("desc", desc);
+    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
+      method: "POST",
+      body: data,
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+      console.log(data.url)
+      fetch("http://localhost:5000/admin/postEvent", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
+          // "Authorization": "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
           title,
           location,
           date,
           status,
-          // category,
           desc,
-          image,
+          image: data.url,
         }),
-      }
-    );
-    const data = await res.json();
-    console.log(data);
+      })
+      .then(() => {
+        console.log(title, location,date,status,desc,data.url);
+        navigate("/about");
+      })
+      .catch((error) => {
+        console.error("Error posting event:", error);
+      });
+  }).catch(err => {
+      console.log(err)
+  })
   };
 
   function display() {
@@ -71,14 +103,13 @@ const Index = () => {
       <div>
       <Navbar />
       <div className="w-full px-[20%] mt-32">
-        <form method="POST">
           <div className="flex mt-4">
             <h3 className="mr-6">Title:</h3>
             <input
               type="string"
               placeholder="Enter event title"
-              value={user.title}
-              onChange={handleInputs}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               name="title"
               autoComplete="off"
             />
@@ -88,8 +119,8 @@ const Index = () => {
             <select
               type="string"
               placeholder="Enter the status"
-              value={user.status}
-              onChange={handleInputs}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
               name="status"
               autoComplete="off"
             >
@@ -103,8 +134,8 @@ const Index = () => {
             <input
               type="date"
               placeholder="date"
-              value={user.date}
-              onChange={handleInputs}
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
               name="date"
               autoComplete="off"
             />
@@ -125,8 +156,8 @@ const Index = () => {
             <input
               type="string"
               placeholder="Enter the location of event"
-              value={user.location}
-              onChange={handleInputs}
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
               name="location"
               autoComplete="off"
             />
@@ -136,8 +167,8 @@ const Index = () => {
             <ReactQuill
               className="quill-editor"
               theme="snow"
-              value={user.desc}
-              onChange={handleDescChange}
+              value={desc}
+              onChange={(e) => {setDesc(e.toString())}}
             />
           </div>
           <br />
@@ -145,7 +176,7 @@ const Index = () => {
           <br />
           <div className="flex mt-4">
             <h3 className="mr-6">Image:</h3>
-            <input type="file" accept="image/*" onChange={handleFileUpload} />
+            <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
           </div>
           <button
             className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -153,7 +184,6 @@ const Index = () => {
           >
             Submit
           </button>
-        </form>
       </div>
     </div>
     )
@@ -175,12 +205,12 @@ const Index = () => {
 
 export default Index;
 
-// Helper function to convert image to base64
-const convertToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-};
+// // Helper function to convert image to base64
+// const convertToBase64 = (file) => {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onload = () => resolve(reader.result);
+//     reader.onerror = (error) => reject(error);
+//   });
+// };

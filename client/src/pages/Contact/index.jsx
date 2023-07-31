@@ -72,7 +72,7 @@ const [phoneCode, setPhonecode] = useState([]);
 
     return (
 
-            <div classNameName='font-defaultfont'>
+            <div className='font-defaultfont'>
                 <Navbar/>
                 <div className=" mx-[8%] top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
                 <div className="font-Merriweather">

@@ -3,11 +3,11 @@ const mongoose=require("mongoose")
 const news = new mongoose.Schema({
     title:{
         type:String,
-        required:true
+        // required:true
     },
     date:{
         type:String,
-        required:true
+        // required:true
     },
     desc:{
         type:String,

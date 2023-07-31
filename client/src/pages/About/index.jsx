@@ -21,7 +21,7 @@ import kapt from '../../assets/images/Team/director.jpg'
 
 const index = () => {
   return (
-    <div classNameName='font-defaultfont'>
+    <div className='font-defaultfont'>
             <Navbar/>
             <div className=" mx-[8%] top-[80px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
            

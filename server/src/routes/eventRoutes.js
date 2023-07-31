@@ -2,7 +2,6 @@ const  express = require("express");
 const mongoose=require("mongoose")
 const router = express.Router();
 const event=mongoose.model("Events")
-const adminauth = require("../middleware/adminauth")
 
 // if(adminauth)
 // {
@@ -26,9 +25,10 @@ router.get("/AllEvent", async (req, res) => {
   });
 
 
-router.post("/admin/postEvent",adminauth,async(req,res)=>{
+router.post("/admin/postEvent",async(req,res)=>{
     try{
         const {title , location , date, status, category , desc , image }  = req.body;
+        
 
         const events = new event({
             title,
@@ -40,6 +40,7 @@ router.post("/admin/postEvent",adminauth,async(req,res)=>{
             image
         })
         events.save();
+        console.log("event uploaded");
     }
     catch(e){
         res.status(400).send("Invalid Details")
