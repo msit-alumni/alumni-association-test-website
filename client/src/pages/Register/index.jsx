@@ -15,7 +15,7 @@ const Register = () => {
 
   const [isButtonDisabled, setButtonDisabled] = useState(true);
   const [isCreateDisabled, setCreateDisabled] = useState(true);
-
+  const [image2, setImage] = useState(null);
   const countries = Country.getAllCountries();
   // const state=State.getAllStates();
   // console.log(state)
@@ -84,37 +84,72 @@ const Register = () => {
       validateOnBlur: false,
       //// By disabling validation onChange and onBlur formik will validate on submit.
       onSubmit: (values, action) => {
-        // postData();
-        // console.log( values);
         //// to get rid of all the values after submitting the form
         action.resetForm();
       },
     });
     const [submit,SetSubmit] = useState(0);
-  // console.log(errors);
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    values.image=base64;
-};
-
     const [register,setregister]=useState(0);
 // console.log(values)
-  const postData = async (e) => {
-    e.preventDefault();
-    const verified = "false";
-    const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
-    // console.log(latitude,longitude)
-    // console.log(name,email,password,dob,branch,company)
 
-    SetSubmit(1);
-    const res = await fetch("http://localhost:5000/signupAlumni", {
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   const verified = "false";
+  //   const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
+
+
+  //   SetSubmit(1);
+  //   const res = await fetch("http://localhost:5000/signupAlumni", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name,
+  //       email,
+  //       mobile,
+  //       dob,
+  //       password,
+  //       country,
+  //       state,
+  //       batch,
+  //       image,
+  //       branch,
+  //       shift,
+  //       company,
+  //       designation,
+  //       experience,
+  //       sector,
+  //       verified
+  //     }),
+  //   });
+  //   const data = await res.json();
+  //   cookie.set("jwt",data.token);
+  //   cookie.set("user",JSON.stringify(data.user));
+  // };
+
+  function postData() {
+    const data = new FormData();
+    data.append("file", image2);
+    data.append("upload_preset", "msitalumni");
+    data.append("cloud_name", "dpiswn2th");
+    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+      body: data,
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+      console.log(data.url)
+      const verified = "false";
+      const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
+      SetSubmit(1);
+      fetch("http://localhost:5000/signupAlumni", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+          // "Authorization": "Bearer " + localStorage.getItem("jwt"),
+        },
+        body: JSON.stringify({
         name,
         email,
         mobile,
@@ -123,25 +158,27 @@ const Register = () => {
         country,
         state,
         batch,
-        image,
+        image:data.url,
         branch,
         shift,
         company,
         designation,
-        // longitude,
-        // latitude,
         experience,
         sector,
         verified
-      }),
-    });
-    const data = await res.json();
-    cookie.set("jwt",data.token);
-    cookie.set("user",JSON.stringify(data.user));
-    //   localStorage.setItem("jwt", data.token);
-    //   localStorage.setItem("user", JSON.stringify(data.user));
-    // console.log("ndkjsjgbsgbsdnssnvsndvisivns")
-    // console.log(data);
+        }),
+      })
+      .then((res) => {
+        const data1 = res.json();
+        cookie.set("jwt",data1.token);
+        cookie.set("user",JSON.stringify(data1.user));
+      })
+      .catch((error) => {
+        console.error("Error posting user:", error);
+      });
+  }).catch(err => {
+      console.log(err)
+  });
   };
 
   return (
@@ -248,7 +285,7 @@ const Register = () => {
                         <input
                                              type="file"
                                              accept="image/*"
-                                             onChange={handleFileUpload}
+                                             onChange={(e) => setImage(e.target.files[0])}
                                          />
                         </div>
                         <div className="mt-2">
@@ -662,14 +699,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-// Helper function to convert image to base64
-                        const convertToBase64 = (file) => {
-                        return new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(file);
-                        reader.onload = () => resolve(reader.result);
-                        reader.onerror = (error) => reject(error);
-                        });
-                        };
