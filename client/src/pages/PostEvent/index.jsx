@@ -1,6 +1,4 @@
-import React, { useState ,useEffect ,useRef} from "react";
-import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import React, { useState ,useEffect} from "react";
 import Navbar from "../../components/common/Navbar";
 import { useNavigate } from "react-router-dom";
 
@@ -23,40 +21,6 @@ const Index = () => {
     }
   }, []);
 
-
-
-
-  // const handleFileUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   const base64 = await convertToBase64(file);
-  //   setUser({ ...user, image: base64 });
-  // };
-
-  // const postData = async (e) => {
-  //   e.preventDefault();
-  //   const { title, location, date, status, desc, image } = user;
-  //   console.log(desc);
-  //   const res = await fetch(
-  //     "http://localhost:5000/admin/postEvent",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         title,
-  //         location,
-  //         date,
-  //         status,
-  //         desc,
-  //         image,
-  //       }),
-  //     }
-  //   );
-  //   const data = await res.json();
-  //   console.log(data);
-  // };
-
   
   function postData() {
     const data = new FormData();
@@ -71,7 +35,7 @@ const Index = () => {
       .then(data => {
         console.log(data)
       console.log(data.url)
-      fetch("http://localhost:5000/admin/postEvent", {
+      fetch("https://backend.msitalumni.com/admin/postEvent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -88,7 +52,8 @@ const Index = () => {
       })
       .then(() => {
         console.log(title, location,date,status,desc,data.url);
-        navigate("/about");
+        alert("Event Posted Successfully")
+        navigate("/events");
       })
       .catch((error) => {
         console.error("Error posting event:", error);
@@ -97,48 +62,44 @@ const Index = () => {
       console.log(err)
   })
   };
-  const handleDescriptionChange = async (value) => {
-    setDesc(value);
+
+
+  const uploadImageToCloudinary = (image) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "Alumni");
+    data.append("cloud_name", "dx66depjo");
+    return fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
+      method: "POST",
+      body: data,
+    })
+    .then((res) => res.json())
+    .then((data) => data.secure_url) // Extract the secure URL of the uploaded image
+    .catch((error) => {
+      console.error("Error uploading image to Cloudinary:", error);
+      return null;
+    });
   };
 
-  const handleQuillPaste = async (event) => {
+  const handlePaste = async (event) => {
     const clipboardData = event.clipboardData || window.clipboardData;
-    const items = clipboardData.items;
-
-    for (const item of items) {
-      if (item.kind === "file" && item.type.includes("image")) {
-        const file = item.getAsFile();
-
-        // Upload the image to Cloudinary
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "Alumni");
-        data.append("cloud_name", "dx66depjo");
-
-        try {
-          const response = await fetch(
-            "https://api.cloudinary.com/v1_1/dx66depjo/image/upload",
-            {
-              method: "POST",
-              body: data,
+    if (clipboardData) {
+      const items = clipboardData.items;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const file = items[i].getAsFile();
+          if (file) {
+            const imageUrl = await uploadImageToCloudinary(file);
+            if (imageUrl) {
+              const img = `<img src="${imageUrl}" style="max-width: 100%; height: auto;" />`;
+              setDesc((prevDesc) => prevDesc + img);
             }
-          );
-          const imageData = await response.json();
-          const imageUrl = imageData.url;
-
-          // Get the current editor content
-          const editor = quillRef.current.getEditor();
-          const range = editor.getSelection();
-          // Insert the image at the cursor position
-          editor.insertEmbed(range.index, "image", imageUrl);
-        } catch (error) {
-          console.error("Error uploading image:", error);
+          }
         }
       }
     }
   };
-
-  const quillRef = useRef(null);
+  
   function display() {
     
     return (
@@ -182,17 +143,6 @@ const Index = () => {
               autoComplete="off"
             />
           </div>
-          {/* <div className="flex mt-4">
-                    <h3 className="mr-6">Category:</h3>
-                    <input
-                        type="string"
-                        placeholder="Enter the category"
-                        value={user.category}
-                        onChange={handleInputs}
-                        name="category"
-                        autoComplete="off"
-                    />
-                </div> */}
           <div className="flex mt-4">
             <h3 className="mr-6">Location:</h3>
             <input
@@ -206,12 +156,14 @@ const Index = () => {
           </div>
           <div className="flex mt-4">
             <h3 className="mr-6">Description:</h3>
-            <ReactQuill
-              className="quill-editor"
-              theme="snow"
+            <textarea
+              placeholder="Enter the description of event"
+              name="desc"
+              autoComplete="off"
+              className="w-full h-[200px] border-black border-[1px] border-r-2"
               value={desc}
-              onChange={handleDescriptionChange}
-              onPaste={handleQuillPaste}
+              onPaste={handlePaste}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
           <br />
@@ -237,7 +189,7 @@ const Index = () => {
       return <div>{display()}</div>;
     } else {
       navigate("/adminLogin");
-      return null; // or render a loading state while navigating
+      return null; 
     }
   };
   

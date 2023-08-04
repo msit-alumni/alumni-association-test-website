@@ -14,7 +14,7 @@ const [eventsList, setEventsList] = useState([]);
 const { _id } = useParams();
 
 useEffect(() => {
-  fetch('http://localhost:5000/AllEvent')
+  fetch('https://backend.msitalumni.com/AllEvent')
     .then(response => {
       if (response.ok) {
         return response.json();

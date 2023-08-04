@@ -99,7 +99,7 @@ const Register = () => {
 
 
   //   SetSubmit(1);
-  //   const res = await fetch("http://localhost:5000/signupAlumni", {
+  //   const res = await fetch("https://backend.msitalumni.com/signupAlumni", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -131,9 +131,9 @@ const Register = () => {
   function postData() {
     const data = new FormData();
     data.append("file", image2);
-    data.append("upload_preset", "msitalumni");
-    data.append("cloud_name", "dpiswn2th");
-    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
+    data.append("upload_preset", "Alumni");
+    data.append("cloud_name", "dx66depjo");
+    fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
       method: "POST",
       body: data,
     }).then(res => res.json())
@@ -143,7 +143,7 @@ const Register = () => {
       const verified = "false";
       const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
       SetSubmit(1);
-      fetch("http://localhost:5000/signupAlumni", {
+      fetch("https://backend.msitalumni.com/signupAlumni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
