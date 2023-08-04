@@ -24,10 +24,10 @@ const Index = () => {
   function postData() {
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "msitalumni");
-    data.append("cloud_name", "dpiswn2th");
+    data.append("upload_preset", "Alumni");
+    data.append("cloud_name", "dx66depjo");
     data.append("desc", desc);
-    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
+    fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
       method: "POST",
       body: data,
     }).then(res => res.json())

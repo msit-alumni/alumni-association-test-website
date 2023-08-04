@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect ,useRef} from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import Navbar from "../../components/common/Navbar";
@@ -61,10 +61,10 @@ const Index = () => {
   function postData() {
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "msitalumni");
-    data.append("cloud_name", "dpiswn2th");
+    data.append("upload_preset", "Alumni");
+    data.append("cloud_name", "dx66depjo");
     data.append("desc", desc);
-    fetch("https://api.cloudinary.com/v1_1/dpiswn2th/image/upload", {
+    fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
       method: "POST",
       body: data,
     }).then(res => res.json())
@@ -97,8 +97,50 @@ const Index = () => {
       console.log(err)
   })
   };
+  const handleDescriptionChange = async (value) => {
+    setDesc(value);
+  };
 
+  const handleQuillPaste = async (event) => {
+    const clipboardData = event.clipboardData || window.clipboardData;
+    const items = clipboardData.items;
+
+    for (const item of items) {
+      if (item.kind === "file" && item.type.includes("image")) {
+        const file = item.getAsFile();
+
+        // Upload the image to Cloudinary
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "Alumni");
+        data.append("cloud_name", "dx66depjo");
+
+        try {
+          const response = await fetch(
+            "https://api.cloudinary.com/v1_1/dx66depjo/image/upload",
+            {
+              method: "POST",
+              body: data,
+            }
+          );
+          const imageData = await response.json();
+          const imageUrl = imageData.url;
+
+          // Get the current editor content
+          const editor = quillRef.current.getEditor();
+          const range = editor.getSelection();
+          // Insert the image at the cursor position
+          editor.insertEmbed(range.index, "image", imageUrl);
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
+      }
+    }
+  };
+
+  const quillRef = useRef(null);
   function display() {
+    
     return (
       <div>
       <Navbar />
@@ -168,7 +210,8 @@ const Index = () => {
               className="quill-editor"
               theme="snow"
               value={desc}
-              onChange={(e) => {setDesc(e.toString())}}
+              onChange={handleDescriptionChange}
+              onPaste={handleQuillPaste}
             />
           </div>
           <br />
@@ -205,12 +248,4 @@ const Index = () => {
 
 export default Index;
 
-// // Helper function to convert image to base64
-// const convertToBase64 = (file) => {
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = () => resolve(reader.result);
-//     reader.onerror = (error) => reject(error);
-//   });
-// };
+
