@@ -35,7 +35,7 @@ const Index = () => {
       .then(data => {
         console.log(data)
       console.log(data.url)
-      fetch("https://msitalumni-backend.onrender.com/admin/postEvent", {
+      fetch("https://backend.msitalumni.com/admin/postEvent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
