@@ -23,7 +23,7 @@ const Register2 = ()=>{
     const postData = async (e) => {
       e.preventDefault();
       const {email,password}=user; 
-      const res = await fetch("https://backend.msitalumni.com/signinAlumni", {
+      const res = await fetch("https://msitalumni-backend.onrender.com/signinAlumni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
