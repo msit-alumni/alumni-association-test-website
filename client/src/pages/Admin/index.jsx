@@ -19,7 +19,7 @@ const Index = () => {
 
 
   useEffect(() => {
-    fetch('http://34.227.142.6:6000/AllAlumni')
+    fetch('https://backend.msitalumni.com/AllAlumni')
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -36,7 +36,7 @@ const Index = () => {
 
 
 const update = (id) => {
-  fetch('http://34.227.142.6:6000/Verify', {
+  fetch('https://backend.msitalumni.com/Verify', {
     method:"put",
     headers: {
       "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const update = (id) => {
   });
 }
 const deletedata = (id) => {
-  fetch('http://34.227.142.6:6000/delete', {
+  fetch('https://backend.msitalumni.com/delete', {
     method:"delete",
     headers: {
       "Content-Type": "application/json"

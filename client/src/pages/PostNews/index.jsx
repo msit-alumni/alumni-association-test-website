@@ -32,7 +32,7 @@ const Index = () => {
       .then(data => {
         console.log(data)
       console.log(data.url)
-      fetch("http://34.227.142.6:6000/admin/postNews", {
+      fetch("https://backend.msitalumni.com/admin/postNews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

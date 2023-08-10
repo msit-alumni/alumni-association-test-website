@@ -28,7 +28,7 @@ const [phoneCode, setPhonecode] = useState([]);
    
     const { name, email, message, phone } = user;
     Setformsubmit(1);
-    const res = await fetch("http://34.227.142.6:6000/postmessage", {
+    const res = await fetch("https://backend.msitalumni.com/postmessage", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
