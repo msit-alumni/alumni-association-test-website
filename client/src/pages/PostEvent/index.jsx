@@ -35,7 +35,7 @@ const Index = () => {
       .then(data => {
         console.log(data)
       console.log(data.url)
-      fetch("https://backend.msitalumni.com/admin/postEvent", {
+      fetch("http://34.227.142.6:6000/admin/postEvent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -7,13 +7,13 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 app.use(cors({
-    origin:["http://localhost:3000","https://msit-alumni.netlify.app","http://msitalumni.com","https://msitalumni.com"]
+    origin:["http://localhost:3000","https://msit-alumni.netlify.app","http://msitalumni.com","https://msitalumni.com","http://34.227.142.6:3000"]
 }));
 
 require("./db/conn");
 app.use(bodyparser.json({limit: '50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 
 
 app.use(express.json({limit: '50mb'}));

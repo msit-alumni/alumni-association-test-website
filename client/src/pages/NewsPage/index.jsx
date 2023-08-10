@@ -12,7 +12,7 @@ const Index = () => {
     const [newsList, setNewsList] = useState([]);
 
     useEffect(() => {
-        fetch('https://backend.msitalumni.com/getAllNews')
+        fetch('http://34.227.142.6:6000/getAllNews')
           .then(response => {
             if (response.ok) {
               return response.json();

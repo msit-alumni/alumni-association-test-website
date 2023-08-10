@@ -84,7 +84,7 @@ const handleButtonState = (event) => {
     e.preventDefault();
     const {name,email,password,mobile,image,dob,course,batch,branch,shift}=values;
     SetSubmit(1);
-    const res = await fetch("https://backend.msitalumni.com/signupStudent", {
+    const res = await fetch("http://34.227.142.6:6000/signupStudent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

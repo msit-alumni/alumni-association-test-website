@@ -29,7 +29,7 @@ const Index = () => {
     //         })
     // }, [])
     useEffect(() => {
-        fetch('https://backend.msitalumni.com/AllAlumni')
+        fetch('http://34.227.142.6:6000/AllAlumni')
             .then(response => {
                 if (response.ok) {
                     return response.json();
