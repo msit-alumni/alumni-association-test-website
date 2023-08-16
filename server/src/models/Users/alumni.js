@@ -67,21 +67,30 @@ const alumniSchema = new mongoose.Schema({
     },
     company:{
         type:String,
-        required:[true , "Please enter your company"]
+        // required:[true , "Please enter your company"]
     },
     experience:{
         type:Number,
-        required:[true , "Please enter your work experience"]
+        // required:[true , "Please enter your work experience"]
     },
     designation:{
         type:String,
-        required:[true , "Please enter your designation"]
+        // required:[true , "Please enter your designation"]
     },
     sector:{
         type:String,
-        required:[true , "Please enter your sector of work"]
+        // required:[true , "Please enter your sector of work"]
     },
     verified:{
+        type:String
+    },
+    achievement:{
+        type:String
+    },
+    universityName:{
+        type:String
+    },
+    degreeName:{
         type:String
     }
     

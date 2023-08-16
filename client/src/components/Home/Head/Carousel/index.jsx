@@ -16,7 +16,7 @@ const images=Object.values(data)
 const Events = () => {
   return (
     <div>
-      <div className="relative sm:w-[450px] md:w-[700px] lg:w-[750px] xl:w-[900px] lg:left-24">
+      <div className="relative mx-[10%] sm:w-[450px] md:w-[700px] lg:w-[750px] xl:w-[900px] lg:left-24">
       <OwlCarousel className='owl-theme' loop items={1} autoplay autoplayTimeout={4000} lazyLoad>
         {
           images.map((image, index) => (

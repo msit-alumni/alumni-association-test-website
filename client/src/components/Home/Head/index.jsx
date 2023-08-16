@@ -9,9 +9,9 @@ const Head = () => {
             <Carousel>
 
             </Carousel>
-            <Login >
+            {/* <Login >
 
-            </Login>
+            </Login> */}
         </div>
         <div className='lg:h-8 w-[100%]'></div>
     </div>

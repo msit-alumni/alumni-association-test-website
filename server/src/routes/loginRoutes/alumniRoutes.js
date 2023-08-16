@@ -25,7 +25,9 @@ router.post("/signupAlumni", async (req, res) => {
         experience,
         sector,
         designation,
-        verified
+        verified,
+        universityName,
+        degreeName
       } = req.body;
       console.log(name,email,mobile,shift,company)
   
@@ -51,7 +53,9 @@ router.post("/signupAlumni", async (req, res) => {
         experience,
         sector,
         designation,
-        verified
+        verified,
+        universityName,
+        degreeName
       });
      
     
@@ -131,6 +135,17 @@ router.get("/alumni/profile", alumniauth , async (req, res) => {
     success:true,
     alumni
   })
+})
+router.put("/updateprofile", async (req, res) => {
+
+  try {
+    const result = await Alumni.findByIdAndUpdate(req.body.alumniId, { $set: { achievement:req.body.achievement, } }, { new: true });
+  result.save()
+    console.log(result)
+  console.log("updated")
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 

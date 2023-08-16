@@ -84,7 +84,7 @@ const handleButtonState = (event) => {
     e.preventDefault();
     const {name,email,password,mobile,image,dob,course,batch,branch,shift}=values;
     SetSubmit(1);
-    const res = await fetch("https://backend.msitalumni.com/signupStudent", {
+    const res = await fetch("http://backend.msitalumni.com/signupStudent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const handleButtonState = (event) => {
                 <img src={logo} alt="" className=" " />
                 {register===0  &&
                     <div id="first">
-                    <div className="flex justify-center ">
+                    {/* <div className="flex justify-center ">
                       <div className="flex justify-center">
                         <button
                           type="button"
@@ -193,9 +193,9 @@ const handleButtonState = (event) => {
                           Twitter
                         </button>
                       </div>
-                    </div>
+                    </div> */}
                     <div>
-                      <div className="flex items-center py-4">
+                      {/* <div className="flex items-center py-4">
                         <div className="flex-grow h-px bg-gray-400"></div>
     
                         <span className="flex-shrink text-XS text-gray-500 px-4 font-semibold ">
@@ -203,7 +203,7 @@ const handleButtonState = (event) => {
                         </span>
     
                         <div className="flex-grow h-px bg-gray-400"></div>
-                      </div>
+                      </div> */}
                       <div className="text-medium text-[12.5px] ">
                         <div className="flex mt-2">
                         <h3 className="mr-6">Upload profile image:</h3>

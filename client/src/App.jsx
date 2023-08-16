@@ -23,6 +23,7 @@ import MapView from "../src/pages/MapView"
 import AlumniDashboard from "../src/pages/alumniDashboard"
 import StudentDashboard from "../src/pages/studentDashboard"
 import AdminLogin from "../src/pages/adminLogin"
+import Editprofile from "../src/pages/Editprofile"
 
 
 export const URL=process.env.REACT_URL
@@ -54,6 +55,7 @@ const App = () => {
         <Route path='/alumni/profile' exact element={<AlumniDashboard />} />
         <Route path='/student/profile' exact element={<StudentDashboard />} />
         <Route path='/adminLogin' exact element={<AdminLogin />} />
+        <Route path='/editprofile' exact element={<Editprofile />} />
       </Routes>
     </div>
   );

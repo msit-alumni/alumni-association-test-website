@@ -14,10 +14,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 const Index = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [edit, setEdit] = useState(0);
-  const [achievement, setAchievement] = useState("");
+  const [achievement, setAchievement] = useState([]);
   const [isAlumni, setIsAlumni] = useState(false);
-  const [updated,setUpdate]=useState(false);
   useEffect(() => {
     const roleFromLocalStorage = localStorage.getItem("role");
     if (roleFromLocalStorage === "alumni") {
@@ -26,59 +24,20 @@ const Index = () => {
       setIsAlumni(false);
     }
   }, []);
-  useEffect(()=>{
-    if(updated){
-      window.location.reload();
-      setUpdate(false)
-    }
-  }
-  ,[updated])
-  const updatereload=(id)=>{
-    update(id);
-  }
-  const update = (id) => {
-    fetch('http://backend.msitalumni.com/updateprofile', {
-      method:"put",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body:JSON.stringify({
-        achievement,
-        alumniId: id
-      }) 
-    }
-    )
-    .then(()=>{
-      setUpdate(true)
-      console.log("Update successful:", data);
-      fetchData()
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-      navigate("/")
-    }).catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-  }
-
-
-  const fetchData = () => {
-    fetch("http://backend.msitalumni.com/alumni/profile", {
+  
+  
+  useEffect(() => {
+    fetch("/alumni/profile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
     })
-    .then((res) => res.json())
-    .then((result) => {
-      console.log("Fetched data:", result.alumni);
-      setData(result.alumni); // Update the state with fetched data
-    })
-    .catch(error => {
-      console.error('There was a problem fetching the data:', error);
-    });
-  };
-  useEffect(() => {
-    fetchData(); // Fetch data when the component mounts
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result.alumni);
+        console.log("result", result);
+        console.log("data", data);
+      });
   }, []);
 
   function display(profile) {
@@ -110,19 +69,16 @@ const Index = () => {
           </div>
           <div className="flex">
             <div className="w-[70%] px-[4%] py-12">
-              {profile.company&&
-              <div>
               <div className="flex text-3xl ">
-              <BiShoppingBag />
-              <h1 className="ml-4 mt-[4px] text-xl">Work Experience</h1>
-            </div>
-            <div className="text-[14px] mt-6">
-              <h2 className="font-bold text-lg">{profile.company}</h2>
-              <p className="mt-2">{profile.designation}</p>
-              <p className="mt-2"></p>
-              <p className="mt-2">{profile.country}</p>
-            </div>
-            </div>}
+                <BiShoppingBag />
+                <h1 className="ml-4 mt-[4px] text-xl">Work Experience</h1>
+              </div>
+              <div className="text-[14px] mt-6">
+                <h2 className="font-bold text-lg">{profile.company}</h2>
+                <p className="mt-2">{profile.designation}</p>
+                <p className="mt-2"></p>
+                <p className="mt-2">{profile.country}</p>
+              </div>
               {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
                   <div className='text-[14px] mt-6'>
                       <h2 className='font-bold text-lg'>Infosys</h2>
@@ -142,40 +98,17 @@ const Index = () => {
                 <p className="mt-2">BTECH</p>
                 <p className="mt-2">{profile.batch}</p>
               </div>
-              {
-                profile.universityName&&
-                <div>
-                <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
+              {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
                   <div className='text-[14px] mt-6'>
-                      <h2 className='font-bold text-lg'>{profile.universityName}</h2>
-                      <p className='mt-2'>{profile.degreeName}</p>
-                  </div></div>
-              }
-              <div>
+                      <h2 className='font-bold text-lg'>Maharaja Surajmal Institute of Technology</h2>
+                      <p className='mt-2'>B. Tech</p>
+                      <p className='mt-2'>2008 - 2012</p>
+                  </div> */}
               <div className="w-full h-[2px] rounded-xl my-8 bg-black"></div>
               <div className="flex text-3xl ">
                 <AiOutlineTrophy />
                 <h1 className="ml-4 mt-[4px] text-xl">Achievements</h1>
-                <p className="mt-2">
-                  {profile.achievement}
-                </p>
-                <button
-                onClick={()=>{setEdit(1)}}
-                className="bg-theme md:text-[9px] mt-10 xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
-  duration-500"
-              >
-                Edit
-              </button>
-              {
-                edit==1 && (
-                  <div>
-                    <input type="text" className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" placeholder="Enter your achievement" name="achievement" value={achievement} onChange={(e)=>{setAchievement(e.target.value)}} />
-                 <button onClick={updatereload(profile._id)}>
-                 Save </button>
-                  </div>
-                )
-              }
-              </div>
+                <input  value="achievement" type="text" onchange={(e)=>{setAchievement(e.target.value)}} />
               </div>
               <div className="text-sm mt-6">
                 <h2 className="font-bold text-lg"></h2>
@@ -224,12 +157,12 @@ const Index = () => {
               >
                 Logout
               </button>
-              {/* <Link to="/editprofile"><button
+              <Link to="/editprofile"><button
                 className="bg-theme md:text-[9px] mt-10 xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
   duration-500"
               >
                 Edit profile
-              </button></Link> */}
+              </button></Link>
               {/* <div className='mx-2 p-8 mt-12 bg-[#F9F7F7]'>
                       <div className='flex'>
                           <BsPeople className='text-2xl'/>

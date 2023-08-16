@@ -13,7 +13,7 @@ app.use(cors({
 require("./db/conn");
 app.use(bodyparser.json({limit: '50mb'}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 5001;
 
 
 app.use(express.json({limit: '50mb'}));

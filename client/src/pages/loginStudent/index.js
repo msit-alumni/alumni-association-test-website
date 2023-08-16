@@ -23,7 +23,7 @@ const Register2 = ()=>{
     const postData = async (e) => {
       e.preventDefault();
       const {email,password}=user; 
-      const res = await fetch("https://backend.msitalumni.com/signinStudent", {
+      const res = await fetch("http://backend.msitalumni.com/signinStudent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const Register2 = ()=>{
                 <div className="w-full lg:w-1/2 py-2 px-12 ">
                     <div className="mx-auto w-[80%]">
                         <img src={logo} alt="" className=" " />
-                        <div className="flex justify-center ">
+                        {/* <div className="flex justify-center ">
 
 
 
@@ -101,8 +101,8 @@ const Register2 = ()=>{
                                 </button>
                             </div>
 
-                        </div>
-                        <div className="flex items-center py-4">
+                        </div> */}
+                        {/* <div className="flex items-center py-4">
                             
                             <div className="flex-grow h-px bg-gray-400"></div>
 
@@ -111,7 +111,7 @@ const Register2 = ()=>{
 
                           
                             <div className="flex-grow h-px bg-gray-400"></div>
-                        </div>
+                        </div> */}
 
                 
                         <form method='POST' className="text-[12.5px] text-medium">

@@ -12,7 +12,14 @@ import { Country, State }  from 'country-state-city';
 import cookie from "js-cookie"
 
 const Register = () => {
+  const [work, setWork] = useState(0);
+  const [master, setMaster] = useState(0);
+  const [selectedOption]=useState();
 
+  const handleMastersButtonState = (e) => {
+    if(e.target.value=='work')setWork(1);
+    if(e.target.value=='education')setMaster(1);
+  };
   const [isButtonDisabled, setButtonDisabled] = useState(true);
   const [isCreateDisabled, setCreateDisabled] = useState(true);
   const [image2, setImage] = useState(null);
@@ -47,14 +54,9 @@ const Register = () => {
             errors.country == undefined &&
             errors.branch == undefined &&
             errors.shift == undefined &&
-            errors.experience == undefined &&
-            errors.designation == undefined &&
             values.batch != "" &&
             values.branch != "" &&
-            values.shift != "" &&
-            values.experience != "" &&
-            values.designation.length > 2 &&
-            values.sector.length > 2
+            values.shift != ""
           ) {
             console.log(values)
             setButtonDisabled(false);
@@ -72,7 +74,7 @@ const Register = () => {
 
 
   const initialValues = {
-    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:""
+    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:"",universityName:"",degreeName:""
   };
   // const [latitude,setLat]=useState();
   // const [longitude,setLng]=useState();
@@ -99,7 +101,7 @@ const Register = () => {
 
 
   //   SetSubmit(1);
-  //   const res = await fetch("https://backend.msitalumni.com/signupAlumni", {
+  //   const res = await fetch("http://backend.msitalumni.com/signupAlumni", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -141,9 +143,9 @@ const Register = () => {
         console.log(data)
       console.log(data.url)
       const verified = "false";
-      const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
+      const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,universityName,degreeName}=values;
       SetSubmit(1);
-      fetch("https://backend.msitalumni.com/signupAlumni", {
+      fetch("http://backend.msitalumni.com/signupAlumni", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -165,7 +167,9 @@ const Register = () => {
         designation,
         experience,
         sector,
-        verified
+        verified,
+        universityName,
+        degreeName,
         }),
       })
       .then((res) => {
@@ -193,7 +197,7 @@ const Register = () => {
               <img src={logo} alt="" className=" " />
               {register===0  &&
                   <div id="first">
-                  <div className="flex justify-center ">
+                  {/* <div className="flex justify-center ">
                     <div className="flex justify-center">
                       <button
                         type="button"
@@ -268,9 +272,9 @@ const Register = () => {
                         Twitter
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                   <div>
-                    <div className="flex items-center py-4">
+                    {/* <div className="flex items-center py-4">
                       <div className="flex-grow h-px bg-gray-400"></div>
   
                       <span className="flex-shrink text-XS text-gray-500 px-4 font-semibold ">
@@ -278,7 +282,7 @@ const Register = () => {
                       </span>
   
                       <div className="flex-grow h-px bg-gray-400"></div>
-                    </div>
+                    </div> */}
                     <div className="text-medium text-[12.5px] ">
                     <div className="flex mt-2">
                         <h3 className="mr-6">Upload profile image:</h3>
@@ -592,70 +596,130 @@ const Register = () => {
                     <p className="text-[#b22b27]">{errors.shift}</p>
                   ) : null}
                     </div>
+                    <div>
                     <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Company (currently working with)</h6>
-                      <input
+                      <h6 className="font-[MerriWeather]">Add</h6>
+                      <select
                         type="text"
-                        placeholder="Company"
-                        value={values.company}
-                        onChange={handleButtonState}
-                        name="company"
-                          autoComplete="off"
-                          onBlur={handleBlur}
+                        value={selectedOption}
+                        onChange={handleMastersButtonState}
+                        autoComplete="off"
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.company && touched.company ? (
-                    <p className="text-[#b22b27]">{errors.company}</p>
-                  ) : null}
+                      >
+                        <option value="">None</option>
+                        {work === 0 && <option value="work">Work Experience</option>}
+                        {master === 0 && <option value="education">Higher Education</option>}
+                      </select>
                     </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Total Experience (in Yrs.)</h6>
-                      <input
-                        type="text"
-                        placeholder="Experience"
-                        value={values.experience}
-                        name="experience"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleButtonState}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.experience && touched.experience ? (
-                    <p className="text-[#b22b27]">{errors.experience}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Designation</h6>
-                      <input
-                        type="text"
-                        placeholder="Designation"
-                        value={values.designation}
-                        name="designation"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleButtonState}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.designation && touched.designation ? (
-                    <p className="text-[#b22b27]">{errors.designation}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
+
+                    {master==1 && (
+                      <div id="educationDiv">
+                        <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">University Name</h6>
+                        <input
+                          type="text"
+                          placeholder="Enter you University Name"
+                          value={values.universityName}
+                          onChange={handleButtonState}
+                          name="universityName"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                        />
+                      </div>
+                      <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Degree</h6>
+                        <input
+                          type="text"
+                          placeholder="Enter the Name of Degree"
+                          value={values.degreeName}
+                          onChange={handleButtonState}
+                          name="degreeName"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                        />
+                        
+                      </div>
+                      </div>
+                    )}
+
+                    {work === 1 && (
+                      <div id="workDiv">
+                        <div id="work">
+                      <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Company (currently working with)</h6>
+                        <input
+                          type="text"
+                          placeholder="Company"
+                          value={values.company}
+                          onChange={handleButtonState}
+                          name="company"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                        />
+                        
+                      </div>
+                      <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Total Experience (in Yrs.)</h6>
+                        <input
+                          type="text"
+                          placeholder="Experience"
+                          value={values.experience}
+                          name="experience"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                          onChange={handleButtonState}
+                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                        />
+                        
+                      </div>
+                      <div className="mt-2">
+                        <h6 className="font-[MerriWeather]">Designation</h6>
+                        <input
+                          type="text"
+                          placeholder="Designation"
+                          value={values.designation}
+                          name="designation"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                          onChange={handleButtonState}
+                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                        />
+                      
+                      </div>
+                     
+                      <div className="mt-2">
                       <h6 className="font-[MerriWeather]">Sector</h6>
-                      <input
+                      <select
                         type="text"
                         placeholder="Sector"
                         value={values.sector}
-                        name="sector"
-                        autoComplete="off"
-                        onBlur={handleBlur}
                         onChange={handleButtonState}
+                        name="sector"
+                          autoComplete="off"
+                          onBlur={handleBlur}
                         className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.sector && touched.sector ? (
-                    <p className="text-[#b22b27]">{errors.sector}</p>
-                  ) : null}
+                      >
+                        <option value="">None</option>
+                        <option value="Banking">Banking</option>
+                        <option value="Electrical Core Sector">Electrical Core Sector</option>
+                        <option value="Electronics-Software/Hardware">Electronics - Software / Hardware</option>
+                        <option value="Software Development">IT / Software Development</option>
+                        <option value="Management">Management</option>
+                        <option value="Public Sector">Public Sector</option>
+                        <option value="Research & Development">Research & Development</option>
+                        <option value="Sales and Marketing">Sales and Marketing</option>
+
+                      </select>
                     </div>
+                    </div>
+                      </div>
+                    )}
+                  </div>
+
+                    
                   </form>
                   <div className="py-2"></div>
                       <div className="text-center lg:text-left">
