@@ -111,10 +111,10 @@ const Index = () => {
                   <div className='flex text-3xl '>
                       <AiOutlineTrophy />
                       <h1 className='ml-4 mt-[4px] text-xl'>Achievements</h1>
-                      <p className="mt-2">
+                  </div>
+                  <p className="mt-2 text-[14px]">
                   {profile.achievement}
                 </p>
-                  </div>
                   <div className='text-sm mt-6'>
                       <h2 className='font-bold text-lg'></h2>
                       <p className='mt-2'></p>

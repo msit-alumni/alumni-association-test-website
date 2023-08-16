@@ -63,7 +63,11 @@ router.post("/signupAlumni", async (req, res) => {
     
     
       await alumni.save();
-      console.log("alumni registered")
+      console.log("alumni registered");
+      res.status(200).json({
+        success:true,
+        alumni
+      })
     } catch (e) {
       console.log(e);
       res.status(400).send("Invalid Details");

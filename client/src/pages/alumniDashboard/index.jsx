@@ -51,7 +51,7 @@ const Index = () => {
     )
     .then(()=>{
       setUpdate(true)
-      console.log("Update successful:", data);
+      console.log("Update successful:", data.achievement);
     
      
     }).catch(error => {
@@ -154,17 +154,9 @@ const Index = () => {
               <div className="flex text-3xl ">
                 <AiOutlineTrophy />
                 <h1 className="ml-4 mt-[4px] text-xl">Achievements</h1>
-                <p className="mt-2">
-                  {profile.achievement}
-                </p>
-                <button
-                onClick={()=>{setEdit(1)}}
-                className="bg-theme md:text-[9px] mt-10 xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7]
-  duration-500"
-              >
-                Edit
-              </button>
-              {
+              </div>
+              <p className="mt-2">{profile.achievement}</p>
+                {
                 edit==1 && (
                   <div>
                     <input type="text" className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" placeholder="Enter your achievement" name="achievement" value={achievement} onChange={(e)=>{setAchievement(e.target.value)}} />
@@ -173,7 +165,11 @@ const Index = () => {
                   </div>
                 )
               }
-              </div>
+                <button
+                onClick={()=>{setEdit(1)}}
+                className="bg-theme md:text-[9px] mt-10 xl:text-[15px] font-normal tracking-wider leading-5 text-[#F9F7F7] hover:text-theme border-[#F9F7F7] border-2 font-defaultFont px-5 py-1 rounded md:ml-8 hover:bg-[#F9F7F7] duration-500">
+                Edit
+              </button>
               </div>
               <div className="text-sm mt-6">
                 <h2 className="font-bold text-lg"></h2>

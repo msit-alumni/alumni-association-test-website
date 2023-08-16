@@ -48,8 +48,8 @@ const Register = () => {
       errors.mobile == undefined &&
       errors.dob == undefined &&
       errors.password == undefined &&
-      values.name.length > 3 &&
-      values.password.length > 6
+      values.name.length > 0 &&
+      values.password.length > 4
     ) {
       console.log(values);
       setCreateDisabled(false);
@@ -73,6 +73,57 @@ const Register = () => {
     }
     handleChange(event);
   };
+
+  useEffect(() => {
+    const {name,email,mobile,dob,universityName, degreeName,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
+    const verified = "false";
+    const achievement = "";
+    console.log("url=",url)
+    if(url){
+    fetch("http://localhost:5001/signupAlumni", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        mobile,
+        dob,
+        password,
+        country,
+        state,
+        batch,
+        image: url,
+        branch,
+        shift,
+        company,
+        designation,
+        experience,
+        sector,
+        verified,
+        universityName,
+        achievement,
+        degreeName,
+      }),
+    }) .then((response) => response.json())
+    .then((data) => {
+      // Assuming you have some logic to handle successful registration
+      console.log("Registration successful:", data);
+      navigate("/signinAlumni")
+      console.log("helloooo")
+      
+      // Navigate to the desired page (replace 'navigateFunction' with your actual navigation function)
+       // Call your navigation function here
+    })
+    
+    .catch((error) => {
+        alert("Please try again later");
+        console.error("Error posting user:", error);
+      });
+    }
+  },[url])
 
 
 
@@ -132,53 +183,7 @@ const Register = () => {
   //   cookie.set("jwt",data.token);
   //   cookie.set("user",JSON.stringify(data.user));
   // };
-  useEffect(() => {
-    const {name,email,mobile,dob,universityName, degreeName, image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
-    const verified = "false";
-    const achievement = "";
-    if(url){
-    fetch("http://localhost:5001/signupAlumni", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // "Authorization": "Bearer " + localStorage.getItem("jwt"),
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        mobile,
-        dob,
-        password,
-        country,
-        state,
-        batch,
-        image: url,
-        branch,
-        shift,
-        company,
-        designation,
-        experience,
-        sector,
-        verified,
-        universityName,
-        achievement,
-        degreeName,
-      }),
-    }) .then((response) => response.json())
-    .then((data) => {
-      // Assuming you have some logic to handle successful registration
-      console.log("Registration successful:", data);
-      
-      // Navigate to the desired page (replace 'navigateFunction' with your actual navigation function)
-       // Call your navigation function here
-    })
-    
-    .catch((error) => {
-        alert("Please try again later");
-        console.error("Error posting user:", error);
-      });
-    }
-  },[url])
+
 
   function postData() {
     
@@ -197,7 +202,6 @@ const Register = () => {
         setUrl(data.url)
         console.log(data);
         console.log(data.url);
-        navigate("/signinAlumni")
         
       })
       .catch((err) => {
