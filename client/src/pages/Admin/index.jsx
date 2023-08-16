@@ -19,7 +19,7 @@ const Index = () => {
 
 
   useEffect(() => {
-    fetch('http://backend.msitalumni.com/AllAlumni')
+    fetch('http://localhost:5001/AllAlumni')
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -36,7 +36,7 @@ const Index = () => {
 
 
 const update = (id) => {
-  fetch('http://backend.msitalumni.com/Verify', {
+  fetch('http://localhost:5001/Verify', {
     method:"put",
     headers: {
       "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const update = (id) => {
   });
 }
 const deletedata = (id) => {
-  fetch('http://backend.msitalumni.com/delete', {
+  fetch('http://localhost:5001/delete', {
     method:"delete",
     headers: {
       "Content-Type": "application/json"

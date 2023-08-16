@@ -35,9 +35,10 @@ const Index = () => {
   ,[updated])
   const updatereload=(id)=>{
     update(id);
+    
   }
   const update = (id) => {
-    fetch('http://backend.msitalumni.com/updateprofile', {
+    fetch('http://localhost:5001/updateprofile', {
       method:"put",
       headers: {
         "Content-Type": "application/json"
@@ -51,11 +52,8 @@ const Index = () => {
     .then(()=>{
       setUpdate(true)
       console.log("Update successful:", data);
-      fetchData()
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-      navigate("/")
+    
+     
     }).catch(error => {
       console.error('There was a problem with the fetch operation:', error);
     });
@@ -63,7 +61,7 @@ const Index = () => {
 
 
   const fetchData = () => {
-    fetch("http://backend.msitalumni.com/alumni/profile", {
+    fetch("http://localhost:5001/alumni/profile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
@@ -88,7 +86,7 @@ const Index = () => {
         <div className="mx-[10%] mt-32 font-defaultFont">
           <div className="bg-[#f5f7fb] w-full px-[10%] py-8">
             <div className="flex">
-              <img src={profile.image} alt="" />
+              <img  src={profile.image} className="object-contain h-60 w-40" alt="" />
               <div className="px-[3%] w-full ml-[14%]">
                 <h1 className="mt-16 mb-2 text-2xl font-bold">
                   {profile.name}

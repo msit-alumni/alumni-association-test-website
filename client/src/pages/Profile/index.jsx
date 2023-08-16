@@ -29,7 +29,7 @@ const Index = () => {
     //         })
     // }, [])
     useEffect(() => {
-        fetch('http://backend.msitalumni.com/AllAlumni')
+        fetch('http://localhost:5001/AllAlumni')
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -53,7 +53,7 @@ const Index = () => {
         <div className='mx-[10%] mt-32 font-defaultFont'>
           <div className='bg-[#f5f7fb] w-full px-[10%] py-8'>
               <div className='flex'>
-                  <img src={profile.image} alt="" />
+                  <img src={profile.image} className="object-contain h-60 w-40" alt="" />
                   <div className='px-[3%] w-full ml-[14%]'>
                   <h1 className='mt-16 mb-2 text-2xl font-bold'>{profile.name}</h1>
                       <div className='flex justify-between mt-4'> 

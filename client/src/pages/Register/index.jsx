@@ -5,22 +5,23 @@ import img from "./img.svg";
 import logo from "./logo2.png";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import {signupSchema} from "../../schema/alumni"
+import { signupSchema } from "../../schema/alumni"
 import img1 from "../../assets/images/connect logo 2.png"
 import img2 from "../../assets/images/Register/img2.png"
-import { Country, State }  from 'country-state-city';
+import { Country, State } from 'country-state-city';
 import cookie from "js-cookie"
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [url,setUrl]=useState();
   const [work, setWork] = useState(0);
   const [master, setMaster] = useState(0);
-  const [selectedOption]=useState();
+  const [selectedOption] = useState();
 
   const handleMastersButtonState = (e) => {
-    if(e.target.value=='work')setWork(1);
-    if(e.target.value=='education')setMaster(1);
+    if (e.target.value == 'work') setWork(1);
+    if (e.target.value == 'education') setMaster(1);
   };
   const [isButtonDisabled, setButtonDisabled] = useState(true);
   const [isCreateDisabled, setCreateDisabled] = useState(true);
@@ -37,50 +38,50 @@ const Register = () => {
   const updatedStates = (countryId) =>
     State
       .getStatesOfCountry(countryId)
-      .map((state) => ({latitude:state.latitude, label: state.name, value: state.isoCode, ...state }));
-      
-      const handleButtonState = (event) => {
-        console.log(errors);
-        handleChange(event);
-        if (
-          errors.email == undefined &&
-          errors.mobile == undefined &&
-          errors.dob == undefined &&
-          errors.password == undefined &&
-          values.name.length > 2 &&
-          values.password.length > 6 
-        ) {
-          console.log(values);
-          setCreateDisabled(false);
-          if (
-            errors.country == undefined &&
-            errors.branch == undefined &&
-            errors.shift == undefined &&
-            values.batch != "" &&
-            values.branch != "" &&
-            values.shift != ""
-          ) {
-            console.log(values)
-            setButtonDisabled(false);
-          }
-          else{
-            setButtonDisabled(true);
-          }
-        }
-        else{
-          setCreateDisabled(true);
-        }
-        handleChange(event);
-      };
-      
+      .map((state) => ({ latitude: state.latitude, label: state.name, value: state.isoCode, ...state }));
+
+  const handleButtonState = (event) => {
+    console.log(errors);
+    handleChange(event);
+    if (
+      errors.email == undefined &&
+      errors.mobile == undefined &&
+      errors.dob == undefined &&
+      errors.password == undefined &&
+      values.name.length > 3 &&
+      values.password.length > 6
+    ) {
+      console.log(values);
+      setCreateDisabled(false);
+      if (
+        errors.country == undefined &&
+        errors.branch == undefined &&
+        errors.shift == undefined &&
+        values.batch != "" &&
+        values.branch != "" &&
+        values.shift != ""
+      ) {
+        console.log(values)
+        setButtonDisabled(false);
+      }
+      else {
+        setButtonDisabled(true);
+      }
+    }
+    else {
+      setCreateDisabled(true);
+    }
+    handleChange(event);
+  };
+
 
 
   const initialValues = {
-    name:"",email:"",mobile:"",image:"",dob:"",password:"",country:"",state:"",batch:"",branch:"",shift:"",company:"",designation:"",experience:"",sector:"",universityName:"",degreeName:""
+    name: "", email: "", mobile: "", image: "", dob: "", password: "", country: "", state: "", batch: "", branch: "", shift: "", company: "", designation: "", experience: "", sector: "", universityName: "", degreeName: ""
   };
   // const [latitude,setLat]=useState();
   // const [longitude,setLng]=useState();
-  const { values, handleBlur, handleChange, handleSubmit, errors, touched ,setValues} =
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched, setValues } =
     useFormik({
       initialValues,
       validationSchema: signupSchema,
@@ -92,9 +93,9 @@ const Register = () => {
         action.resetForm();
       },
     });
-    const [submit,SetSubmit] = useState(0);
-    const [register,setregister]=useState(0);
-// console.log(values)
+  const [submit, SetSubmit] = useState(0);
+  const [register, setregister] = useState(0);
+  // console.log(values)
 
   // const postData = async (e) => {
   //   e.preventDefault();
@@ -103,7 +104,7 @@ const Register = () => {
 
 
   //   SetSubmit(1);
-  //   const res = await fetch("http://backend.msitalumni.com/signupAlumni", {
+  //   const res = await fetch("http://localhost:5001/signupAlumni", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -131,30 +132,18 @@ const Register = () => {
   //   cookie.set("jwt",data.token);
   //   cookie.set("user",JSON.stringify(data.user));
   // };
-
-  function postData() {
-    const data = new FormData();
-    data.append("file", image2);
-    data.append("upload_preset", "Alumni");
-    data.append("cloud_name", "dx66depjo");
-    fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
+  useEffect(() => {
+    const {name,email,mobile,dob,universityName, degreeName, image,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
+    const verified = "false";
+    const achievement = "";
+    if(url){
+    fetch("http://localhost:5001/signupAlumni", {
       method: "POST",
-      body: data,
-    }).then(res => res.json())
-      .then(data => {
-        console.log(data)
-      console.log(data.url)
-      const verified = "false";
-      const achievement="";
-      const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,universityName,degreeName}=values;
-      // SetSubmit(1);
-      fetch("http://backend.msitalumni.com/signupAlumni", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-          // "Authorization": "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
         name,
         email,
         mobile,
@@ -163,7 +152,7 @@ const Register = () => {
         country,
         state,
         batch,
-        image:data.url,
+        image: url,
         branch,
         shift,
         company,
@@ -174,37 +163,65 @@ const Register = () => {
         universityName,
         achievement,
         degreeName,
-        }),
-      })
-      .then((res) => {
-        const data1 = res.json();
-        cookie.set("jwt",data1.token);
-        cookie.set("user",JSON.stringify(data1.user));
-        navigate("/signinAlumni")
-      })
-      .catch((error) => {
-        alert("Please try again later")
+      }),
+    }) .then((response) => response.json())
+    .then((data) => {
+      // Assuming you have some logic to handle successful registration
+      console.log("Registration successful:", data);
+      
+      // Navigate to the desired page (replace 'navigateFunction' with your actual navigation function)
+       // Call your navigation function here
+    })
+    
+    .catch((error) => {
+        alert("Please try again later");
         console.error("Error posting user:", error);
       });
-  }).catch(err => {
-    alert("Please try again later")
-      console.log(err)
-  });
-  };
+    }
+  },[url])
+
+  function postData() {
+    
+    if(image2){
+    const data = new FormData();
+    data.append("file", image2);
+    data.append("upload_preset", "Alumni");
+    data.append("cloud_name", "dx66depjo");
+
+     fetch("https://api.cloudinary.com/v1_1/dx66depjo/image/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUrl(data.url)
+        console.log(data);
+        console.log(data.url);
+        navigate("/signinAlumni")
+        
+      })
+      .catch((err) => {
+        alert("Please try again later");
+        console.log(err);
+      });
+    }
+  
+  }
+
 
   return (
     <div>
       <Navbar />
-      {submit==0 &&
-      <div className=" top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
-      <div className="container mx-auto ">
-        <div className="flex flex-col justify-between md:flex-row w-[90%] lg:w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
-          <div className="w-full lg:w-1/2 py-2 px-12 ">
-            <div className="mx-auto w-[80%]">
-              <img src={logo} alt="" className=" " />
-              {register===0  &&
-                  <div id="first">
-                  {/* <div className="flex justify-center ">
+      {submit == 0 &&
+        <div className=" top-[150px]  md:mb-[100px] md:top-[120px] relative min-h-screen  py-5">
+          <div className="container mx-auto ">
+            <div className="flex flex-col justify-between md:flex-row w-[90%] lg:w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+              <div className="w-full lg:w-1/2 py-2 px-12 ">
+                <div className="mx-auto w-[80%]">
+                  <img src={logo} alt="" className=" " />
+                  {register === 0 &&
+                    <div id="first">
+                      {/* <div className="flex justify-center ">
                     <div className="flex justify-center">
                       <button
                         type="button"
@@ -280,8 +297,8 @@ const Register = () => {
                       </button>
                     </div>
                   </div> */}
-                  <div>
-                    {/* <div className="flex items-center py-4">
+                      <div>
+                        {/* <div className="flex items-center py-4">
                       <div className="flex-grow h-px bg-gray-400"></div>
   
                       <span className="flex-shrink text-XS text-gray-500 px-4 font-semibold ">
@@ -290,480 +307,480 @@ const Register = () => {
   
                       <div className="flex-grow h-px bg-gray-400"></div>
                     </div> */}
-                    <div className="text-medium text-[12.5px] ">
-                    <div className="flex mt-2">
-                        <h3 className="mr-6">Upload profile image:</h3>
-                        <input
-                                             type="file"
-                                             accept="image/*"
-                                             onChange={(e) => setImage(e.target.files[0])}
-                                         />
+                        <div className="text-medium text-[12.5px] ">
+                          <div className="flex mt-2">
+                            <h3 className="mr-6">Upload profile image:</h3>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => setImage(e.target.files[0])}
+                            />
+                          </div>
+                          <div className="mt-2">
+                            <h6 className="font-[MerriWeather]">Name</h6>
+                            <input
+                              type="text"
+                              placeholder="Name"
+                              value={values.name}
+                              name="name"
+                              autoComplete="off"
+                              onBlur={handleBlur}
+                              onChange={handleButtonState}
+                              className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                            />
+                            {errors.name && touched.name ? (
+                              <p className="text-[#b22b27]">{errors.name}</p>
+                            ) : null}
+                          </div>
+                          <div className="mt-5">
+                            <h6 className="font-[MerriWeather]">E-mail</h6>
+                            <input
+                              type="text  placeholder-gray-600 "
+                              placeholder="E-mail"
+                              value={values.email}
+                              name="email"
+                              onChange={handleButtonState}
+                              autoComplete="off"
+                              onBlur={handleBlur}
+                              className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                            />
+                            {errors.email && touched.email ? (
+                              <p className="text-[#b22b27]">{errors.email}</p>
+                            ) : null}
+                          </div>
+                          <div className="mt-5">
+                            <h6 className="font-[MerriWeather]">Mobile No</h6>
+                            <input
+                              type="number"
+                              placeholder="Mobile No"
+                              value={values.mobile}
+                              onChange={handleButtonState}
+                              name="mobile"
+                              autoComplete="off"
+                              onBlur={handleBlur}
+                              className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
+                            />
+                            {errors.mobile && touched.mobile ? (
+                              <p className="text-[#b22b27]">{errors.mobile}</p>
+                            ) : null}
+                          </div>
+                          <div className="mt-5">
+                            <h6 className="font-[MerriWeather]">Date of Birth</h6>
+                            <input
+                              type="date"
+                              placeholder="Date of Birth"
+                              value={values.dob}
+                              onChange={handleButtonState}
+                              name="dob"
+                              autoComplete="off"
+                              onBlur={handleBlur}
+                              className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
+                            />
+                            {errors.dob && touched.dob ? (
+                              <p className="text-[#b22b27]">{errors.dob}</p>
+                            ) : null}
+                          </div>
+
+                          <div className="mt-5">
+                            <h6 className="font-[MerriWeather]">Password</h6>
+                            <input
+                              type="password"
+                              placeholder="Password"
+                              value={values.password}
+                              onChange={handleButtonState}
+                              name="password"
+                              autoComplete="off"
+                              onBlur={handleBlur}
+                              className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
+                            />
+                            {errors.password && touched.password ? (
+                              <p className="text-[#b22b27]">{errors.password}</p>
+                            ) : null}
+                          </div>
+
+                          <div className="py-1"></div>
+
+                          <div>
+                            <p className="text-[10px] font-dark text-black ">
+                              By signing up, you agree to our{" "}
+                              <a href="#" className="font-medium text-blue-500">
+                                terms and conditions
+                              </a>
+                            </p>
+                          </div>
+
+                          <div className="py-1"></div>
+                          <div className="flex items-start py-1">
+                            <div className="flex items-center h-5">
+                              <input
+                                id="terms"
+                                aria-describedby="terms"
+                                type="checkbox"
+                                className="w-4 h-4 border border-gray-300 rounded bg-[#DBE2EF] focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                required=""
+                              />
+                            </div>
+
+                            <div className="ml-3 text-sm">
+                              <label for="terms" className="font-dark  text-black">
+                                I Agree{" "}
+                                <a
+                                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                                  href="#"
+                                ></a>
+                              </label>
+                            </div>
+                          </div>
+                          <div className="flex">
+                            {isCreateDisabled && <button disabled={true} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
+                              Create Account
+                            </button>}
+                            {(!isCreateDisabled) && <button disabled={false} onClick={() => { setregister(1) }} className="w-full px-6 py-2 mt-4 text-white hover:shadow-md ease-in-out duration-300 bg-[#3F72AF] rounded-lg ">
+                              Create Account
+                            </button>}
+                          </div>
+                          <Link to="/signinAlumni">
+                            <p className="text-sm text-center mt-1 font-dark  text-black">
+                              Already registered?{" "}
+                              <a href="#" className="font-medium text-blue-500">
+                                Log in
+                              </a>
+                            </p>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  {register === 1 &&
+                    <div id="second">
+                      <form method="POST" className="text-[12.5px]">
+                        <div className="mt-2">
+                          <h6 className="font-[MerriWeather]">Country</h6>
+                          <select
+                            type="text"
+                            placeholder="Country"
+                            value={values.country}
+                            name="country"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                          >
+                            <option value="">--Select Country--</option>
+                            {updatedCountries.map((country) => (
+                              <option key={country.id} value={country.value}>
+                                {country.label}
+                              </option>
+                            ))}
+                          </select>
+
+                          {errors.country && touched.country ? (
+                            <p className="text-[#b22b27]">{errors.country}</p>
+                          ) : null}
                         </div>
                         <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Name</h6>
-                      <input
-                        type="text"
-                        placeholder="Name"
-                        value={values.name}
-                        name="name"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        onChange={handleButtonState}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      />
-                      {errors.name && touched.name ? (
-                    <p className="text-[#b22b27]">{errors.name}</p>
-                  ) : null}
-                    </div>
-                      <div className="mt-5">
-                        <h6 className="font-[MerriWeather]">E-mail</h6>
-                        <input
-                          type="text  placeholder-gray-600 "
-                          placeholder="E-mail"
-                          value={values.email}
-                          name="email"
-                          onChange={handleButtonState} 
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                        {errors.email && touched.email ? (
-                    <p className="text-[#b22b27]">{errors.email}</p>
-                  ) : null}
-                      </div>
-                      <div className="mt-5">
-                        <h6 className="font-[MerriWeather]">Mobile No</h6>
-                        <input
-                          type="number"
-                          placeholder="Mobile No"
-                          value={values.mobile}
-                          onChange={handleButtonState}
-                          name="mobile"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                          className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
-                        />
-                        {errors.mobile && touched.mobile ? (
-                    <p className="text-[#b22b27]">{errors.mobile}</p>
-                  ) : null}
-                      </div>
-                      <div className="mt-5">
-                        <h6 className="font-[MerriWeather]">Date of Birth</h6>
-                        <input
-                          type="date"
-                          placeholder="Date of Birth"
-                          value={values.dob}
-                          onChange={handleButtonState}
-                          name="dob"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                          className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
-                        />
-                        {errors.dob && touched.dob ? (
-                    <p className="text-[#b22b27]">{errors.dob}</p>
-                  ) : null}
-                      </div>
-  
-                      <div className="mt-5">
-                        <h6 className="font-[MerriWeather]">Password</h6>
-                        <input
-                          type="password"
-                          placeholder="Password"
-                          value={values.password}
-                          onChange={handleButtonState}
-                          name="password"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                          className="border rounded font-[MerriWeather] border-gray-400 py-1 px-2 w-full"
-                        />
-                        {errors.password && touched.password ? (
-                    <p className="text-[#b22b27]">{errors.password}</p>
-                  ) : null}
-                      </div>
-  
-                      <div className="py-1"></div>
-  
-                      <div>
-                        <p className="text-[10px] font-dark text-black ">
-                          By signing up, you agree to our{" "}
-                          <a href="#" className="font-medium text-blue-500">
-                            terms and conditions
-                          </a>
-                        </p>
-                      </div>
-  
-                      <div className="py-1"></div>
-                      <div className="flex items-start py-1">
-                        <div className="flex items-center h-5">
-                          <input
-                            id="terms"
-                            aria-describedby="terms"
-                            type="checkbox"
-                            className="w-4 h-4 border border-gray-300 rounded bg-[#DBE2EF] focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                            required=""
-                          />
+                          <h6 className="font-[MerriWeather]">State</h6>
+                          <select
+                            type="text"
+                            placeholder="State"
+                            value={values.state}
+                            // options={updatedStates(values.country ? values.country.value : null)}
+                            name="state"
+                            autoComplete="off"
+                            onBlur={handleBlur}
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                            onChange={(e) => {
+                              const stateValue = e.target.value;
+                              setValues({
+                                ...values,
+                                state: stateValue,
+                              });
+                              const selectedCountry = values.country
+                              // console.log(selectedCountry)
+                              let selectedState
+                              if (values.state) {
+                                selectedState = values.state;
+                                //  console.log(selectedState)
+                                // Get the list of states for the selected country
+                                const states = updatedStates(selectedCountry);
+                                // console.log(states)
+                                // Check if the selected state is present in the list of states for the selected country
+
+                                const state = states.find((state) => state.value === selectedState);
+
+                                // console.log(state.value)
+                                // if (state) {
+                                //   console.log(state.latitude);
+                                //   setLat(state.latitude);
+                                //   setLng(state.longitude);
+                                //   console.log(latitude);
+                                //   console.log(longitude)
+                                // } else {
+                                //   console.log("Selected state not found");
+                                // }
+                              }
+
+
+
+
+                            }}
+
+                          >
+                            {updatedStates(values.country).map((state) => (
+
+                              <option key={state.value} value={state.value}>
+                                {state.label}
+                              </option>
+                            ))}
+                          </select>
+
+                          {errors.state && touched.state ? (
+                            <p className="text-[#b22b27]">{errors.state}</p>
+                          ) : null}
                         </div>
-  
-                        <div className="ml-3 text-sm">
-                          <label for="terms" className="font-dark  text-black">
-                            I Agree{" "}
-                            <a
-                              className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                              href="#"
-                            ></a>
-                          </label>
-                        </div>
-                      </div>
-                      <div className="flex">
-                        {isCreateDisabled && <button disabled={true} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
-                        Create Account
-                      </button>}
-                      {(!isCreateDisabled) && <button disabled={false} onClick={()=>{setregister(1)}} className="w-full px-6 py-2 mt-4 text-white hover:shadow-md ease-in-out duration-300 bg-[#3F72AF] rounded-lg ">
-                      Create Account
-                      </button>}
-                      </div>
-                  <Link to="/signinAlumni">
-                      <p className="text-sm text-center mt-1 font-dark  text-black">
-                        Already registered?{" "}
-                        <a href="#" className="font-medium text-blue-500">
-                          Log in
-                        </a>
-                      </p>
-                      </Link>
-                    </div>
-                  </div>
-                  </div>
-              }
-              {register===1 &&
-                  <div id="second">
-                  <form method="POST" className="text-[12.5px]">
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Country</h6>
-                      <select
-                        type="text"
-                        placeholder="Country"
-                        value={values.country}
-                        name="country"
-                        autoComplete="off"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">--Select Country--</option>
-                        {updatedCountries.map((country) => (
-                          <option key={country.id} value={country.value}>
-                            {country.label}
-                          </option>
-                        ))}
-                      </select>
-
-                      {errors.country && touched.country ? (
-                    <p className="text-[#b22b27]">{errors.country}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">State</h6>
-                      <select
-                        type="text"
-                        placeholder="State"
-                        value={values.state}
-                        // options={updatedStates(values.country ? values.country.value : null)}
-                        name="state"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        onChange={(e) => {
-                          const stateValue = e.target.value;
-                          setValues({
-                            ...values,
-                            state: stateValue,
-                          });
-                          const selectedCountry = values.country
-                          // console.log(selectedCountry)
-                          let selectedState
-                          if(values.state){
-                             selectedState = values.state;
-                            //  console.log(selectedState)
-                          // Get the list of states for the selected country
-                          const states = updatedStates(selectedCountry);
-                          // console.log(states)
-                          // Check if the selected state is present in the list of states for the selected country
-                          
-                            const state =  states.find((state) => state.value === selectedState);
-                          
-                          // console.log(state.value)
-                          // if (state) {
-                          //   console.log(state.latitude);
-                          //   setLat(state.latitude);
-                          //   setLng(state.longitude);
-                          //   console.log(latitude);
-                          //   console.log(longitude)
-                          // } else {
-                          //   console.log("Selected state not found");
-                          // }
-                          }
-                          
-                          
-
-                          
-                        }}
-                        
-                      >
-                        {updatedStates(values.country).map((state) => (
-                          
-                        <option key={state.value} value={state.value}>
-                          {state.label}
-                        </option>
-                      ))}
-                    </select>
-              
-                      {errors.state && touched.state ? (
-                    <p className="text-[#b22b27]">{errors.state}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Batch</h6>
-                      <select
-                        type="text"
-                        placeholder="Batch"
-                        value={values.batch}
-                        onChange={handleButtonState}
-                        name="batch"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">None</option>
-                        <option value="2005-09">2005-09</option>
-                        <option value="2006-10">2006-10</option>
-                        <option value="2007-11">2007-11</option>
-                        <option value="2008-12">2008-12</option>
-                        <option value="2009-13">2009-13</option>
-                        <option value="2010-14">2010-14</option>
-                        <option value="2011-15">2011-15</option>
-                        <option value="2012-16">2012-16</option>
-                        <option value="2013-17">2013-17</option>
-                        <option value="2014-18">2014-18</option>
-                        <option value="2015-19">2015-19</option>
-                        <option value="2016-20">2016-20</option>
-                        <option value="2017-21">2017-21</option>
-                        <option value="2018-22">2018-22</option>
-                        <option value="2019-23">2019-23</option>
-                        <option value="2020-24">2020-24</option>
-                        <option value="2021-25">2021-25</option>
-                        <option value="2022-26">2022-26</option>
-                        <option value="2023-27">2023-27</option>
-                        <option value="2024-28">2024-28</option>
-                        <option value="2025-29">2025-29</option>
-
-                      </select>
-                      {errors.batch && touched.batch ? (
-                    <p className="text-[#b22b27]">{errors.batch}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Branch</h6>
-                      <select
-                        type="text"
-                        placeholder="Branch"
-                        value={values.branch}
-                        onChange={handleButtonState}
-                        name="branch"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">None</option>
-                        <option value="IT">IT</option>
-                        <option value="CSE">CSE</option>
-                        <option value="ECE">ECE</option>
-                        <option value="EEE">EEE</option>
-                      </select>
-                      {errors. branch && touched.branch ? (
-                    <p className="text-[#b22b27]">{errors.branch}</p>
-                  ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Shift</h6>
-                      <select
-                        type="text"
-                        placeholder="Shift"
-                        value={values.shift}
-                        name="shift"
-                        autoComplete="off"
-                        onBlur={handleBlur}
-                        onChange={handleButtonState}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">None</option>
-                        <option value="Morning">Morning</option>
-                        <option value="Evening">Evening</option>
-                      </select>
-                      {errors.shift && touched.shift ? (
-                    <p className="text-[#b22b27]">{errors.shift}</p>
-                  ) : null}
-                    </div>
-                    <div>
-                    <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Add</h6>
-                      <select
-                        type="text"
-                        value={selectedOption}
-                        onChange={handleMastersButtonState}
-                        autoComplete="off"
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">None</option>
-                        {work === 0 && <option value="work">Work Experience</option>}
-                        {master === 0 && <option value="education">Higher Education</option>}
-                      </select>
-                    </div>
-
-                    {master==1 && (
-                      <div id="educationDiv">
                         <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">University Name</h6>
-                        <input
-                          type="text"
-                          placeholder="Enter you University Name"
-                          value={values.universityName}
-                          onChange={handleButtonState}
-                          name="universityName"
+                          <h6 className="font-[MerriWeather]">Batch</h6>
+                          <select
+                            type="text"
+                            placeholder="Batch"
+                            value={values.batch}
+                            onChange={handleButtonState}
+                            name="batch"
                             autoComplete="off"
                             onBlur={handleBlur}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                      </div>
-                      <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Degree</h6>
-                        <input
-                          type="text"
-                          placeholder="Enter the Name of Degree"
-                          value={values.degreeName}
-                          onChange={handleButtonState}
-                          name="degreeName"
-                            autoComplete="off"
-                            onBlur={handleBlur}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                        
-                      </div>
-                      </div>
-                    )}
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                          >
+                            <option value="">None</option>
+                            <option value="2005-09">2005-09</option>
+                            <option value="2006-10">2006-10</option>
+                            <option value="2007-11">2007-11</option>
+                            <option value="2008-12">2008-12</option>
+                            <option value="2009-13">2009-13</option>
+                            <option value="2010-14">2010-14</option>
+                            <option value="2011-15">2011-15</option>
+                            <option value="2012-16">2012-16</option>
+                            <option value="2013-17">2013-17</option>
+                            <option value="2014-18">2014-18</option>
+                            <option value="2015-19">2015-19</option>
+                            <option value="2016-20">2016-20</option>
+                            <option value="2017-21">2017-21</option>
+                            <option value="2018-22">2018-22</option>
+                            <option value="2019-23">2019-23</option>
+                            <option value="2020-24">2020-24</option>
+                            <option value="2021-25">2021-25</option>
+                            <option value="2022-26">2022-26</option>
+                            <option value="2023-27">2023-27</option>
+                            <option value="2024-28">2024-28</option>
+                            <option value="2025-29">2025-29</option>
 
-                    {work === 1 && (
-                      <div id="workDiv">
-                        <div id="work">
-                      <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Company (currently working with)</h6>
-                        <input
-                          type="text"
-                          placeholder="Company"
-                          value={values.company}
-                          onChange={handleButtonState}
-                          name="company"
+                          </select>
+                          {errors.batch && touched.batch ? (
+                            <p className="text-[#b22b27]">{errors.batch}</p>
+                          ) : null}
+                        </div>
+                        <div className="mt-2">
+                          <h6 className="font-[MerriWeather]">Branch</h6>
+                          <select
+                            type="text"
+                            placeholder="Branch"
+                            value={values.branch}
+                            onChange={handleButtonState}
+                            name="branch"
                             autoComplete="off"
                             onBlur={handleBlur}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                        
-                      </div>
-                      <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Total Experience (in Yrs.)</h6>
-                        <input
-                          type="text"
-                          placeholder="Experience"
-                          value={values.experience}
-                          name="experience"
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                          >
+                            <option value="">None</option>
+                            <option value="IT">IT</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                          </select>
+                          {errors.branch && touched.branch ? (
+                            <p className="text-[#b22b27]">{errors.branch}</p>
+                          ) : null}
+                        </div>
+                        <div className="mt-2">
+                          <h6 className="font-[MerriWeather]">Shift</h6>
+                          <select
+                            type="text"
+                            placeholder="Shift"
+                            value={values.shift}
+                            name="shift"
                             autoComplete="off"
                             onBlur={handleBlur}
-                          onChange={handleButtonState}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                        
-                      </div>
-                      <div className="mt-2">
-                        <h6 className="font-[MerriWeather]">Designation</h6>
-                        <input
-                          type="text"
-                          placeholder="Designation"
-                          value={values.designation}
-                          name="designation"
-                            autoComplete="off"
-                            onBlur={handleBlur}
-                          onChange={handleButtonState}
-                          className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                        />
-                      
-                      </div>
-                     
-                      <div className="mt-2">
-                      <h6 className="font-[MerriWeather]">Sector</h6>
-                      <select
-                        type="text"
-                        placeholder="Sector"
-                        value={values.sector}
-                        onChange={handleButtonState}
-                        name="sector"
-                          autoComplete="off"
-                          onBlur={handleBlur}
-                        className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
-                      >
-                        <option value="">None</option>
-                        <option value="Banking">Banking</option>
-                        <option value="Electrical Core Sector">Electrical Core Sector</option>
-                        <option value="Electronics-Software/Hardware">Electronics - Software / Hardware</option>
-                        <option value="Software Development">IT / Software Development</option>
-                        <option value="Management">Management</option>
-                        <option value="Public Sector">Public Sector</option>
-                        <option value="Research & Development">Research & Development</option>
-                        <option value="Sales and Marketing">Sales and Marketing</option>
+                            onChange={handleButtonState}
+                            className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                          >
+                            <option value="">None</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Evening">Evening</option>
+                          </select>
+                          {errors.shift && touched.shift ? (
+                            <p className="text-[#b22b27]">{errors.shift}</p>
+                          ) : null}
+                        </div>
+                        <div>
+                          <div className="mt-2">
+                            <h6 className="font-[MerriWeather]">Add</h6>
+                            <select
+                              type="text"
+                              value={selectedOption}
+                              onChange={handleMastersButtonState}
+                              autoComplete="off"
+                              className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                            >
+                              <option value="">None</option>
+                              {work === 0 && <option value="work">Work Experience</option>}
+                              {master === 0 && <option value="education">Higher Education</option>}
+                            </select>
+                          </div>
 
-                      </select>
-                    </div>
-                    </div>
-                      </div>
-                    )}
-                  </div>
+                          {master == 1 && (
+                            <div id="educationDiv">
+                              <div className="mt-2">
+                                <h6 className="font-[MerriWeather]">University Name</h6>
+                                <input
+                                  type="text"
+                                  placeholder="Enter you University Name"
+                                  value={values.universityName}
+                                  onChange={handleButtonState}
+                                  name="universityName"
+                                  autoComplete="off"
+                                  onBlur={handleBlur}
+                                  className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                />
+                              </div>
+                              <div className="mt-2">
+                                <h6 className="font-[MerriWeather]">Degree</h6>
+                                <input
+                                  type="text"
+                                  placeholder="Enter the Name of Degree"
+                                  value={values.degreeName}
+                                  onChange={handleButtonState}
+                                  name="degreeName"
+                                  autoComplete="off"
+                                  onBlur={handleBlur}
+                                  className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                />
 
-                    
-                  </form>
-                  <div className="py-2"></div>
+                              </div>
+                            </div>
+                          )}
+
+                          {work === 1 && (
+                            <div id="workDiv">
+                              <div id="work">
+                                <div className="mt-2">
+                                  <h6 className="font-[MerriWeather]">Company (currently working with)</h6>
+                                  <input
+                                    type="text"
+                                    placeholder="Company"
+                                    value={values.company}
+                                    onChange={handleButtonState}
+                                    name="company"
+                                    autoComplete="off"
+                                    onBlur={handleBlur}
+                                    className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                  />
+
+                                </div>
+                                <div className="mt-2">
+                                  <h6 className="font-[MerriWeather]">Total Experience (in Yrs.)</h6>
+                                  <input
+                                    type="text"
+                                    placeholder="Experience"
+                                    value={values.experience}
+                                    name="experience"
+                                    autoComplete="off"
+                                    onBlur={handleBlur}
+                                    onChange={handleButtonState}
+                                    className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                  />
+
+                                </div>
+                                <div className="mt-2">
+                                  <h6 className="font-[MerriWeather]">Designation</h6>
+                                  <input
+                                    type="text"
+                                    placeholder="Designation"
+                                    value={values.designation}
+                                    name="designation"
+                                    autoComplete="off"
+                                    onBlur={handleBlur}
+                                    onChange={handleButtonState}
+                                    className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                  />
+
+                                </div>
+
+                                <div className="mt-2">
+                                  <h6 className="font-[MerriWeather]">Sector</h6>
+                                  <select
+                                    type="text"
+                                    placeholder="Sector"
+                                    value={values.sector}
+                                    onChange={handleButtonState}
+                                    name="sector"
+                                    autoComplete="off"
+                                    onBlur={handleBlur}
+                                    className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
+                                  >
+                                    <option value="">None</option>
+                                    <option value="Banking">Banking</option>
+                                    <option value="Electrical Core Sector">Electrical Core Sector</option>
+                                    <option value="Electronics-Software/Hardware">Electronics - Software / Hardware</option>
+                                    <option value="Software Development">IT / Software Development</option>
+                                    <option value="Management">Management</option>
+                                    <option value="Public Sector">Public Sector</option>
+                                    <option value="Research & Development">Research & Development</option>
+                                    <option value="Sales and Marketing">Sales and Marketing</option>
+
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+
+                      </form>
+                      <div className="py-2"></div>
                       <div className="text-center lg:text-left">
-                    <div className="flex">
-                      {isButtonDisabled && <button disabled={true} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
-                        Submit
-                      </button>}
-                      {(!isButtonDisabled) && <button disabled={false} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
-                        Submit
-                      </button>}
+                        <div className="flex">
+                          {isButtonDisabled && <button disabled={true} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
+                            Submit
+                          </button>}
+                          {(!isButtonDisabled) && <button disabled={false} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
+                            Submit
+                          </button>}
+                        </div>
+                      </div>
                     </div>
-                    </div>
-                  </div>
-              }
-              
+                  }
+
+                </div>
+              </div>
+
+              <div className=" lg:w-1/2  h-screen  hidden lg:block ">
+                <img src={img} alt="" />
+              </div>
             </div>
           </div>
-
-          <div className=" lg:w-1/2  h-screen  hidden lg:block ">
-            <img src={img} alt="" />
+        </div>}
+      {
+        submit == 1 && <div className="w-full font-defaultFont">
+          <div className="mt-32"></div>
+          <div className="mb-12 w-[70%] mx-auto pt-8 pb-12 rounded-lg shadow-xl">
+            <img className="mx-auto w-[90%] md:w-[43%]" src={img1} alt="" />
+            <img className=" w-32 md:w-56 mx-auto" src={img2} alt="" />
+            <h1 className="mt-3 text-center font-bold">Your approval request for verification has been submitted.</h1>
+            <h2 className="mt-2 text-center">We will send you an email upon verification soon.</h2>
           </div>
         </div>
-      </div>
-    </div>}
-    {
-      submit==1 && <div className="w-full font-defaultFont">
-        <div className="mt-32"></div>
-        <div className="mb-12 w-[70%] mx-auto pt-8 pb-12 rounded-lg shadow-xl">
-          <img className="mx-auto w-[90%] md:w-[43%]" src={img1} alt="" />
-          <img className=" w-32 md:w-56 mx-auto" src={img2} alt="" />
-          <h1 className="mt-3 text-center font-bold">Your approval request for verification has been submitted.</h1>
-          <h2 className="mt-2 text-center">We will send you an email upon verification soon.</h2>
-        </div>
-      </div>
 
-    }
-      
+      }
+
       <Footer />
     </div>
   );

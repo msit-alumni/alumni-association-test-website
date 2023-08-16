@@ -30,7 +30,7 @@ export default function Index() {
     const [select2, changeSelect2] = useState(0);
     const [country,setCountry]=useState();
     useEffect(() => {
-        fetch('http://backend.msitalumni.com/AllAlumni',{
+        fetch('http://localhost:5001/AllAlumni',{
         //   headers: {
         //     "Authorization": "Bearer " + localStorage.getItem("jwt")
         // }

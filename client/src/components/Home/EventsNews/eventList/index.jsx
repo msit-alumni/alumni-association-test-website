@@ -6,7 +6,7 @@ const Index = () => {
   const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
-    fetch('http://backend.msitalumni.com/AllEvent')
+    fetch('http://localhost:5001/AllEvent')
       .then(response => {
         if (response.ok) {
           return response.json();
