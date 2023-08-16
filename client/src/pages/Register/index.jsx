@@ -10,8 +10,10 @@ import img1 from "../../assets/images/connect logo 2.png"
 import img2 from "../../assets/images/Register/img2.png"
 import { Country, State }  from 'country-state-city';
 import cookie from "js-cookie"
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [work, setWork] = useState(0);
   const [master, setMaster] = useState(0);
   const [selectedOption]=useState();
@@ -144,7 +146,7 @@ const Register = () => {
       console.log(data.url)
       const verified = "false";
       const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,universityName,degreeName}=values;
-      SetSubmit(1);
+      // SetSubmit(1);
       fetch("http://backend.msitalumni.com/signupAlumni", {
         method: "POST",
         headers: {
@@ -176,11 +178,14 @@ const Register = () => {
         const data1 = res.json();
         cookie.set("jwt",data1.token);
         cookie.set("user",JSON.stringify(data1.user));
+        navigate("/signinAlumni")
       })
       .catch((error) => {
+        alert("Please try again later")
         console.error("Error posting user:", error);
       });
   }).catch(err => {
+    alert("Please try again later")
       console.log(err)
   });
   };

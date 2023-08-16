@@ -36,6 +36,7 @@ const Register2 = ()=>{
       .then(data => {
           console.log(data)
           if (data.error) {
+            alert("Please Enter a valid Email or Password!!")
             console.log("data error")
           }
           else {
@@ -46,6 +47,7 @@ const Register2 = ()=>{
               navigate("/alumni/profile")
           }
       });
+      
     };
 
     return (
