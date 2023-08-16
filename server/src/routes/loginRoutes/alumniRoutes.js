@@ -27,6 +27,7 @@ router.post("/signupAlumni", async (req, res) => {
         designation,
         verified,
         universityName,
+        achievement,
         degreeName
       } = req.body;
       console.log(name,email,mobile,shift,company)
@@ -55,6 +56,7 @@ router.post("/signupAlumni", async (req, res) => {
         designation,
         verified,
         universityName,
+        achievement,
         degreeName
       });
      

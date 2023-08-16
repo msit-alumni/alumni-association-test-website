@@ -74,23 +74,20 @@ const Index = () => {
           </div>
           <div className='flex'>
               <div className='w-[70%] px-[4%] py-12'>
-                  <div className='flex text-3xl '>
-                      <BiShoppingBag />
-                      <h1 className='ml-4 mt-[4px] text-xl'>Work Experience</h1>
-                  </div>
-                  <div className='text-[14px] mt-6'>
-                      <h2 className='font-bold text-lg'>{profile.company}</h2>
-                      <p className='mt-2'>{profile.designation}</p>
-                      <p className='mt-2'></p>
-                      <p className='mt-2'>{profile.country}</p>
-                  </div>
-                  {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
-                  <div className='text-[14px] mt-6'>
-                      <h2 className='font-bold text-lg'>Infosys</h2>
-                      <p className='mt-2'>Software Developer</p>
-                      <p className='mt-2'>2015-2020</p>
-                      <p className='mt-2'>Noida</p>
-                  </div> */}
+
+                  {profile.company&&
+              <div>
+              <div className="flex text-3xl ">
+              <BiShoppingBag />
+              <h1 className="ml-4 mt-[4px] text-xl">Work Experience</h1>
+            </div>
+            <div className="text-[14px] mt-6">
+              <h2 className="font-bold text-lg">{profile.company}</h2>
+              <p className="mt-2">{profile.designation}</p>
+              <p className="mt-2"></p>
+              <p className="mt-2">{profile.country}</p>
+            </div>
+            </div>}
                   <div className='w-full h-[2px] rounded-xl my-8 bg-black'></div>
                   <div className='flex text-3xl '>
                       <SlGraduation />
@@ -101,16 +98,22 @@ const Index = () => {
                       <p className='mt-2'>BTECH</p>
                       <p className='mt-2'>{profile.batch}</p>
                   </div>
-                  {/* <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
+                  {
+                profile.universityName&&
+                <div>
+                <div className='w-[40%] h-[2px] rounded-xl my-8 bg-[#DBE2EF]'></div>
                   <div className='text-[14px] mt-6'>
-                      <h2 className='font-bold text-lg'>Maharaja Surajmal Institute of Technology</h2>
-                      <p className='mt-2'>B. Tech</p>
-                      <p className='mt-2'>2008 - 2012</p>
-                  </div> */}
+                      <h2 className='font-bold text-lg'>{profile.universityName}</h2>
+                      <p className='mt-2'>{profile.degreeName}</p>
+                  </div></div>
+              }
                   <div className='w-full h-[2px] rounded-xl my-8 bg-black'></div>
                   <div className='flex text-3xl '>
                       <AiOutlineTrophy />
                       <h1 className='ml-4 mt-[4px] text-xl'>Achievements</h1>
+                      <p className="mt-2">
+                  {profile.achievement}
+                </p>
                   </div>
                   <div className='text-sm mt-6'>
                       <h2 className='font-bold text-lg'></h2>

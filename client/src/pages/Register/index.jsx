@@ -145,6 +145,7 @@ const Register = () => {
         console.log(data)
       console.log(data.url)
       const verified = "false";
+      const achievement="";
       const {name,email,mobile,dob,image,password,country,state,batch,branch,shift,company,designation,experience,sector,universityName,degreeName}=values;
       // SetSubmit(1);
       fetch("http://backend.msitalumni.com/signupAlumni", {
@@ -171,6 +172,7 @@ const Register = () => {
         sector,
         verified,
         universityName,
+        achievement,
         degreeName,
         }),
       })
