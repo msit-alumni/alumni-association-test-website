@@ -10,7 +10,7 @@ export default function Index() {
   const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/AllEvent")
+    fetch("http://backend.msitalumni.com/AllEvent")
       .then(response => {
         if (response.ok) {
           return response.json();

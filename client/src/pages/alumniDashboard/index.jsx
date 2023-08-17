@@ -38,7 +38,7 @@ const Index = () => {
     
   }
   const update = (id) => {
-    fetch('http://localhost:5001/updateprofile', {
+    fetch('http://backend.msitalumni.com/updateprofile', {
       method:"put",
       headers: {
         "Content-Type": "application/json"
@@ -61,7 +61,7 @@ const Index = () => {
 
 
   const fetchData = () => {
-    fetch("http://localhost:5001/alumni/profile", {
+    fetch("http://backend.msitalumni.com/alumni/profile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },

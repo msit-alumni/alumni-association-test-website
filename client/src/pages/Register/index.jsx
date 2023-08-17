@@ -80,7 +80,7 @@ const Register = () => {
     const achievement = "";
     console.log("url=",url)
     if(url){
-    fetch("http://localhost:5001/signupAlumni", {
+    fetch("http://backend.msitalumni.com/signupAlumni", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const Register = () => {
 
 
   //   SetSubmit(1);
-  //   const res = await fetch("http://localhost:5001/signupAlumni", {
+  //   const res = await fetch("http://backend.msitalumni.com/signupAlumni", {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",

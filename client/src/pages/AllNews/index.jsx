@@ -9,7 +9,7 @@ export default function Index() {
   const [newsList, setNewsList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5001/getAllNews')
+    fetch('http://backend.msitalumni.com/getAllNews')
       .then(response => {
         if (response.ok) {
           return response.json();
