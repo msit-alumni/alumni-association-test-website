@@ -57,7 +57,7 @@ const index = () => {
       <img
         src={kapt}
         className= "w-md h-md  rounded-full"
-        alt="" />
+        alt="Kaptan Singh" />
     </div>
 
     <p  className =" text-md font-Merriweather font-bold text-[#041C32] mt-8  ">
@@ -127,14 +127,14 @@ const index = () => {
             </div> 
             <div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
             <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Puneet} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Puneet} alt="Puneet" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Puneet Azad</span></h1>
             <h2 className="text-xl italic ">Convener and Associate Prof. (ECE)</h2>
         </div>
 
         <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Richa} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Richa} alt="Richa" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Richa Gupta</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (ECE)</h2>
@@ -142,28 +142,28 @@ const index = () => {
         
 
         <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36   rounded-full " src={Sonika} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36   rounded-full " src={Sonika} alt="Sonika" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Sonika Malik</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (IT)</h2>
         </div>
 
         <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shilpam} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shilpam} alt="Shilpam" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Shilpam Malik</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (EEE)</h2>
         </div>
 
         <div className="text-center text-gray-500">
-        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Ravi} alt="messi" />
+        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Ravi} alt="Ravi" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Ravi Choudhary </span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (ECE)</h2>
         </div>
 
          <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Sunesh} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Sunesh} alt="Sunesh" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Sunesh Malik</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (IT)</h2>
@@ -171,7 +171,7 @@ const index = () => {
 
 
         <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shaily} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Shaily} alt="Shaily" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Shaily Malik</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (CSE)</h2>
@@ -179,7 +179,7 @@ const index = () => {
 
 
         <div className="text-center text-gray-500">
-            <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Gunjan} alt="messi" />
+            <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Gunjan} alt="Gunjan" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Gunjan</span></h1>
             <h2 className="text-xl italic ">Team Member and Asst. Prof. (CSE)</h2>
@@ -204,19 +204,19 @@ const index = () => {
 
 <div className=" py-16 grid gap-6 lg:gap-12 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
 <div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Tanay} alt="messi"/>
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Tanay} alt="Tanay"/>
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Tanay Aggarwal</a></h1>
     <h2 className="text-xl italic ">Lead Engineer</h2>
 </div>
 <div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Ankit} alt="messi"/>
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Ankit} alt="Ankit"/>
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Ankit Chaudhary</a></h1>
     <h2 className="text-xl italic ">Design Engineer</h2>
 </div>
 <div className="text-center text-gray-500">
-    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Anshita} alt="messi" />
+    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Anshita} alt="Anshita" />
     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
         <a href="#">Anshita Chaudhary</a></h1>
     <h2 className="text-xl italic ">Design Engineer</h2>
@@ -227,25 +227,28 @@ const index = () => {
 
 <div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
                 <div className="text-center text-gray-500">
-                    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Utkarsh} alt="messi" />
+                    <a href="https://linktr.ee/ahuja_utkarsh">
+                    <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Utkarsh} alt="Utkarsh Ahuja" /></a>
                     <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-                        <span href="#">Utkarsh Ahuja</span></h1>
+                        <a href="https://linktr.ee/ahuja_utkarsh">Utkarsh Ahuja</a></h1>
                     <h2 className="text-xl italic ">Software Engineer</h2>
                 </div>
         <div className="text-center text-gray-500">
-          <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Uday} alt="messi" />
+            <a href="https://linktr.ee/uday_sangwan">
+          <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Uday} alt="Uday Sangwan" /></a>
           <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-              <a href="#">Uday Singh Sangwan </a></h1>
+              <a href="https://linktr.ee/uday_sangwan">Uday Singh Sangwan </a></h1>
           <h2 className="text-xl italic ">Backend Engineer</h2>
       </div>
       <div className="text-center text-gray-500">
-        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Kaif} alt="messi" />
+        <a href="https://www.linkedin.com/in/mohd-kaif-7ba250228/">
+        <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Kaif} alt="Kaif" /></a>
         <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
-            <a href="#">Mohd Kaif </a></h1>
+            <a href="https://www.linkedin.com/in/mohd-kaif-7ba250228/">Mohd Kaif </a></h1>
         <h2 className="text-xl italic ">Frontend Engineer</h2>
     </div>
     <div className="text-center text-gray-500">
-      <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Yash} alt="messi" />
+      <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full " src={Yash} alt="Yash" />
       <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
           <a href="#">Yash Choudhary</a></h1>
       <h2 className="text-xl italic ">Frontend Engineer</h2>

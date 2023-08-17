@@ -26,16 +26,17 @@ const Index = () => {
       setIsAlumni(false);
     }
   }, []);
-  useEffect(()=>{
-    if(updated){
-      window.location.reload();
-      setUpdate(false)
-    }
-  }
-  ,[updated])
+  // useEffect(()=>{
+  //   if(updated){
+  //     window.location.reload();
+  //     setUpdate(false)
+  //   }
+  // }
+  // ,[updated])
   const updatereload=(id)=>{
     update(id);
     
+    window.location.reload()
   }
   const update = (id) => {
     fetch('http://backend.msitalumni.com/updateprofile', {
@@ -160,7 +161,7 @@ const Index = () => {
                 edit==1 && (
                   <div>
                     <input type="text" className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full" placeholder="Enter your achievement" name="achievement" value={achievement} onChange={(e)=>{setAchievement(e.target.value)}} />
-                 <button onClick={updatereload(profile._id)}>
+                 <button onClick={()=>{updatereload(profile._id)}}>
                  Save </button>
                   </div>
                 )

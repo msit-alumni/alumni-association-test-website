@@ -40,9 +40,8 @@ const Register = () => {
       .getStatesOfCountry(countryId)
       .map((state) => ({ latitude: state.latitude, label: state.name, value: state.isoCode, ...state }));
 
-  const handleButtonState = (event) => {
-    console.log(errors);
-    handleChange(event);
+
+  function handlePageChange() {
     if (
       errors.email == undefined &&
       errors.mobile == undefined &&
@@ -52,27 +51,26 @@ const Register = () => {
       values.password.length > 4
     ) {
       console.log(values);
-      setCreateDisabled(false);
-      if (
-        errors.country == undefined &&
-        errors.branch == undefined &&
-        errors.shift == undefined &&
-        values.batch != "" &&
-        values.branch != "" &&
-        values.shift != ""
-      ) {
-        console.log(values)
-        setButtonDisabled(false);
-      }
-      else {
-        setButtonDisabled(true);
-      }
+      setregister(1);
+    }
+    else {alert("Please enter details correctly");}
+  }
+
+  function handlePostData() {
+    if (
+      (errors.country == undefined && errors.branch == undefined && errors.shift == undefined && values.batch != "" && values.branch != "" && values.shift != "")
+      &&
+      ((errors.company == undefined && errors.designation == undefined && errors.experience == undefined && errors.sector == undefined && values.company.length>0 && values.designation.length>0 && values.experience.length>0 && values.sector.length>0) 
+      || 
+      (errors.universityName == undefined && errors.degreeName == undefined && values.universityName.length>0 && values.degreeName.length>0))
+    ) {
+      console.log(values)
+      postData();
     }
     else {
-      setCreateDisabled(true);
+      alert("Please enter details Correctly");
     }
-    handleChange(event);
-  };
+  }
 
   useEffect(() => {
     const {name,email,mobile,dob,universityName, degreeName,password,country,state,batch,branch,shift,company,designation,experience,sector}=values;
@@ -329,7 +327,7 @@ const Register = () => {
                               name="name"
                               autoComplete="off"
                               onBlur={handleBlur}
-                              onChange={handleButtonState}
+                              onChange={handleChange}
                               className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                             />
                             {errors.name && touched.name ? (
@@ -343,7 +341,7 @@ const Register = () => {
                               placeholder="E-mail"
                               value={values.email}
                               name="email"
-                              onChange={handleButtonState}
+                              onChange={handleChange}
                               autoComplete="off"
                               onBlur={handleBlur}
                               className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
@@ -358,7 +356,7 @@ const Register = () => {
                               type="number"
                               placeholder="Mobile No"
                               value={values.mobile}
-                              onChange={handleButtonState}
+                              onChange={handleChange}
                               name="mobile"
                               autoComplete="off"
                               onBlur={handleBlur}
@@ -374,7 +372,7 @@ const Register = () => {
                               type="date"
                               placeholder="Date of Birth"
                               value={values.dob}
-                              onChange={handleButtonState}
+                              onChange={handleChange}
                               name="dob"
                               autoComplete="off"
                               onBlur={handleBlur}
@@ -391,7 +389,7 @@ const Register = () => {
                               type="password"
                               placeholder="Password"
                               value={values.password}
-                              onChange={handleButtonState}
+                              onChange={handleChange}
                               name="password"
                               autoComplete="off"
                               onBlur={handleBlur}
@@ -436,12 +434,9 @@ const Register = () => {
                             </div>
                           </div>
                           <div className="flex">
-                            {isCreateDisabled && <button disabled={true} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
+                            <button disabled={false} onClick={handlePageChange} className="w-full px-6 py-2 mt-4 text-white hover:shadow-md ease-in-out duration-300 bg-[#3F72AF] rounded-lg ">
                               Create Account
-                            </button>}
-                            {(!isCreateDisabled) && <button disabled={false} onClick={() => { setregister(1) }} className="w-full px-6 py-2 mt-4 text-white hover:shadow-md ease-in-out duration-300 bg-[#3F72AF] rounded-lg ">
-                              Create Account
-                            </button>}
+                            </button>
                           </div>
                           <Link to="/signinAlumni">
                             <p className="text-sm text-center mt-1 font-dark  text-black">
@@ -548,7 +543,7 @@ const Register = () => {
                             type="text"
                             placeholder="Batch"
                             value={values.batch}
-                            onChange={handleButtonState}
+                            onChange={handleChange}
                             name="batch"
                             autoComplete="off"
                             onBlur={handleBlur}
@@ -588,7 +583,7 @@ const Register = () => {
                             type="text"
                             placeholder="Branch"
                             value={values.branch}
-                            onChange={handleButtonState}
+                            onChange={handleChange}
                             name="branch"
                             autoComplete="off"
                             onBlur={handleBlur}
@@ -613,7 +608,7 @@ const Register = () => {
                             name="shift"
                             autoComplete="off"
                             onBlur={handleBlur}
-                            onChange={handleButtonState}
+                            onChange={handleChange}
                             className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                           >
                             <option value="">None</option>
@@ -648,7 +643,7 @@ const Register = () => {
                                   type="text"
                                   placeholder="Enter you University Name"
                                   value={values.universityName}
-                                  onChange={handleButtonState}
+                                  onChange={handleChange}
                                   name="universityName"
                                   autoComplete="off"
                                   onBlur={handleBlur}
@@ -661,7 +656,7 @@ const Register = () => {
                                   type="text"
                                   placeholder="Enter the Name of Degree"
                                   value={values.degreeName}
-                                  onChange={handleButtonState}
+                                  onChange={handleChange}
                                   name="degreeName"
                                   autoComplete="off"
                                   onBlur={handleBlur}
@@ -681,7 +676,7 @@ const Register = () => {
                                     type="text"
                                     placeholder="Company"
                                     value={values.company}
-                                    onChange={handleButtonState}
+                                    onChange={handleChange}
                                     name="company"
                                     autoComplete="off"
                                     onBlur={handleBlur}
@@ -698,7 +693,7 @@ const Register = () => {
                                     name="experience"
                                     autoComplete="off"
                                     onBlur={handleBlur}
-                                    onChange={handleButtonState}
+                                    onChange={handleChange}
                                     className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                                   />
 
@@ -712,7 +707,7 @@ const Register = () => {
                                     name="designation"
                                     autoComplete="off"
                                     onBlur={handleBlur}
-                                    onChange={handleButtonState}
+                                    onChange={handleChange}
                                     className="border font-[MerriWeather] rounded border-gray-400 py-1 px-2 w-full"
                                   />
 
@@ -724,7 +719,7 @@ const Register = () => {
                                     type="text"
                                     placeholder="Sector"
                                     value={values.sector}
-                                    onChange={handleButtonState}
+                                    onChange={handleChange}
                                     name="sector"
                                     autoComplete="off"
                                     onBlur={handleBlur}
@@ -752,12 +747,9 @@ const Register = () => {
                       <div className="py-2"></div>
                       <div className="text-center lg:text-left">
                         <div className="flex">
-                          {isButtonDisabled && <button disabled={true} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg opacity-50">
+                          <button disabled={false} onClick={handlePostData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
                             Submit
-                          </button>}
-                          {(!isButtonDisabled) && <button disabled={false} onClick={postData} className="w-full px-6 py-2 mt-4 text-white bg-[#3F72AF] rounded-lg ">
-                            Submit
-                          </button>}
+                          </button>
                         </div>
                       </div>
                     </div>

@@ -19,7 +19,9 @@ export const signupSchema = Yup.object({
   branch: Yup.string().required("Please select your branch"),
   shift: Yup.string().required("Please select your shift"),
   company: Yup.string().required("Please enter your company name"),
-  experience: Yup.string().required("Please select your number of experience"),
+  experience: Yup.string().matches(/[0-9]/, "Experience must be a number").required("Please select your number of experience"),
   designation: Yup.string().required("Please enter your designation"),
-  sector: Yup.string().required("Please enter your sector")
+  sector: Yup.string().required("Please enter your sector"),
+  universityName: Yup.string().required("Please enter your University"),
+  degreeName: Yup.string().required("Please enter your Degree")
 });
