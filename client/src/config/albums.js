@@ -1,8 +1,8 @@
-import alum23 from "../assets/images/CarouselMain/img16.JPG.JPG"
+import alum23 from "../assets/images/CarouselMain/img.JPG.JPG"
 export const Albums = [
     {
         id: 1,
-        name: '',
+        name: 'alumni2023',
         title: 'Alumni Meet 2023',
         desc: '',
         image: alum23
