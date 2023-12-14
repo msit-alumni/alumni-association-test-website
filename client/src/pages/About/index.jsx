@@ -7,7 +7,7 @@ import Sonika from '../../assets/images/Team/sonika.jpg'
 import Ravi from '../../assets/images/Team/ravi.jpg'
 import Shilpam from '../../assets/images/Team/shilpam.jpg'
 import Sunesh from '../../assets/images/Team/sunesh.jpg'
-import Puneet from '../../assets/images/Team/puneet.jpg'
+import Minakshi from '../../assets/images/Team/minakshi.jpg'
 import Shaily from '../../assets/images/Team/shaily.jpg'
 import Anshita from '../../assets/images/Team/anshita.jpg'
 import Ankit from '../../assets/images/Team/ankit.jpg'
@@ -126,18 +126,25 @@ const index = () => {
                 <div className="h-[2px] mt-4 w-48 rounded m-auto bg-[#112D4E]"></div>
             </div> 
             <div className="grid gap-8 lg:gap-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
-            <div className="text-center text-gray-500">
+            {/* <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36 object-cover rounded-full" src={Puneet} alt="Puneet" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Puneet Azad</span></h1>
             <h2 className="text-xl italic ">Convener and Associate Prof. (ECE)</h2>
-        </div>
+        </div> */}
 
         <div className="text-center text-gray-500">
             <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Richa} alt="Richa" />
             <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
                 <span href="#">Richa Gupta</span></h1>
-            <h2 className="text-xl italic ">Team Member and Asst. Prof. (ECE)</h2>
+            <h2 className="text-xl italic ">Convener and Asst. Prof. (ECE)</h2>
+        </div>
+
+        <div className="text-center text-gray-500">
+            <img className="mx-auto mb-4 w-36 h-36  rounded-full" src={Minakshi} alt="Minaskhi" />
+            <h1 className="mb-1 text-xl font-bold  text-gray-900 ">
+                <span href="#">Minakshi Tomer</span></h1>
+            <h2 className="text-xl italic "> Team Member and Asst. Prof. (IT)</h2>
         </div>
         
 

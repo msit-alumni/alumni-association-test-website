@@ -499,7 +499,107 @@ export const Images = [
           "id": 95,
           "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1Y7-w5bKgsQPHGX71Mgt9lH1tXyIlqE2w",
           "name": "alumni2021"
-        }
+        },
+        {
+          "id": 96,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1U0Wl5J87lV9fmQysD8O7Lcciwwt0gGG3",
+          "name": "alumni2023"
+        },
+        {
+          "id": 97,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=17ZoO1guHBHheDmN0mMkC2nJ_vocI6edg",
+          "name": "alumni2023"
+        },
+        {
+          "id": 98,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1OPqt64OxJCokXhUnA7klVlUSNpKAJf4c",
+          "name": "alumni2023"
+        },
+        {
+          "id": 99,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1xJiXSkQOHqTr_jEMVELIMS473VIauIGB",
+          "name": "alumni2023"
+        },
+        {
+          "id": 100,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1jFFq1ij5gmwH7b7UpIHvzfHdpbxnmSVU",
+          "name": "alumni2023"
+        },
+        {
+          "id": 101,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1396zOjG_9-0z5huxjyWDZVITrvGyLu-7",
+          "name": "alumni2023"
+        },
+        {
+          "id": 102,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1vxa5n4Npqh2m-tV8QzBRec2ed2d_z3e2",
+          "name": "alumni2023"
+        },
+        {
+          "id": 103,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1iZfYQ8hU4tWyspAn5y-XmNmmlT73ioqg",
+          "name": "alumni2023"
+        },
+        {
+          "id": 104,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1jBJzIibGZrxI-5UoMsFzwoo_9lSPe_Hl",
+          "name": "alumni2023"
+        },
+        {
+          "id": 105,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1z4Xaz7VJ58eeG0AbncVXnrXP7HBD8WhO",
+          "name": "alumni2023"
+        },
+        {
+          "id": 106,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1mgWDZblo7CQUMn3T4A0PlSKgEYe026RT",
+          "name": "alumni2023"
+        },
+        {
+          "id": 107,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1vxa5n4Npqh2m-tV8QzBRec2ed2d_z3e2",
+          "name": "alumni2023"
+        },
+        {
+          "id": 108,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1KGTqnlUHuI2NsN-8s8JdfXZCo9Ugakfy",
+          "name": "alumni2023"
+        },
+        {
+          "id": 109,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1m6FqiihofC692BTUsuZ3IjUQqvY1SU9s",
+          "name": "alumni2023"
+        },
+        {
+          "id": 110,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1kmCDJnHtINlceEsCL3UL-tabQg6VFO4g",
+          "name": "alumni2023"
+        },
+        {
+          "id": 111,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1QfAdGushWIMnQUdA2B5daOLC3ofzeNav",
+          "name": "alumni2023"
+        },
+        {
+          "id": 112,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1WPaC6pD8bP4O65sE81JP3w-S6QiCVWSL",
+          "name": "alumni2023"
+        },
+        {
+          "id": 113,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1Wpttt-b4IimfRp3bp2ZR2sNqRTvOV44a",
+          "name": "alumni2023"
+        },
+        {
+          "id": 114,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1Hz5lduCTAc2LzjeHwwP1xgMznqJLrUyM",
+          "name": "alumni2023"
+        },
+        {
+          "id": 115,
+          "photo": "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1DvCZLA_o5Qtl4r5Dig-cnha_cbVuAIC0",
+          "name": "alumni2023"
+        },
       
 
 ];

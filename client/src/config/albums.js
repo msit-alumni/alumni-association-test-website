@@ -1,3 +1,4 @@
+import alum23 from "../assets/images/CarouselMain/img16.JPG.JPG"
 export const Albums = [
     {
         id: 1,
@@ -27,5 +28,13 @@ export const Albums = [
         desc: '',
         image: "https://drive.google.com/uc?export=view&pen?usp=forms_web&id=1mimsuiDuF8bCwnV8gOreQtM9Ru_OE6GH"
     },
+    {
+        id: 5,
+        name: 'alumni2023',
+        title: 'Alumni Meet 2023',
+        desc: '',
+        image: alum23
+    },
+
     
 ];
